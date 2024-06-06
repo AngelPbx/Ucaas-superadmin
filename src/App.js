@@ -23,7 +23,7 @@ import ExtensionsImport from "./Components/Pages/Extensions/ExtensionsImport";
 import ExtensionsSettings from "./Components/Pages/Extensions/ExtensionsSettings";
 import ExtensionSettingsEdit from "./Components/Pages/Extensions/ExtensionSettingsEdit";
 import ExtensionSummary from "./Components/Pages/Extensions/ExtensionSummary";
-import Dashboard from "./Components/Pages/Dashboard/Dashboard";
+import SuperAdminDashboard from "./Components/Pages/Dashboard/SuperAdminDashboard";
 import Profile from "./Components/Pages/Profile/Profile";
 import Gateway from "./Components/Pages/Gateway/Gateway";
 import GatewayAdd from "./Components/Pages/Gateway/GatewayAdd";
@@ -109,7 +109,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<SuperAdminDashboard />} />
             <Route path="/my-profile" element={<Profile />} />
             <Route path="/master" element={<Master />} />
             <Route path="/change-password" element={<ChangePassword />} />
