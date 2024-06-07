@@ -1,94 +1,121 @@
-import React, { useEffect, useState } from 'react'
-import { generalDeleteFunction, generalGetFunction, generalPostFunction, generalPutFunction } from '../../GlobalFunction/globalFunction'
+import React, { useEffect, useState } from "react";
+import {
+  generalDeleteFunction,
+  generalGetFunction,
+  generalPostFunction,
+  generalPutFunction,
+} from "../../GlobalFunction/globalFunction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../../CommonComponents/Header";
-import { useSelector } from 'react-redux';
-import CircularLoader from '../Misc/CircularLoader';
+import { useSelector } from "react-redux";
+import CircularLoader from "../Misc/CircularLoader";
 
 function Roles() {
-    const account = useSelector((state)=>state.account)
-    const [role,setRole]=useState()
-    const [popup,setPopup]=useState(false)
-    const [editClick,setEditClick]=useState(false)
-    const [saveClick,setSaveClick]=useState(false)
-    const [updateRole,setUpdateRole]=useState()
-    const [editIndex,setEditIndex]=useState()
-    const [newRole,setNewRole]=useState("")
-    const [addRole,setAddRole]=useState(false)
-    const [deleteIndex,setDeleteIndex]=useState()
-    const [refresh,setRefresh]=useState(0)
-    const [loading,setLoading]=useState(false)
-    useEffect(()=>{
-        async function getData(){
-            const apiData = await generalGetFunction(`/roles?acount_id=${account.account_id}`)
-            if(apiData.status){
-                setRole(apiData.data)
-            }
-        }
-        getData()
-    },[refresh])
-
-    async function handleSubmit(){
-        setPopup(false)
-        if(addRole){
-            if(newRole===""){
-                toast.error("Please enter new role")
-            }else{
-                setLoading(true)
-                const parsedData = {
-                    name:newRole,
-                    created_by:account.account_id
-                }
-                const apiData = await generalPostFunction("/role/store",parsedData)
-                if(apiData.status){
-                    setLoading(false)
-                    setRefresh(refresh+1)
-                    toast.success(apiData.message)
-                    setPopup(false)
-                    setSaveClick(false)
-                    setNewRole("")
-                    setAddRole(false)
-                }else{
-                    setLoading(false)
-                    toast.error(apiData.message)
-                }
-            }
-        }else if(editClick){
-            if(updateRole===""){
-                toast.error("Please fill the role")
-            }else{
-                setLoading(true)
-                const parsedData = {
-                    name:updateRole
-                }
-                const apiData = await generalPutFunction(`/role/${role[editIndex].id}`,parsedData)
-                if(apiData.status){
-                    toast.success(apiData.message);
-                    setEditClick(false);
-                    setUpdateRole("")
-                    setLoading(false)
-                    setEditIndex()
-                }else{
-                    setLoading(false)
-                    toast.error(apiData.message)
-                }
-            }
-
-        }else{
-            setLoading(true)
-            const apiData = await generalDeleteFunction(`/role/${role[deleteIndex].id}`)
-            if(apiData.status){
-                setEditClick(false)
-                setDeleteIndex()
-                toast.success(apiData.success)
-                setLoading(false)
-            }else{
-                setLoading(false)
-                toast.error(apiData.message)
-            }
-        }
+  const account = useSelector((state) => state.account);
+  const [role, setRole] = useState();
+  const [popup, setPopup] = useState(false);
+  const [editClick, setEditClick] = useState(false);
+  const [saveClick, setSaveClick] = useState(false);
+  const [updateRole, setUpdateRole] = useState();
+  const [editIndex, setEditIndex] = useState();
+  const [newRole, setNewRole] = useState("");
+  const [addRole, setAddRole] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState();
+  const [refresh, setRefresh] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [permission, setPermission] = useState();
+  useEffect(() => {
+    async function getData() {
+      const apiData = await generalGetFunction(`/roles`);
+      const permissionData = await generalGetFunction("/permission");
+      if (apiData.status) {
+        setRole(apiData.data);
+      }
+      if (permissionData.status) {
+        setPermission(permissionData.data);
+      }
     }
+    getData();
+  }, [refresh]);
+
+  async function handleSubmit() {
+    setPopup(false);
+    if (addRole) {
+      if (newRole === "") {
+        toast.error("Please enter new role");
+      } else {
+        setLoading(true);
+        const parsedData = {
+          name: newRole,
+          created_by: account.account_id,
+        };
+        const apiData = await generalPostFunction("/role/store", parsedData);
+        if (apiData.status) {
+          setLoading(false);
+          setRefresh(refresh + 1);
+          toast.success(apiData.message);
+          setPopup(false);
+          setSaveClick(false);
+          setNewRole("");
+          setAddRole(false);
+        } else {
+          setLoading(false);
+          toast.error(apiData.message);
+        }
+      }
+    } else if (editClick) {
+      if (updateRole === "") {
+        toast.error("Please fill the role");
+      } else {
+        setLoading(true);
+        const parsedData = {
+          name: updateRole,
+        };
+        const apiData = await generalPutFunction(
+          `/role/${role[editIndex].id}`,
+          parsedData
+        );
+        if (apiData.status) {
+          toast.success(apiData.message);
+          setEditClick(false);
+          setUpdateRole("");
+          setLoading(false);
+          setEditIndex();
+        } else {
+          setLoading(false);
+          toast.error(apiData.message);
+        }
+      }
+    } else {
+      setLoading(true);
+      const apiData = await generalDeleteFunction(
+        `/role/${role[deleteIndex].id}`
+      );
+      if (apiData.status) {
+        setEditClick(false);
+        setDeleteIndex();
+        toast.success(apiData.success);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        toast.error(apiData.message);
+      }
+    }
+  }
+
+  const [selectedPermissions, setSelectedPermissions] = useState({});
+
+  const handleCheckboxChange = (type, id) => {
+    setSelectedPermissions(prev => ({
+      ...prev,
+      [type]: {
+        ...prev[type],
+        [id]: !prev[type]?.[id]
+      }
+    }));
+  };
+
   return (
     <main className="mainContent">
       <section id="phonePage">
@@ -100,19 +127,24 @@ function Roles() {
                 <div className="masterSegment">
                   <h6>
                     <div className="row align-items-center">
-                      <div className="col-auto">
-                        List of Roles{" "}
-                      </div>
+                      <div className="col-auto">List of Roles </div>
                       {/* <div className="col pe-0">
                         <input type="search" name="Search" id="headerSearch" placeholder="Search a role" onChange={(e) => setSearchDomain(e.target.value)} />
                       </div> */}
                       <div className="col-auto ps-0 mt-1">
-                        <button className="clearButton" style={{ width: '100%', height: '100%', fontSize: 22 }}>
+                        <button
+                          className="clearButton"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            fontSize: 22,
+                          }}
+                        >
                           <i
                             className="fa-duotone fa-circle-plus"
                             onClick={() => {
                               setAddRole(true);
-                              setEditClick(false)
+                              setEditClick(false);
                             }}
                           ></i>
                         </button>
@@ -157,14 +189,10 @@ function Roles() {
                               type="text"
                               placeholder={item.name}
                               onChange={(e) => setUpdateRole(e.target.value)}
-                              disabled={
-                                editIndex === index
-                                  ? false
-                                  : true
-                              }
+                              disabled={editIndex === index ? false : true}
                             ></input>
                             <button className="clearButton text-success">
-                              {editIndex === index  ? (
+                              {editIndex === index ? (
                                 <i
                                   className="fa-duotone fa-circle-check"
                                   onClick={() => {
@@ -187,9 +215,9 @@ function Roles() {
                                 className="fa-duotone fa-trash"
                                 onClick={() => {
                                   setPopup(true);
-                                  setDeleteIndex(index)
+                                  setDeleteIndex(index);
                                   setEditClick(false);
-                                  setAddRole(false)
+                                  setAddRole(false);
                                 }}
                               ></i>
                             </button>
@@ -197,6 +225,37 @@ function Roles() {
                         );
                       })}
                   </ul>
+                </div>
+              </div>
+              <div className="col-xl-8">
+                <div className="container mt-2">
+                  {permission &&
+                    Object.keys(permission).map((group) => (
+                      <div className="card mb-1" key={group}>
+                        <div className="card-header">
+                          <h5 className="mb-0">{group}</h5>
+                        </div>
+                        <div className="card-body">
+                          {permission[group].map((item) => (
+                            <div className="form-check" key={item.id}>
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id={`permission-${item.id}`}
+                                checked={selectedPermissions[group]?.[item.id] || false}
+                                onChange={() => handleCheckboxChange(group, item.id)}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor={`permission-${item.id}`}
+                              >
+                                {item.action} {item.slug}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -216,21 +275,25 @@ function Roles() {
                 <div className="col-10 ps-0">
                   <h4>Warning!</h4>
                   {saveClick ? (
-                    <p>
-                      Are you sure you want to add this Role: {newRole}?
-                    </p>
+                    <p>Are you sure you want to add this Role: {newRole}?</p>
                   ) : editClick ? (
                     <p>
-                      Are you sure you want to change {role[editIndex].name}{" "}
-                      to {updateRole}?
+                      Are you sure you want to change {role[editIndex].name} to{" "}
+                      {updateRole}?
                     </p>
-                  ): (
+                  ) : (
                     <p>
-                      Are you sure you want to delete this {role[deleteIndex].name} ?
+                      Are you sure you want to delete this{" "}
+                      {role[deleteIndex].name} ?
                     </p>
                   )}
 
-                  <button className="panelButton m-0" onClick={()=>{handleSubmit()}} >
+                  <button
+                    className="panelButton m-0"
+                    onClick={() => {
+                      handleSubmit();
+                    }}
+                  >
                     Confirm
                   </button>
                   <button
@@ -252,7 +315,7 @@ function Roles() {
       ) : (
         ""
       )}
-         {loading ? <CircularLoader /> : ""}
+      {loading ? <CircularLoader /> : ""}
       <ToastContainer
         position="bottom-right"
         autoClose={3000}
@@ -266,7 +329,7 @@ function Roles() {
         theme="dark"
       />
     </main>
-  )
+  );
 }
 
-export default Roles
+export default Roles;

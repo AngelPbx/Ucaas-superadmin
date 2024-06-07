@@ -32,7 +32,7 @@ const SuperAdminDashboard = () => {
                 }
             }
             getData()
-    }, [])
+    }, [navigate])
     return (
         <main className="mainContent">
             <section id="phonePage">
