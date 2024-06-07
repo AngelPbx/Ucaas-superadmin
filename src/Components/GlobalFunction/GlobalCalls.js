@@ -8,9 +8,9 @@ function GlobalCalls() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     useEffect(()=>{
-        if(account && account.account_id){
+        if(account){
             async function getData(){
-                const apiData = await generalGetFunction(`/call-details?account=${account.account_id}`)
+                const apiData = await generalGetFunction(`/call-details?account=1`)
                 if(apiData.status){
                     dispatch({
                         type:"SET_ALLCALL",
