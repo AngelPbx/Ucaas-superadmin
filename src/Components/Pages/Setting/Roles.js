@@ -104,18 +104,24 @@ function Roles() {
     }
   }
 
-  const [selectedPermissions, setSelectedPermissions] = useState({});
+  const [selectedPermissions, setSelectedPermissions] = useState([]);
 
-  const handleCheckboxChange = (type, id) => {
-    setSelectedPermissions(prev => ({
-      ...prev,
-      [type]: {
-        ...prev[type],
-        [id]: !prev[type]?.[id]
-      }
-    }));
+  const handleCheckboxChange = (id) => {
+    if(selectedPermissions.includes(id)){
+      setSelectedPermissions(selectedPermissions.filter((item)=>item!==id))
+    }else{
+      setSelectedPermissions([...selectedPermissions,id])
+    }
+    // setSelectedPermissions(prev => ({
+    //   ...prev,
+    //   [type]: {
+    //     ...prev[type],
+    //     [id]: !prev[type]?.[id]
+    //   }
+    // }));
   };
 
+  console.log("This is permission",selectedPermissions);
   return (
     <main className="mainContent">
       <section id="phonePage">
@@ -242,8 +248,8 @@ function Roles() {
                                 className="form-check-input"
                                 type="checkbox"
                                 id={`permission-${item.id}`}
-                                checked={selectedPermissions[group]?.[item.id] || false}
-                                onChange={() => handleCheckboxChange(group, item.id)}
+                                checked={selectedPermissions.includes(item.id)}
+                                onChange={() => handleCheckboxChange(item.id)}
                               />
                               <label
                                 className="form-check-label"
