@@ -129,7 +129,7 @@ function Navbar() {
                 >
                   <div className="menuWrapper">
                     <ul className="tabMenu">
-                      {userType === "SupreAdmin" ? (
+                      {userType === "SuperAdmin" ? (
                         <li className="tabItem" effect="ripple">
                           <NavLink
                             to="/master"
@@ -171,7 +171,7 @@ function Navbar() {
                           <div className="itemTitle">Device Provisioning</div>
                         </NavLink>
                       </li>
-                      {userType === "SupreAdmin" ? (
+                      {userType === "SuperAdmin" ? (
                         <li className="tabItem" effect="ripple">
                           <NavLink
                             to="/admin/package"
@@ -192,7 +192,7 @@ function Navbar() {
                 </div>
               </li>
 
-              {userType === "SupreAdmin" ? (
+              {userType === "SuperAdmin" ? (
                 <li className="">
                   <button
                     data-bs-toggle="collapse"
@@ -295,7 +295,7 @@ function Navbar() {
                           <div className="itemTitle">Extensions</div>
                         </NavLink>
                       </li>
-                      {userType === "SupreAdmin" ? (
+                      {userType === "SuperAdmin" ? (
                         <li className="tabItem" effect="ripple">
                           <NavLink to="/gateway">
                             <div className="iconHolder">
@@ -407,7 +407,7 @@ function Navbar() {
                 </div>
               </li>
 
-              {userType === "SupreAdmin" ? (
+              {userType === "SuperAdmin" ? (
                 <li className="">
                   <button
                     data-bs-toggle="collapse"
@@ -503,7 +503,7 @@ function Navbar() {
                 </div>
               </li>
 
-              {userType === "SupreAdmin" ? (
+              {userType === "SuperAdmin" ? (
                 <li className="">
                   <button
                     data-bs-toggle="collapse"
@@ -565,7 +565,7 @@ function Navbar() {
                 ""
               )}
 
-              {userType === "SupreAdmin" ? (
+              {userType === "SuperAdmin" ? (
                 <li className="">
                   <button
                     data-bs-toggle="collapse"

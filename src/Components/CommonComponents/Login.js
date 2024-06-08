@@ -37,7 +37,7 @@ function Login() {
       if (data) {
         if (data.status ) {
           const profile = await generalGetFunction("/user");
-          if (profile.status && profile.data.usertype==="superAdmin") {
+          if (profile.status && profile.data.usertype==="SuperAdmin") {
             setLoading(false);
             dispatch({
               type: "SET_ACCOUNT",
