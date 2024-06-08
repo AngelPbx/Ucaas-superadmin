@@ -112,13 +112,6 @@ function Roles() {
     }else{
       setSelectedPermissions([...selectedPermissions,id])
     }
-    // setSelectedPermissions(prev => ({
-    //   ...prev,
-    //   [type]: {
-    //     ...prev[type],
-    //     [id]: !prev[type]?.[id]
-    //   }
-    // }));
   };
 
   console.log("This is permission",selectedPermissions);
