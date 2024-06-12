@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { backToTop, generalGetFunction, generalPostFunction, generalPutFunction } from "../../GlobalFunction/globalFunction";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  backToTop,
+  generalGetFunction,
+  
+  generalPutFunction,
+} from "../../GlobalFunction/globalFunction";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useLocation } from 'react-router-dom';
 import CircularLoader from "../Misc/CircularLoader";
 
 function GatewayEdit() {
   const navigate = useNavigate();
   const account = useSelector((state) => state.account);
   const queryParams = new URLSearchParams(useLocation().search);
-  const value = queryParams.get('id');
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true);
+  const value = queryParams.get("id");
   const [gatewayState, setGatwewayState] = useState({
     gateway: "",
     username: "",
@@ -25,7 +29,7 @@ function GatewayEdit() {
     register: "",
     retry: "",
     profile: "",
-    status: "",
+    status: "E",
     desc: "",
     gatewayMissing: "",
     usernameMissing: "",
@@ -42,37 +46,42 @@ function GatewayEdit() {
     descMissing: "",
   });
 
-  useEffect(()=>{
-    if(account && account.id){
-    async function getData (){
-      const apiData = await generalGetFunction(`/gateway/${value}`)
-      if(apiData.status){
-        setLoading(false)
-        setGatwewayState(prevState=>({
-          ...prevState,
-          gateway:apiData.data.name,
-          username:apiData.data.username,
-          password:apiData.data.password,
-          proxy:apiData.data.proxy,
-          expiry:apiData.data.expireseconds,
-          register:apiData.data.register,
-          profile:apiData.data.profile,
-          status:apiData.data.status,
-          desc:apiData.data.description,
-          fromuser:apiData.data.fromUser,
-          fromdomain:apiData.data.fromDomain,
-          realm:apiData.data.realm,
-          retry:apiData.data.retry,
-        }))
-      }else{
-        navigate("/")
+  useEffect(() => {
+    if (account && account.id) {
+      async function getData() {
+        const apiData = await generalGetFunction(`/gateway/${value}`);
+        if (apiData.status) {
+          setLoading(false);
+          setGatwewayState((prevState) => ({
+            ...prevState,
+            gateway: apiData.data.name,
+            username: apiData.data.username,
+            password: apiData.data.password,
+            proxy: apiData.data.proxy,
+            expiry: apiData.data.expireseconds,
+            register: apiData.data.register,
+            profile: apiData.data.profile,
+            status: apiData.data.status,
+            desc: apiData.data.description,
+            fromuser: apiData.data.fromUser,
+            fromdomain: apiData.data.fromDomain,
+            realm: apiData.data.realm,
+            retry: apiData.data.retry,
+          }));
+        } else {
+          navigate("/");
+        }
       }
+      getData();
+    } else {
+      navigate("/");
     }
-    getData()
-  }else{
-    navigate("/")
-  }
-  },[])
+  }, [account, navigate, value]);
+  useEffect(() => {
+    if (account === null) {
+      navigate("/");
+    }
+  });
   // Calling gateway store by validating form
   async function handleSubmit() {
     if (gatewayState.username.trim().length > 2) {
@@ -108,28 +117,28 @@ function GatewayEdit() {
         passwordMissing: true,
       }));
     }
-    if (gatewayState.fromdomain.trim().length > 2) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        fromdomainMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        fromdomainMissing: true,
-      }));
-    }
-    if (gatewayState.fromuser.trim().length > 2) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        fromuserMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        fromuserMissing: true,
-      }));
-    }
+    // if (gatewayState.fromdomain.trim().length > 2) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     fromdomainMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     fromdomainMissing: true,
+    //   }));
+    // }
+    // if (gatewayState.fromuser.trim().length > 2) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     fromuserMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     fromuserMissing: true,
+    //   }));
+    // }
     if (gatewayState.proxy.trim().length > 2) {
       setGatwewayState((prevState) => ({
         ...prevState,
@@ -141,125 +150,127 @@ function GatewayEdit() {
         proxyMissing: true,
       }));
     }
-    if (gatewayState.realm.trim().length > 2) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        realmMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        realmMissing: true,
-      }));
-    }
-    if (gatewayState.expiry > 0) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        expiryMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        expiryMissing: true,
-      }));
-    }
-    if (gatewayState.register.trim().length > 2) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        registerMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        registerMissing: true,
-      }));
-    }
-    if (gatewayState.retry > 0) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        retryMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        retryMissing: true,
-      }));
-    }
-    if (gatewayState.profile.trim().length > 2) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        profileMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        profileMissing: true,
-      }));
-    }
-    if (gatewayState.status === "" || gatewayState.status === "Choose Status") {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        statusMissing: true,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        statusMissing: false,
-      }));
-    }
-    if (gatewayState.desc.trim().length > 2) {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        descMissing: false,
-      }));
-    } else {
-      setGatwewayState((prevState) => ({
-        ...prevState,
-        descMissing: true,
-      }));
-    }
+    // if (gatewayState.realm.trim().length > 2) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     realmMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     realmMissing: true,
+    //   }));
+    // }
+    // if (gatewayState.expiry > 0) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     expiryMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     expiryMissing: true,
+    //   }));
+    // }
+    // if (gatewayState.register.trim().length > 2) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     registerMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     registerMissing: true,
+    //   }));
+    // }
+    // if (gatewayState.retry > 0) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     retryMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     retryMissing: true,
+    //   }));
+    // }
+    // if (gatewayState.profile.trim().length > 2) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     profileMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     profileMissing: true,
+    //   }));
+    // }
+    // if (gatewayState.status === "" || gatewayState.status === "Choose Status") {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     statusMissing: true,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     statusMissing: false,
+    //   }));
+    // }
+    // if (gatewayState.desc.trim().length > 2) {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     descMissing: false,
+    //   }));
+    // } else {
+    //   setGatwewayState((prevState) => ({
+    //     ...prevState,
+    //     descMissing: true,
+    //   }));
+    // }
 
     if (
       gatewayState.username.trim().length > 2 &&
       gatewayState.gateway.trim().length > 2 &&
       gatewayState.password.trim().length > 3 &&
-      gatewayState.fromdomain.trim().length > 2 &&
-      gatewayState.fromuser.trim().length > 2 &&
-      gatewayState.proxy.trim().length > 2 &&
-      gatewayState.realm.trim().length > 2 &&
-      gatewayState.expiry > 0  &&
-      gatewayState.register.trim().length > 2 &&
-      gatewayState.retry > 0 &&
-      gatewayState.profile.trim().length > 2 &&
-      !(
-        gatewayState.status === "" || gatewayState.status === "Choose Status"
-      ) &&
-      gatewayState.desc.trim().length > 2
+      gatewayState.proxy.trim().length > 2
+      //  &&
+      // gatewayState.fromdomain.trim().length > 2 &&
+      // gatewayState.fromuser.trim().length > 2 &&
+
+      // gatewayState.realm.trim().length > 2 &&
+      // gatewayState.expiry > 0 &&
+      // gatewayState.register.trim().length > 2 &&
+      // gatewayState.retry > 0 &&
+      // gatewayState.profile.trim().length > 2 &&
+      // !(
+      //   gatewayState.status === "" || gatewayState.status === "Choose Status"
+      // ) &&
+      // gatewayState.desc.trim().length > 2
     ) {
       setLoading(true)
       const parsedData = {
-        account_id:account.account_id,
-        // name:gatewayState.username,
-        username:gatewayState.username,
-        password:gatewayState.password,
-        proxy:gatewayState.proxy,
-        expireseconds:gatewayState.expiry,
-        register:gatewayState.register,
-        profile:gatewayState.profile,
-        status:gatewayState.status,
-        description:gatewayState.desc,
-        fromUser:gatewayState.fromuser,
-        fromDomain:gatewayState.fromdomain,
-        realm:gatewayState.realm,
-        retry:gatewayState.retry,
-      }
-      const apidata = await generalPutFunction(`/gateway/${value}`,parsedData)
-      if(apidata.status){
+        account_id: account.account_id,
+        name: gatewayState.gateway,
+        username: gatewayState.username,
+        password: gatewayState.password,
+        proxy: gatewayState.proxy,
+        expireseconds: gatewayState.expiry,
+        register: gatewayState.register,
+        profile: gatewayState.profile,
+        status: gatewayState.status,
+        description: gatewayState.desc,
+        fromUser: gatewayState.fromuser,
+        fromDomain: gatewayState.fromdomain,
+        realm: gatewayState.realm,
+        retry: gatewayState.retry,
+      };
+      const apidata = await generalPutFunction(`gateway/${value}`, parsedData);
+      if (apidata.status) {
         setLoading(false)
-          toast.success(apidata.message)
-      }else{
+        toast.success(apidata.message);
+      } else {
         setLoading(false)
-        toast.error(apidata.message)
+        toast.error(apidata.message);
       }
     }
   }
@@ -307,34 +318,11 @@ function GatewayEdit() {
                 </div>
               </div>
               <div className="col-xl-12" style={{ overflow: "auto" }}>
-              {loading ?
-            <div colSpan={99}><CircularLoader /></div>: ""}
                 <div className="mx-2" id="detailsContent">
                   <form action="#" className="row">
-                    {/* <div className="formRow col-xl-3">
-                      <div className="formLabel">
-                        <label htmlFor="">Gateway</label>
-                        <label className='status missing'>Field missing</label>
-                      </div>
-                      <div className="col-12">
-                        <input
-                          type="text"
-                          name="extension"
-                          
-                          className="formItem"
-                          defaultValue={1001}
-                          required="required"
-                        />
-                        <br />
-                        <label htmlFor="data" className="formItemDesc">
-                          Defines a connections to a SIP Provider or another SIP
-                          server.
-                        </label>
-                      </div>
-                    </div> */}
                     <div className="formRow col-xl-3">
                       <div className="formLabel">
-                        <label htmlFor="selectFormRow">Gateway</label>
+                        <label htmlFor="selectFormRow">Gateway*</label>
                         {gatewayState.gatewayMissing ? (
                           <label className="status missing">
                             Field missing
@@ -355,7 +343,7 @@ function GatewayEdit() {
                             }));
                           }}
                           className="formItem"
-                          disabled
+                          required="required"
                         />
                         <br />
                         <label htmlFor="data" className="formItemDesc">
@@ -365,7 +353,7 @@ function GatewayEdit() {
                     </div>
                     <div className="formRow col-xl-3">
                       <div className="formLabel">
-                        <label htmlFor="selectFormRow">Username</label>
+                        <label htmlFor="selectFormRow">Username*</label>
                         {gatewayState.usernameMissing ? (
                           <label className="status missing">
                             Field missing
@@ -396,7 +384,7 @@ function GatewayEdit() {
                     </div>
                     <div className="formRow col-xl-3">
                       <div className="formLabel">
-                        <label htmlFor="">Password</label>
+                        <label htmlFor="">Password*</label>
                         {gatewayState.passwordMissing ? (
                           <label className="status missing">
                             Field missing
@@ -422,6 +410,38 @@ function GatewayEdit() {
                         <br />
                         <label htmlFor="data" className="formItemDesc">
                           Enter the numeric voicemail password here.
+                        </label>
+                      </div>
+                    </div>
+                    <div className="formRow col-xl-3">
+                      <div className="formLabel">
+                        <label htmlFor="">Proxy*</label>
+                        {gatewayState.proxyMissing ? (
+                          <label className="status missing">
+                            Field missing
+                          </label>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="col-12">
+                        <input
+                          type="text"
+                          name="extension"
+                          className="formItem"
+                          value={gatewayState.proxy}
+                          onChange={(e) => {
+                            setGatwewayState((prevState) => ({
+                              ...prevState,
+                              proxy: e.target.value,
+                            }));
+                          }}
+                          required="required"
+                        />
+                        <br />
+                        <label htmlFor="data" className="formItemDesc">
+                          Enter the hostname or IP address of the proxy.
+                          host[:port]
                         </label>
                       </div>
                     </div>
@@ -484,38 +504,6 @@ function GatewayEdit() {
                         <br />
                         <label htmlFor="data" className="formItemDesc">
                           Enter the from-domain here.
-                        </label>
-                      </div>
-                    </div>
-                    <div className="formRow col-xl-3">
-                      <div className="formLabel">
-                        <label htmlFor="">Proxy</label>
-                        {gatewayState.proxyMissing ? (
-                          <label className="status missing">
-                            Field missing
-                          </label>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                      <div className="col-12">
-                        <input
-                          type="text"
-                          name="extension"
-                          className="formItem"
-                          value={gatewayState.proxy}
-                          onChange={(e) => {
-                            setGatwewayState((prevState) => ({
-                              ...prevState,
-                              proxy: e.target.value,
-                            }));
-                          }}
-                          required="required"
-                        />
-                        <br />
-                        <label htmlFor="data" className="formItemDesc">
-                          Enter the hostname or IP address of the proxy.
-                          host[:port]
                         </label>
                       </div>
                     </div>
@@ -645,352 +633,6 @@ function GatewayEdit() {
                         </label>
                       </div>
                     </div>
-                    {/* <div id="advancedOptions">
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Distinct To</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >Choose distinct-to</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the distinct_to here.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Auth Username</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the auth-username here.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Extension</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the extension here.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Register Transport</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >Choose to register</option>
-                            <option value="udp">udp</option>
-                            <option value="tcp">tcp</option>
-                            <option value="tls">tls</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Choose whether to register-transport.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Contact Params</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the contact params here.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Register Proxy</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the hostname or IP address of the register proxy.
-                            host[:port]
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Outbound Proxy</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the hostname or IP address of the outbound proxy.
-                            host[:port]
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Caller ID In From</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >Choose Caller-Id</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the caller-id-in-from.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Supress CNG</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >Choose Suppress-cng</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the supress-cng
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Sip CID Type</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the sip cid type: none, pid, and rpid.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Codec Preferences</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the codec preferences as a list. Ex: PCMA,PCMU,G722
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Extension In Contact</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >Choose Extension</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the Extension In Contact
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Ping</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the ping interval here in seconds.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Ping Min</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the ping minimum range in seconds.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Ping Max</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the ping maximum range in seconds.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Contact in Ping</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >Choose Contact</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Select whether to add contact in the ping.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Channels</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Maximum number of simultaneous channels available in the
-                            gateway.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Hostname</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            name="extension"
-                            
-                            className="formItem"
-                            defaultValue=""
-                            required="required"
-                          />
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Enter the hostname / switchname.
-                          </label>
-                        </div>
-                      </div>
-                      <div className="formRow col-xl-3">
-                        <div className="formLabel">
-                          <label htmlFor="selectFormRow">Domain</label>
-                        </div>
-                        <div className="col-12">
-                          <select className="formItem" name="" >
-                            <option >0.0.0.0</option>
-                            <option value="true">Global</option>
-                            <option value="false">1.1.1.1</option>
-                          </select>
-                          <br />
-                          <label htmlFor="data" className="formItemDesc">
-                            Select the Domain
-                          </label>
-                        </div>
-                      </div>
-                    </div> */}
                     <div className="formRow col-xl-3">
                       <div className="formLabel">
                         <label htmlFor="selectFormRow">Profile</label>
@@ -1014,9 +656,10 @@ function GatewayEdit() {
                           }}
                         >
                           <option>Choose Profile</option>
-                          <option value="true">internal</option>
-                          <option value="false">external-ipv6</option>
-                          <option value="false">internal-ipv6</option>
+                          <option value="internal">Internal</option>
+                          <option value="external">External</option>
+                          <option value="external-ipv6">external-ipv6</option>
+                          <option value="internal-ipv6">internal-ipv6</option>
                         </select>
                         <br />
                         <label htmlFor="data" className="formItemDesc">
@@ -1094,18 +737,25 @@ function GatewayEdit() {
           </div>
         </section>
       </main>
+      {loading ? (
+        <div colSpan={99}>
+          <CircularLoader />
+        </div>
+      ) : (
+        ""
+      )}
       <ToastContainer
-                position="bottom-right"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-            />
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }

@@ -86,7 +86,7 @@ function CallCenterQueueEdit() {
     }else{
     navigate(-1)
     }
-  }, []);
+  }, [account.account_id, locationState, navigate]);
   
 
   const [error, setError] = useState({
