@@ -72,18 +72,14 @@ function UserDetails() {
       <style>
         {`
       .formRow{
-        padding: 5px 10px;
+        border: none;
       }
       .formItem{
-        border: none;
+        margin: 0px 5px 0px 0px;
         color: #000;
-        font-weight: 500;
-        padding: 0;
-        margin: 0;
-        height: auto;
       }
       .formLabel{
-        padding: 0 0 2px 0;
+        padding: 0px 0px 5px;
       }
       .qLinkContent .imgWrapper{
         width: 50px;
@@ -194,7 +190,8 @@ function UserDetails() {
                       <div className="approvalButton">
                         {" "}
                         <button className="float-end btn btn-danger btn-sm">
-                          <i class="fa-light fa-triangle-exclamation"></i> Document Not Uploaded
+                          <i class="fa-light fa-triangle-exclamation"></i>{" "}
+                          Document Not Uploaded
                         </button>{" "}
                       </div>
                     ) : accountDetails?.company_status === "approved" ? (
@@ -724,7 +721,6 @@ function UserDetails() {
                           <label>Amount Paid:</label>{" "}
                           <label className="details">
                             ${accountDetails?.payments?.[0]?.amount_total}
-
                           </label>
                         </li>
                         <li>
@@ -767,7 +763,7 @@ function UserDetails() {
         ) : (
           ""
         )}
-      </div >
+      </div>
       <ToastContainer
         position="bottom-right"
         autoClose={3000}
