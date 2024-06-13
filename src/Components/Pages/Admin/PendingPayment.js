@@ -68,7 +68,7 @@ function PaymentVerification() {
                               return (
                                 <tr
                                   onClick={() =>
-                                    navigate(`/user-details?id=${item.id}`)
+                                    navigate(`/user-details`,{state:item.id})
                                   }
                                   key={index}
                                 >

@@ -9,6 +9,8 @@ const Socket = () => {
   const token = localStorage.getItem("token");
   const socketRef = useRef(null);
 
+
+  
   useEffect(() => {
     const connectWebSocket = () => {
       const socket = new WebSocket(`ws://${ip}:${port}?token=${token}`);

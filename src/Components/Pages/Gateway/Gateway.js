@@ -15,7 +15,7 @@ function Gateway() {
   useEffect(() => {
     if (account && account.id) {
       async function getData() {
-        const apiData = await generalGetFunction(`/gateways?account=${account.account_id}`);
+        const apiData = await generalGetFunction(`/gateways`);
         if (apiData.status) {
           setGateway(apiData.data);
           setLoading(false);
