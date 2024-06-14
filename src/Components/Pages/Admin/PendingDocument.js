@@ -12,7 +12,7 @@ function PendingDocument() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/accounts?company_status=2`);
+      const apiData = await generalGetFunction(`/accounts?company_status=document`);
       if (apiData.status) {
         setLoading(false);
         setAccount(apiData.data);
@@ -67,7 +67,7 @@ function PendingDocument() {
                               return (
                                 <tr
                                   onClick={() =>
-                                    navigate(`/document-details?id=${item.id}`)
+                                    navigate(`/document-details`,{state:item.id})
                                   }
                                   key={index}
                                 >
