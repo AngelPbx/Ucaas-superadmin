@@ -67,7 +67,6 @@ function UserDocumentDetails() {
   };
 
   
-  console.log("This is user Details",userDetails);
   return (
     <>
       <style>
