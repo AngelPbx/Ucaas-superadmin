@@ -1,50 +1,52 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../CommonComponents/Header";
 import { useLocation, useNavigate } from "react-router-dom";
-import { generalGetFunction, generalPostFunction } from "../../GlobalFunction/globalFunction";
+import {
+  generalGetFunction,
+  generalPostFunction,
+} from "../../GlobalFunction/globalFunction";
 import CircularLoader from "../Misc/CircularLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function UserDetails() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const [userDetails,setUserDetails]=useState()
-  const [loading,setLoading]=useState(true)
-  const locationState = location.state
-  useEffect(()=>{
-    if(locationState){
-      async function getData(){
-        const apiData = await generalGetFunction(`/account/${locationState}`)
-        if(apiData.status){
-          setUserDetails(apiData.data)
-          setLoading(false)
-        }else{
-          setLoading(false)
-          navigate(-1)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [userDetails, setUserDetails] = useState();
+  const [loading, setLoading] = useState(true);
+  const locationState = location.state;
+  useEffect(() => {
+    if (locationState) {
+      async function getData() {
+        const apiData = await generalGetFunction(`/account/${locationState}`);
+        if (apiData.status) {
+          setUserDetails(apiData.data);
+          setLoading(false);
+        } else {
+          setLoading(false);
+          navigate(-1);
         }
       }
-      getData()
-      
-    }else{
-      navigate("/")
+      getData();
+    } else {
+      navigate("/");
     }
-  },[locationState, navigate])
-  console.log("This is user Details",userDetails);
+  }, [locationState, navigate]);
+  console.log("This is user Details", userDetails);
 
-  async function approveClick(){
-    setLoading(true)
-    const parsedData ={
-      account_id:locationState
-    }
-    const apiData = await generalPostFunction("/payment-verify",parsedData)
-    if(apiData.status){
-      setLoading(false)
-      toast.success(apiData.message)
-      navigate(-1)
-    }else{
-      setLoading(false)
-      toast.error(apiData.message)
+  async function approveClick() {
+    setLoading(true);
+    const parsedData = {
+      account_id: locationState,
+    };
+    const apiData = await generalPostFunction("/payment-verify", parsedData);
+    if (apiData.status) {
+      setLoading(false);
+      toast.success(apiData.message);
+      navigate(-1);
+    } else {
+      setLoading(false);
+      toast.error(apiData.message);
     }
   }
   return (
@@ -62,7 +64,7 @@ function UserDetails() {
         padding: 0px 0px 5px;
       }
       .wrapper{
-        padding: 10px 10px 0 ;
+        padding: 0px 10px 0 ;
       }
       .wrapper ul{
         padding: 0;
@@ -72,7 +74,7 @@ function UserDetails() {
 
       .wrapper ul li{
         padding-bottom: 5px;
-        margin-top: 7px;
+        margin-top: 5px;
         border-bottom: 1px solid #ddd;
       }
 
@@ -107,18 +109,22 @@ function UserDetails() {
         <div className="col-12">
           <Header title="New User Details" />
           <div class="d-flex flex-wrap">
-            <div className="col-xl-9">
+            <div className="col-xl-12">
               <div className="profileView">
                 <div className="profileDetailsHolder position-relative">
                   <div className="header d-flex align-items-center">
                     <div className="col-5">Account Details</div>
-                    <div class="approvalButton"> 
-                      <div onClick={approveClick} class="float-start btn btn-success btn-sm">
+                    <div class="approvalButton">
+                      <div
+                        onClick={approveClick}
+                        class="float-start btn btn-success btn-sm"
+                      >
                         <i class="fa-duotone fa-check-double"></i> Approve
-                      </div> 
+                      </div>
                       <div class="float-end btn btn-danger btn-sm ms-1">
-                        <i class="fa-duotone fa-triangle-exclamation"></i> Reject
-                      </div> 
+                        <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
+                        Reject
+                      </div>
                     </div>
                   </div>
                   <div className="row px-2 pb-2 border-bottom">
@@ -282,26 +288,76 @@ function UserDetails() {
                 </div>
               </div>
               <div className="d-flex flex-wrap">
-                <div className="col-xl-4">
+                <div className="col-xl-6">
                   <div className="profileView">
                     <div className="profileDetailsHolder position-relative">
                       <div className="header d-flex align-items-center">
-                        <div className="col-12">Selected Package</div>
+                        <div className="col-12">Package & Card Details</div>
                       </div>
                       <div class="row" style={{ padding: "5px" }}>
                         <div class="wrapper">
                           <ul>
                             <li>
                               <label>Package Name</label>{" "}
-                              <label class="details">{userDetails?.package.name}</label>
+                              <label class="details">
+                                {userDetails?.package.name}
+                              </label>
                             </li>
                             <li>
                               <label>Package Price</label>{" "}
-                              <label class="details">${userDetails?.package.offer_price}</label>
+                              <label class="details">
+                                ${userDetails?.package.offer_price}
+                              </label>
                             </li>
                             <li>
                               <label>Package Type</label>{" "}
-                              <label class="details">{userDetails?.package.subscription_type}</label>
+                              <label class="details">
+                                {userDetails?.package.subscription_type}
+                              </label>
+                            </li>
+                            <li>
+                              <label>Card Holder's Name</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].card_details.name}
+                              </label>
+                            </li>
+                            <li>
+                              <label>Card Number</label>{" "}
+                              <label class="details">
+                                {
+                                  userDetails?.payments[0].card_details
+                                    .card_number
+                                }
+                              </label>
+                            </li>
+                            <li>
+                              <label>Card Expiry Date</label>{" "}
+                              <label class="details">
+                                {
+                                  userDetails?.payments[0].card_details
+                                    .exp_month
+                                }
+                                /
+                                {userDetails?.payments[0].card_details.exp_year}
+                              </label>
+                            </li>
+                            <li>
+                              <label>Transaction Id</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].transaction_id}
+                              </label>
+                            </li>
+                            <li>
+                              <label>Payment Status</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].payment_status}
+                              </label>
+                            </li>
+                            <li>
+                              <label>Booking Date</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].transaction_date}
+                              </label>
                             </li>
                           </ul>
                         </div>
@@ -309,27 +365,87 @@ function UserDetails() {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-8">
+                <div className="col-xl-6">
                   <div className="profileView">
                     <div className="profileDetailsHolder position-relative">
                       <div className="header d-flex align-items-center">
-                        <div className="col-12">Card Details</div>
+                        <div className="col-12">Billing Address</div>
                       </div>
                       <div class="row" style={{ padding: "5px" }}>
                         <div class="wrapper">
                           <ul>
                             <li>
-                              <label>Name</label>{" "}
-                              <label class="details">Dummy</label>
+                              <label>Full Name</label>{" "}
+                              <label class="details">
+                                {
+                                  userDetails?.payments[0].billing_address
+                                    .fullname
+                                }
+                              </label>
                             </li>
                             <li>
-                              <label>Number</label>{" "}
-                              <label class="details">**** **** **** 7876</label>
+                              <label>Email</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].billing_address.email}
+                              </label>
                             </li>
                             <li>
-                              <label>Expiry Date</label>{" "}
-                              <label class="details">02/27</label>
+                              <label>Phone Number</label>{" "}
+                              <label class="details">
+                                {
+                                  userDetails?.payments[0].billing_address
+                                    .contact_no
+                                }
+                              </label>
                             </li>
+                            <li>
+                              <label>Address</label>{" "}
+                              <label class="details">
+                                {
+                                  userDetails?.payments[0].billing_address
+                                    .address
+                                }
+                              </label>
+                            </li>
+                            <li>
+                              <label>Zip Code</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].billing_address.zip}
+                              </label>
+                            </li>
+                            <li>
+                              <label>City</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].billing_address.city}
+                              </label>
+                            </li>
+                            <li>
+                              <label>State</label>{" "}
+                              <label class="details">
+                                {userDetails?.payments[0].billing_address.state}
+                              </label>
+                            </li>
+                            <li>
+                              <label>Country</label>{" "}
+                              <label class="details">
+                                {
+                                  userDetails?.payments[0].billing_address
+                                    .country
+                                }
+                              </label>
+                            </li>
+                            {/* <li>
+                          <label>Transaction Id</label>{" "}
+                          <label class="details">{userDetails?.payments[0].transaction_id}</label>
+                        </li>
+                        <li>
+                          <label>Payment Status</label>{" "}
+                          <label class="details">{userDetails?.payments[0].payment_status}</label>
+                        </li>
+                        <li>
+                          <label>Booking Date</label>{" "}
+                          <label class="details">{userDetails?.payments[0].transaction_date}</label>
+                        </li> */}
                           </ul>
                         </div>
                       </div>
@@ -338,7 +454,7 @@ function UserDetails() {
                 </div>
               </div>
             </div>
-            <div className="col-xl-3">
+            {/* <div className="col-xl-3">
               <div className="profileView">
                 <div className="profileDetailsHolder position-relative">
                   <div className="header d-flex align-items-center">
@@ -349,54 +465,54 @@ function UserDetails() {
                       <ul>
                         <li>
                           <label>Full Name</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.fullname}</label>
                         </li>
                         <li>
                           <label>Email</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.email}</label>
                         </li>
                         <li>
                           <label>Phone Number</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.contact_no}</label>
                         </li>
                         <li>
                           <label>Address</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.address}</label>
                         </li>
                         <li>
                           <label>Zip Code</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.zip}</label>
                         </li>
                         <li>
                           <label>City</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.city}</label>
                         </li>
                         <li>
                           <label>State</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.state}</label>
                         </li>
                         <li>
                           <label>Country</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].billing_address.country}</label>
                         </li>
                         <li>
                           <label>Transaction Id</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].transaction_id}</label>
                         </li>
                         <li>
                           <label>Payment Status</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].payment_status}</label>
                         </li>
                         <li>
                           <label>Booking Date</label>{" "}
-                          <label class="details">Test</label>
+                          <label class="details">{userDetails?.payments[0].transaction_date}</label>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
