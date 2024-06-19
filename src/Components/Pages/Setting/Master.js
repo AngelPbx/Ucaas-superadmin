@@ -35,7 +35,7 @@ function Master() {
     if (account && account.id) {
       async function getDomainGroup() {
         const domainList = await generalGetFunction(
-          `/domain/search?account=${account.account_id}`
+          `/domain/search`
         );
         const groupList = await generalGetFunction(`/groups`);
         if (domainList.status) {
