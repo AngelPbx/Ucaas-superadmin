@@ -72,6 +72,7 @@ import Roles from "./Components/Pages/Setting/Roles";
 import CustomerDetails from "./Components/Pages/Profile/CustomerDetails";
 import DocumentUpload from "./Components/Pages/Profile/DocumentUpload";
 import { useSelector } from "react-redux";
+import ConfigDetails from "./Components/Pages/Admin/ConfigDetails";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -87,7 +88,7 @@ const NavigationSetter = () => {
 };
 
 function App() {
-  const account = useSelector((state)=>state.account)
+  const account = useSelector((state) => state.account)
   Socket();
 
   // Unlock this if want push notification add account edit here if id is available
@@ -184,6 +185,7 @@ function App() {
             <Route path="/document-details" element={<UserDocumentDetails />} />
             <Route path="/user-details" element={<UserDetails />} />
             <Route path="/approved-customer" element={<ApprovedCustomer />} />
+            <Route path="/config-details" element={<ConfigDetails />} />
             {/* Admin Packages path end */}
 
             {/* Number Management Path Start */}

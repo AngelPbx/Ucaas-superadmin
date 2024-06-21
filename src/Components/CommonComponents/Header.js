@@ -58,7 +58,7 @@ function Header(props) {
       <div className="col-auto d-none d-xl-flex align-items-center">
         <h4 className="my-auto">{props.title}</h4>
       </div>
-      <div className="col-8 d-flex justify-content-evenly justify-content-xl-end align-items-center">
+      <div className="col-4 d-flex justify-content-evenly justify-content-xl-end align-items-center ms-auto">
         <div className="d-flex justify-content-end align-items-center">
           <div className="d-xl-none d-block me-3">
             <button className="clearButton d-flex align-items-center">
@@ -84,7 +84,7 @@ function Header(props) {
           </div>
         </div>
       </div>
-      <div className="col-auto col-xl-auto d-flex justify-content-end align-items-center">
+      <div className="col-auto col-xl-auto d-flex justify-content-end align-items-center ms-3">
         <Tippy content={accounName}>
           <div className="profileName">{accounName}</div>
         </Tippy>
