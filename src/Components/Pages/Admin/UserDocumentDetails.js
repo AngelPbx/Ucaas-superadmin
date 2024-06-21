@@ -12,7 +12,7 @@ function TempDashboard() {
   const wrapperRef = useRef(null);
   const [openPopup, setOpenPopup] = useState(false);
   const [openNumber, setOpenNumber] = useState(0);
-  const [loading,setLoading]=useState(true)
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate();
   const location = useLocation()
   const locationState = location.state
@@ -25,7 +25,7 @@ function TempDashboard() {
       if (apiData.status) {
         setLoading(false)
         setAccount(apiData.data);
-      }else{
+      } else {
         setLoading(false)
         navigate(-1)
       }
@@ -44,7 +44,7 @@ function TempDashboard() {
   }, []);
 
   const downloadImage = async (imageUrl, fileName) => {
-    console.log("This is image url",imageUrl);
+    console.log("This is image url", imageUrl);
     try {
       const response = await fetch(imageUrl);
       if (!response.ok) {
@@ -67,17 +67,17 @@ function TempDashboard() {
     }
   };
 
-  async function approveClick(){
+  async function approveClick() {
     setLoading(true)
-    const parsedData ={
-      account_id:locationState
+    const parsedData = {
+      account_id: locationState
     }
-    const apiData = await generalPostFunction("/document-verify",parsedData)
-    if(apiData.status){
+    const apiData = await generalPostFunction("/document-verify", parsedData)
+    if (apiData.status) {
       setLoading(false)
       toast.success(apiData.message)
       navigate(-1)
-    }else{
+    } else {
       setLoading(false)
       toast.error(apiData.message)
     }
@@ -138,8 +138,8 @@ function TempDashboard() {
       }
 
       .profileDetailsHolder .imgWrapper{
-        width: 100px;
-        height: 130px;
+        width: 100%;
+        height: auto;
         margin: auto;
         padding-top: 20px;
       }
@@ -157,21 +157,21 @@ function TempDashboard() {
       </style>
       <div className="mainContent">
         <div className="col-12">
-          <Header title="New User Details" />
+          <Header title="User Document Verification" />
           <div class="d-flex flex-wrap">
-           
-            <div className="col-xl-9">
+
+            <div className="col-xl-12">
               <div className="profileView">
                 <div className="profileDetailsHolder position-relative">
                   <div className="header d-flex align-items-center">
                     <div className="col-5">Account Details</div>
-                    <div class="approvalButton"> 
+                    <div class="approvalButton">
                       <div onClick={approveClick} class="float-start btn btn-success btn-sm">
                         <i class="fa-duotone fa-check-double"></i> Approve
-                      </div> 
+                      </div>
                       <div class="float-end btn btn-danger btn-sm ms-1">
                         <i class="fa-duotone fa-triangle-exclamation"></i> Reject
-                      </div> 
+                      </div>
                     </div>
                   </div>
                   <div className="row px-2 pb-2 border-bottom">
@@ -335,6 +335,113 @@ function TempDashboard() {
                 </div>
               </div>
               <div className="d-flex flex-wrap">
+                <div className="col-xl-8">
+                  <div className="profileView">
+                    <div className="profileDetailsHolder">
+                      <div className="header d-flex align-items-center">
+                        <div className="col-12">Documents Uploaded</div>
+                      </div>
+                      {account?.details ? (
+                        <div className="qLinkContent px-3 mt-2" ref={wrapperRef}>
+                          {account.details.map((item, key) => {
+                            return (
+                              <div className="row position-relative mb-2 align-items-center">
+                                <div className="col-auto ps-0 pe-2">
+                                  <div className="iconWrapper2">
+                                    <i class="fa-solid fa-image"></i>
+                                  </div>
+                                </div>
+                                <div className="col-4 my-auto ps-1">
+                                  <p>{item?.document?.name}</p>
+                                </div>
+                                <div className="col-6 ms-auto">
+                                  <div class="d-flex justify-content-end">
+                                    <div onClick={approveClick} class="btn btn-success btn-sm">
+                                      <i class="fa-duotone fa-check-double"></i> Approve
+                                    </div>
+                                    <div class="btn btn-danger btn-sm ms-1">
+                                      <i class="fa-duotone fa-triangle-exclamation"></i> Reject
+                                    </div>
+                                    {/* <div class="btn btn-info btn-sm ms-1 text-white">
+                                      <i class="fa-duotone fa-upload"></i> Upload
+                                    </div>
+                                    <div class="btn btn-danger btn-sm ms-1">
+                                      <i class="fa-duotone fa-trash"></i> Delete
+                                    </div> */}
+                                  </div>
+                                </div>
+                                <div
+                                  className="col-auto px-0 my-auto"
+                                  onClick={() => {
+                                    setOpenPopup(!openPopup);
+                                    setOpenNumber(key);
+                                  }}
+                                >
+                                  <div className="iconWrapper">
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                  </div>
+                                </div>
+                                <div class="border mt-2 mx-auto col-11"></div>
+                                {openPopup && openNumber === key ? (
+                                  <div className="buttonPopup">
+                                    <div style={{ cursor: "pointer" }}>
+                                      <div
+                                        className="clearButton"
+                                        onClick={() =>
+                                          downloadImage(
+                                            item.path,
+                                            "Register file"
+                                          )
+                                        }
+                                      >
+                                        <i class="fa-solid fa-file-arrow-down"></i>{" "}
+                                        Download
+                                      </div>
+                                    </div>
+                                    <div style={{ cursor: "pointer" }}>
+                                      <div className="clearButton">
+                                        <a
+                                          href={item.path}
+                                          target="_blank"
+                                          rel="noreferrer"
+                                        >
+                                          <i class="fa-sharp fa-solid fa-eye"></i> View
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      ) : (
+                        <Link to="/upload-document">
+                          <div className="imgWrapper">
+                            <img src={require('../../assets/images/upload-file.png')} alt="" />
+                          </div>
+                          <div class="text-center mt-3"><h5>Please upload the <span style={{ color: 'var(--ui-accent)', cursor: 'pointer' }}><b>required documents</b></span>.</h5></div>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4">
+                  <div className="profileView">
+                    <div className="profileDetailsHolder">
+                      <div className="header d-flex align-items-center">
+                        <div className="col-12">Registration</div>
+                      </div>
+                      <div className="imgWrapper">
+                        <img src={'http://192.168.1.88/ucaas-app/storage/company/66752a49f2e2b_thankyou_icon.png'} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="d-flex flex-wrap">
                 <div className="col-xl-6">
                   <div className="profileView">
                     <div className="profileDetailsHolder position-relative">
@@ -449,191 +556,7 @@ function TempDashboard() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-xl-3">
-              <div className="profileView">
-                <div className="profileDetailsHolder">
-                  <div className="header d-flex align-items-center">
-                    <div className="col-12">Documents Uploaded</div>
-                  </div>
-                  {account?.details ? (
-                    <div className="qLinkContent px-3 mt-2" ref={wrapperRef}>
-                      {account.details.map((item,key)=>{
-                        return(
-                          <div className="row position-relative mb-2 align-items-center">
-                          <div className="col-auto ps-0 pe-2">
-                            <div className="iconWrapper2">
-                              <i class="fa-solid fa-image"></i>
-                            </div>
-                          </div>
-                          <div className="col-8 my-auto ps-1">
-                            <p>{item?.document?.name}</p>
-                          </div>
-                          <div
-                            className="col-auto px-0 my-auto ms-auto"
-                            onClick={() => {
-                              setOpenPopup(!openPopup);
-                              setOpenNumber(key);
-                            }}
-                          >
-                            <div className="iconWrapper">
-                              <i class="fa-solid fa-ellipsis"></i>
-                            </div>
-                          </div>
-                          <div class="border mt-2 mx-auto col-10"></div>
-                          {openPopup && openNumber === key ? (
-                            <div className="buttonPopup">
-                              <div style={{ cursor: "pointer" }}>
-                                <div
-                                  className="clearButton"
-                                  onClick={() =>
-                                    downloadImage(
-                                      item.path,
-                                      "Register file"
-                                    )
-                                  }
-                                >
-                                  <i class="fa-solid fa-file-arrow-down"></i>{" "}
-                                  Download
-                                </div>
-                              </div>
-                              <div style={{ cursor: "pointer" }}>
-                                <div className="clearButton">
-                                  <a
-                                    href={item.path}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
-                                    <i class="fa-sharp fa-solid fa-eye"></i> View
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        )
-                      })}
-                     
-                      {/* <div className="row position-relative mb-2 align-items-center">
-                        <div className="col-auto ps-0 pe-2">
-                          <div className="iconWrapper2">
-                            <i class="fa-solid fa-image"></i>
-                          </div>
-                        </div>
-                        <div className="col-8 my-auto ps-1">
-                          <p>MOA</p>
-                        </div>
-                        <div
-                          className="col-auto px-0 my-auto ms-auto"
-                          onClick={() => {
-                            setOpenPopup(!openPopup);
-                            setOpenNumber(2);
-                          }}
-                        >
-                          <div className="iconWrapper">
-                            <i class="fa-solid fa-ellipsis"></i>
-                          </div>
-                        </div>
-                        <div class="border mt-2 mx-auto col-10"></div>
-                        {openPopup && openNumber === 2 ? (
-                          <div className="buttonPopup">
-                            <div style={{ cursor: "pointer" }}>
-                              <div
-                                className="clearButton"
-                                onClick={() =>
-                                  downloadImage(
-                                    account?.details.moa_path,
-                                    "Register file"
-                                  )
-                                }
-                              >
-                                <i class="fa-solid fa-file-arrow-down"></i>{" "}
-                                Download
-                              </div>
-                            </div>
-                            <div style={{ cursor: "pointer" }}>
-                              <div className="clearButton">
-                                <a
-                                  href={account?.details.moa_path}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <i class="fa-sharp fa-solid fa-eye"></i> View
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                      <div className="row position-relative mb-2 align-items-center">
-                        <div className="col-auto ps-0 pe-2">
-                          <div className="iconWrapper2">
-                            <i class="fa-solid fa-image"></i>
-                          </div>
-                        </div>
-                        <div className="col-8 my-auto ps-1">
-                          <p>TIN</p>
-                        </div>
-                        <div
-                          className="col-auto px-0 my-auto ms-auto"
-                          onClick={() => {
-                            setOpenPopup(!openPopup);
-                            setOpenNumber(3);
-                          }}
-                        >
-                          <div className="iconWrapper">
-                            <i class="fa-solid fa-ellipsis"></i>
-                          </div>
-                        </div>
-                        <div class="border mt-2 mx-auto col-10"></div>
-                        {openPopup && openNumber === 3 ? (
-                          <div className="buttonPopup">
-                            <div style={{ cursor: "pointer" }}>
-                              <div
-                                className="clearButton"
-                                onClick={() =>
-                                  downloadImage(
-                                    account?.details.tin_path,
-                                    "Register file"
-                                  )
-                                }
-                              >
-                                <i class="fa-solid fa-file-arrow-down"></i>{" "}
-                                Download
-                              </div>
-                            </div>
-                            <div style={{ cursor: "pointer" }}>
-                              <div className="clearButton">
-                                <a
-                                  href={account?.details.tin_path}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <i class="fa-sharp fa-solid fa-eye"></i> View
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </div> */}
-                    </div>
-                  ) : (
-                    <Link to="/upload-document">
-                      <div className="imgWrapper">
-                      {/* <img src={require('../../assets/images/upload-file.png')} alt="" /> */}
-                      </div>
-                      <div class="text-center mt-3"><h5>Please upload the <span style={{color: 'var(--ui-accent)', cursor: 'pointer'}}><b>required documents</b></span>.</h5></div>
-                    </Link>
-                  )}
-                </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
