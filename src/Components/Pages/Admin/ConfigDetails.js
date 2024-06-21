@@ -6,73 +6,80 @@ function ConfigDetails() {
         <>
             <style>
                 {`
-      .formRow{
+    .formRow{
         border: none;
-      }
-      .formItem{
+    }
+    .gateway .formRow .formItem{
+        border: 1px solid var(--color4);
+    }
+    .gateway .formRow .formLabel{
+        padding: 5px 0;
+    }
+    .formItem{
         margin: 0px 5px 0px 0px;
         color: #000;
-      }
-      .formLabel{
-        padding: 0px 0px 5px;
-      }
-      .wrapper{
+        border: none;
+    }
+    .formLabel{
+        padding: 0;
+    }
+    .wrapper{
         padding: 10px 10px 0 ;
-      }
-      .wrapper ul{
+    }
+    .wrapper ul{
         padding: 0;
         list-style: none;
         margin-bottom: 0;
-      }
+    }
 
-      .wrapper ul li{
+    .wrapper ul li{
         padding-bottom: 5px;
         margin-bottom: 7px;
         border-bottom: 1px solid #ddd;
-      }
+    }
 
-      .wrapper ul label{
+    .wrapper ul label{
         font-size: 14px;
         color: #5e5e5e;
         font-weight: 500;
         font-family: Roboto;
-      }
+    }
 
-      .wrapper ul .details{
+    .wrapper ul .details{
         float: inline-end;
         color: #000;
         font-size: 14px;
         font-weight: 600;
         font-family: Roboto;
-      }
+    }
 
-      .qLinkContent .iconWrapper2{
-          width: 35px;
-          border-radius: 50%;
-          height: 35px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: var(--ui-accent);
-          color: #fff;
-      }
+    .qLinkContent .iconWrapper2{
+        width: 35px;
+        border-radius: 50%;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--ui-accent);
+        color: #fff;
+    }
 
-      .profileDetailsHolder .imgWrapper{
+    .profileDetailsHolder .imgWrapper{
         width: 100px;
         height: 130px;
         margin: auto;
         padding-top: 20px;
-      }
-      .profileDetailsHolder .imgWrapper img{
+    }
+    .profileDetailsHolder .imgWrapper img{
         width: 100%;
         height: 100%;
         object-fit: contain;
-      }
-      .profileDetailsHolder h5 {
+    }
+    .profileDetailsHolder h5 {
         color: var(--color-subtext);
         font-weight: 400;
-      }
-      .profileDetailsHolder a {text-decoration: none}
+    }
+    .profileDetailsHolder a {text-decoration: none}
       `}
             </style>
             <div className="mainContent">
@@ -103,6 +110,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.company_name}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -116,6 +124,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.admin_name}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -129,6 +138,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.email}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -142,6 +152,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.contact_no}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -155,6 +166,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.alternate_contact_no}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -168,6 +180,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.timezone.name}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -181,6 +194,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.unit}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -194,6 +208,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.building}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -207,6 +222,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.city}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -220,6 +236,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.zip}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -233,6 +250,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.state}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -246,6 +264,231 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.country}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="profileView">
+                                <div className="profileDetailsHolder position-relative">
+                                    <div className="header d-flex align-items-center">
+                                        <div className="col-5">Gateway Configuration</div>
+                                        <div class="approvalButton">
+                                            <div class="float-start btn btn-success btn-sm">
+                                                <i class="fa-duotone fa-check-double"></i> Save
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row px-2 border-bottom gateway">
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Gateway*</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.company_name}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Username*</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.admin_name}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Password*</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.email}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Proxy*</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.contact_no}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">From User</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.alternate_contact_no}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">From Domain</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.timezone.name}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Realm</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.unit}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Expire Seconds</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.building}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Register</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.city}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Retry Seconds</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.zip}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Profile</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.state}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Status</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.country}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Description</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.country}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Set Domain</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.country}
+                                                    value="L0LXDT3$T"
+                                                    disabled
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                            <div className="formLabel">
+                                                <label htmlFor="data">Set DID</label>
+                                            </div>
+                                            <div className="col-12">
+                                                <input
+                                                    type="text"
+                                                    className="formItem"
+                                                    //   value={account?.country}
+                                                    value="L0LXDT3$T"
                                                     disabled
                                                 />
                                             </div>
@@ -311,6 +554,18 @@ function ConfigDetails() {
                                                     <label>Transaction Id</label>{" "}
                                                     <label class="details">
                                                         {/* {account?.payments[0].transaction_id} */}
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>DID Status</label>{" "}
+                                                    <label class="details">
+                                                        Successful
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>DID Details</label>{" "}
+                                                    <label class="details">
+                                                        (888) 888-8888
                                                     </label>
                                                 </li>
                                             </ul>
