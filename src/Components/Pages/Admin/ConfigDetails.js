@@ -339,7 +339,7 @@ function ConfigDetails() {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                        {/* <div className="formRow col-xl-4 col-md-4 col-6">
                                             <div className="formLabel">
                                                 <label htmlFor="data">From User</label>
                                             </div>
@@ -366,7 +366,7 @@ function ConfigDetails() {
                                                     disabled
                                                 />
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="formRow col-xl-4 col-md-4 col-6">
                                             <div className="formLabel">
                                                 <label htmlFor="data">Realm</label>
