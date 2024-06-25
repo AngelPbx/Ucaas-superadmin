@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../../CommonComponents/Header";
 import { useSelector } from "react-redux";
-import { generalGetFunction, generalPostFunction } from "../../GlobalFunction/globalFunction";
+import {
+  generalGetFunction,
+  generalPostFunction,
+} from "../../GlobalFunction/globalFunction";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CircularLoader from "../Misc/CircularLoader";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,10 +15,11 @@ function TempDashboard() {
   const wrapperRef = useRef(null);
   const [openPopup, setOpenPopup] = useState(false);
   const [openNumber, setOpenNumber] = useState(0);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const location = useLocation()
-  const locationState = location.state
+  const location = useLocation();
+  const locationState = location.state;
+  const [preview, setPreview] = useState();
   const [account, setAccount] = useState(
     useSelector((state) => state.tempAccount)
   );
@@ -23,11 +27,14 @@ function TempDashboard() {
     async function getData() {
       const apiData = await generalGetFunction(`/account/${locationState}`);
       if (apiData.status) {
-        setLoading(false)
+        setLoading(false);
         setAccount(apiData.data);
+        setPreview("https://ncet-public-2023.s3.ap-south-1.amazonaws.com/2024/site-admin24/syllabus/Accountancy+301.pdf");
+        // setPreview(apiData.data.details[0].path);
+        console.log("This is account data", apiData.data);
       } else {
-        setLoading(false)
-        navigate(-1)
+        setLoading(false);
+        navigate(-1);
       }
     }
     getData();
@@ -68,18 +75,18 @@ function TempDashboard() {
   };
 
   async function approveClick() {
-    setLoading(true)
+    setLoading(true);
     const parsedData = {
-      account_id: locationState
-    }
-    const apiData = await generalPostFunction("/document-verify", parsedData)
+      account_id: locationState,
+    };
+    const apiData = await generalPostFunction("/document-verify", parsedData);
     if (apiData.status) {
-      setLoading(false)
-      toast.success(apiData.message)
-      navigate(-1)
+      setLoading(false);
+      toast.success(apiData.message);
+      navigate(-1);
     } else {
-      setLoading(false)
-      toast.error(apiData.message)
+      setLoading(false);
+      toast.error(apiData.message);
     }
   }
   return (
@@ -159,18 +166,21 @@ function TempDashboard() {
         <div className="col-12">
           <Header title="User Document Verification" />
           <div class="d-flex flex-wrap">
-
             <div className="col-xl-12">
               <div className="profileView">
                 <div className="profileDetailsHolder position-relative">
                   <div className="header d-flex align-items-center">
                     <div className="col-5">Account Details</div>
                     <div class="approvalButton">
-                      <div onClick={approveClick} class="float-start btn btn-success btn-sm">
+                      <div
+                        onClick={approveClick}
+                        class="float-start btn btn-success btn-sm"
+                      >
                         <i class="fa-duotone fa-check-double"></i> Approve
                       </div>
                       <div class="float-end btn btn-danger btn-sm ms-1">
-                        <i class="fa-duotone fa-triangle-exclamation"></i> Reject
+                        <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
+                        Reject
                       </div>
                     </div>
                   </div>
@@ -342,7 +352,10 @@ function TempDashboard() {
                         <div className="col-12">Documents Uploaded</div>
                       </div>
                       {account?.details ? (
-                        <div className="qLinkContent px-3 mt-2" ref={wrapperRef}>
+                        <div
+                          className="qLinkContent px-3 mt-2"
+                          ref={wrapperRef}
+                        >
                           {account.details.map((item, key) => {
                             return (
                               <div className="row position-relative mb-2 align-items-center">
@@ -356,18 +369,29 @@ function TempDashboard() {
                                 </div>
                                 <div className="col-6 ms-auto">
                                   <div class="d-flex justify-content-end">
-                                    <div onClick={approveClick} class="btn btn-success btn-sm">
-                                      <i class="fa-duotone fa-check-double"></i> Approve
+                                    <div
+                                      onClick={approveClick}
+                                      class="btn btn-success btn-sm"
+                                    >
+                                      <i class="fa-duotone fa-check-double"></i>{" "}
+                                      Approve
                                     </div>
                                     <div class="btn btn-danger btn-sm ms-1">
-                                      <i class="fa-duotone fa-triangle-exclamation"></i> Reject
+                                      <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
+                                      Reject
                                     </div>
+
                                     {/* <div class="btn btn-info btn-sm ms-1 text-white">
                                       <i class="fa-duotone fa-upload"></i> Upload
                                     </div>
                                     <div class="btn btn-danger btn-sm ms-1">
                                       <i class="fa-duotone fa-trash"></i> Delete
                                     </div> */}
+                                  </div>
+                                </div>
+                                <div className="col-auto px-0 my-auto" onClick={()=>setPreview(item.path)}>
+                                  <div className="iconWrapper">
+                                    <i class="fa-solid fa-eye"></i>
                                   </div>
                                 </div>
                                 <div
@@ -398,14 +422,15 @@ function TempDashboard() {
                                         Download
                                       </div>
                                     </div>
-                                    <div style={{ cursor: "pointer" }}>
+                                    <div style={{ cursor: "pointer" }} >
                                       <div className="clearButton">
                                         <a
                                           href={item.path}
                                           target="_blank"
                                           rel="noreferrer"
                                         >
-                                          <i class="fa-sharp fa-solid fa-eye"></i> View
+                                          <i class="fa-sharp fa-solid fa-eye"></i>{" "}
+                                          View
                                         </a>
                                       </div>
                                     </div>
@@ -414,15 +439,31 @@ function TempDashboard() {
                                   ""
                                 )}
                               </div>
-                            )
+                            );
                           })}
                         </div>
                       ) : (
                         <Link to="/upload-document">
                           <div className="imgWrapper">
-                            <img src={require('../../assets/images/upload-file.png')} alt="" />
+                            <img
+                              src={require("../../assets/images/upload-file.png")}
+                              alt=""
+                            />
                           </div>
-                          <div class="text-center mt-3"><h5>Please upload the <span style={{ color: 'var(--ui-accent)', cursor: 'pointer' }}><b>required documents</b></span>.</h5></div>
+                          <div class="text-center mt-3">
+                            <h5>
+                              Please upload the{" "}
+                              <span
+                                style={{
+                                  color: "var(--ui-accent)",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <b>required documents</b>
+                              </span>
+                              .
+                            </h5>
+                          </div>
                         </Link>
                       )}
                     </div>
@@ -434,9 +475,10 @@ function TempDashboard() {
                       <div className="header d-flex align-items-center">
                         <div className="col-12">Registration</div>
                       </div>
-                      <div className="imgWrapper">
-                        <img src={'http://192.168.1.88/ucaas-app/storage/company/66752a49f2e2b_thankyou_icon.png'} />
-                      </div>
+                      <iframe src={preview} title="iframe" className="iframeWrapper" width="100%" height="500px"/>
+                      {/* <div className="imgWrapper">
+                        <img src={preview} alt="" />
+                      </div> */}
                     </div>
                   </div>
                 </div>
