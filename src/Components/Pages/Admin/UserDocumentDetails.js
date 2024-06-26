@@ -20,6 +20,7 @@ function TempDashboard() {
   const location = useLocation();
   const locationState = location.state;
   const [preview, setPreview] = useState();
+  const [reload,setReload]=useState(0)
   const [account, setAccount] = useState(
     useSelector((state) => state.tempAccount)
   );
@@ -48,7 +49,7 @@ function TempDashboard() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [reload]);
 
   const downloadImage = async (imageUrl, fileName) => {
     console.log("This is image url", imageUrl);
@@ -74,16 +75,20 @@ function TempDashboard() {
     }
   };
 
-  async function approveClick() {
+  async function approveClick(item) {
+    console.log("This is image data",item);
     setLoading(true);
     const parsedData = {
-      account_id: locationState,
+      account_id: item.account_id,
+      document_id:item.document_id,
+      status:1,
+      row_id:item.id,
     };
     const apiData = await generalPostFunction("/document-verify", parsedData);
     if (apiData.status) {
       setLoading(false);
       toast.success(apiData.message);
-      navigate(-1);
+      setReload(reload+1)
     } else {
       setLoading(false);
       toast.error(apiData.message);
@@ -351,6 +356,7 @@ function TempDashboard() {
                       <div className="header d-flex align-items-center">
                         <div className="col-12">Documents Uploaded</div>
                       </div>
+                      {console.log("This is account",account)}
                       {account?.details ? (
                         <div
                           className="qLinkContent px-3 mt-2"
@@ -369,8 +375,8 @@ function TempDashboard() {
                                 </div>
                                 <div className="col-6 ms-auto">
                                   <div class="d-flex justify-content-end">
-                                    <div
-                                      onClick={approveClick}
+                                    {item.status==="3"?<> <div
+                                      onClick={()=>approveClick(item)}
                                       class="btn btn-success btn-sm"
                                     >
                                       <i class="fa-duotone fa-check-double"></i>{" "}
@@ -379,7 +385,14 @@ function TempDashboard() {
                                     <div class="btn btn-danger btn-sm ms-1">
                                       <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
                                       Reject
-                                    </div>
+                                    </div></>:item.status==="2"?  <div class="btn btn-danger btn-sm ms-1">
+                                      <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
+                                      Rejected
+                                    </div>:  <div class="btn btn-danger btn-sm ms-1">
+                                    <i class="fa-duotone fa-check-double"></i>{" "}
+                                      Approved
+                                    </div>}
+                                   
 
                                     {/* <div class="btn btn-info btn-sm ms-1 text-white">
                                       <i class="fa-duotone fa-upload"></i> Upload
