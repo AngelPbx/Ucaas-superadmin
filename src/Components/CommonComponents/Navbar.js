@@ -158,7 +158,7 @@ function Navbar() {
                           <div className="itemTitle">Roles and Permisson</div>
                         </NavLink>
                       </li>
-                      
+
                       <li className="tabItem" effect="ripple">
                         <NavLink
                           to="/roles1"
@@ -603,7 +603,7 @@ function Navbar() {
                 ""
               )}
 
-<li className="">
+              <li className="">
                 <button
                   data-bs-toggle="collapse"
                   data-bs-target="#collapse10"
@@ -745,7 +745,7 @@ function Navbar() {
                 </div>
               </li>
 
-               <li className="dashboard ">
+              <li className="dashboard ">
                 <NavLink
                   to="/ring-groups"
                   onClick={backToTop}
@@ -762,7 +762,7 @@ function Navbar() {
                   type="button"
                   effect="ripple"
                 >
-                  <div className="itemTitle">Users</div>
+                  <div className="itemTitle">Accounts</div>
                 </NavLink>
               </li>
               <li className="dashboard ">
