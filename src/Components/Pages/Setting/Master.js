@@ -298,7 +298,7 @@ function Master() {
                 </div>
               </div>
               <div className="col-xl-4 ">
-                <div className="masterSegment">
+                {/* <div className="masterSegment">
                   <h6>
                     <div className="row align-items-center">
                       <div className="col-auto">
@@ -397,7 +397,7 @@ function Master() {
                         );
                       })}
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

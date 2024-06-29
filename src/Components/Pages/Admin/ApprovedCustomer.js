@@ -12,8 +12,9 @@ function ApprovedCustomer() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/accounts?company_status=approved`);
+      const apiData = await generalGetFunction(`/accounts?company_status=5`);
       if (apiData.status) {
+        console.log("This is api data",apiData.data);
         setLoading(false);
         setAccount(apiData.data);
       }
@@ -66,9 +67,9 @@ function ApprovedCustomer() {
                             account.map((item, index) => {
                               return (
                                 <tr
-                                  onClick={() =>
-                                    navigate(`/user-details?id=${item.id}`)
-                                  }
+                                  // onClick={() =>
+                                  //   navigate(`/user-details?id=${item.id}`)
+                                  // }
                                   key={index}
                                 >
                                   <td>{item.company_name}</td>
@@ -80,7 +81,7 @@ function ApprovedCustomer() {
                                     <label className={item.details !== null ? "tableLabel success" : "tableLabel fail"}>{item.details !== null ? "True" : "False"}</label>
                                   </td>
                                   <td>
-                                    {item?.balance}
+                                    {item?.balance?.amount}
                                   </td>
                                 </tr>
                               );
