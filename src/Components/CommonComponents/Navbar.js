@@ -744,6 +744,51 @@ function Navbar() {
                   </div>
                 </div>
               </li>
+              <li className="">
+                <button
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse11"
+                  aria-expanded="false"
+                  aria-controls="collapse11"
+                  effect="ripple"
+                >
+                  <div className="itemTitle">Accounts</div>
+                </button>
+                <div
+                  id="collapse11"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#sidenNav"
+                >
+                  <div className="menuWrapper">
+                    <ul className="tabMenu">
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/users"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Account List</div>
+                        </NavLink>
+                      </li>
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/account-settings"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Account Settings</div>
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
 
               <li className="dashboard ">
                 <NavLink
@@ -753,16 +798,6 @@ function Navbar() {
                   effect="ripple"
                 >
                   <div className="itemTitle">Ring Group</div>
-                </NavLink>
-              </li>
-              <li className="dashboard ">
-                <NavLink
-                  to="/users"
-                  onClick={backToTop}
-                  type="button"
-                  effect="ripple"
-                >
-                  <div className="itemTitle">Accounts</div>
                 </NavLink>
               </li>
               <li className="dashboard ">

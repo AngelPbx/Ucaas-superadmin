@@ -22,7 +22,7 @@ function AccountDetails() {
                     height: 100%;
                 }
                 .itemWrapper table th, .itemWrapper table td {
-                    padding: 5px 5px 0;
+                    padding: 5px 5px 0 0;
                 }
                 .itemWrapper table tr th:first-child, .itemWrapper table tr td:first-child{
                     padding-left: 5px;
@@ -39,7 +39,7 @@ function AccountDetails() {
                             <Header title="Account Details" />
                             <div className="col-xl-12 pt-3">
                                 <div className="row gy-3">
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper c">
                                             <div className="heading">
                                                 <i class="fa-duotone fa-cube"></i> Active
@@ -61,7 +61,7 @@ function AccountDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-3 billinCardWrapper">
+                                    <div className="col-xl-3 px-2 billinCardWrapper">
                                         <Cards
                                             className="cardWrapper row align-items-center col-12 mx-auto"
                                             number="4242424242424242"
@@ -70,7 +70,7 @@ function AccountDetails() {
                                             name="Test card"
                                         />
                                     </div>
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper a">
                                             <div className="heading">
                                                 <i className="fa-duotone fa-credit-card"></i> Wallet
@@ -98,7 +98,7 @@ function AccountDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper b">
                                             <div className="heading">
                                                 <i className="fa-duotone fa-ballot"></i> Upcoming
@@ -122,7 +122,7 @@ function AccountDetails() {
                                     </div>
                                 </div>
                                 <div className="row gy-3 mt-1">
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper b">
                                             <div className="heading">
                                                 <i class="fa-duotone fa-phone-office"></i> Total Extensions
@@ -161,7 +161,7 @@ function AccountDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper d">
                                             <div className="heading">
                                                 <i class="fa-duotone fa-signal"></i> Total DIDs
@@ -189,7 +189,7 @@ function AccountDetails() {
                                                         <th>e911 Status</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>1001</td>
+                                                        <td>999-999-9999</td>
                                                         <td>1001</td>
                                                         <td>1001</td>
                                                         <td>1001</td>
@@ -198,7 +198,7 @@ function AccountDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper c">
                                             <div className="heading">
                                                 <i class="fa-duotone fa-users"></i> Total Users
@@ -235,7 +235,7 @@ function AccountDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="col-xl-3">
+                                    <div className="col-xl-3 px-2">
                                         <div className="itemWrapper a">
                                             <div className="heading">
                                                 <i class="fa-duotone fa-ticket"></i> Support Tickets
