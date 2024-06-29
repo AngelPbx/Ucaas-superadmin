@@ -10,16 +10,16 @@ function PaymentGateway() {
   const [loading, setLoading] = useState(true);
   const [gateway, setGateway] = useState();
   const [changeState, setChnageState] = useState(0)
-  const [popup,setPopup] =useState(false)
-  const [activeGateway,setActiveGateway]=useState()
-  const [newGateway,setNewGateway]=useState()
+  const [popup, setPopup] = useState(false)
+  const [activeGateway, setActiveGateway] = useState()
+  const [newGateway, setNewGateway] = useState()
   const navigate = useNavigate();
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
       const apiData = await generalGetFunction(`/payment-gateways`);
       if (apiData.status) {
-        setActiveGateway(apiData.data.filter((item)=>item.status==="active"))
+        setActiveGateway(apiData.data.filter((item) => item.status === "active"))
         setLoading(false);
         setGateway(apiData.data);
       }
@@ -116,20 +116,20 @@ function PaymentGateway() {
                                 >
                                   <td onClick={() =>
                                     navigate(`/payment-gateway-edit`, { state: item })
-                                  } >{item.name }</td>
+                                  } >{item.name}</td>
                                   <td onClick={() =>
                                     navigate(`/payment-gateway-edit`, { state: item })
                                   } >{item.username}</td>
                                   <td onClick={() =>
                                     navigate(`/payment-gateway-edit`, { state: item })
                                   } >{item.password}</td>
-                                   <td onClick={() =>
+                                  <td onClick={() =>
                                     navigate(`/payment-gateway-edit`, { state: item })
-                                  } >{item.api_key}</td>
-                                   <td onClick={() =>
+                                  } >{item.api_key.substring(0, 20)}...</td>
+                                  <td onClick={() =>
                                     navigate(`/payment-gateway-edit`, { state: item })
-                                  } >{item.api_secret}</td>
-                                  <td onClick={() =>{setPopup(true);setNewGateway(item)}}>
+                                  } >{item.api_secret.substring(0, 20)}...</td>
+                                  <td onClick={() => { setPopup(true); setNewGateway(item) }}>
                                     <label className={item?.status === 'active' ? "tableLabel success" : "tableLabel fail"}>{item.status}</label>
                                   </td>
                                 </tr>
@@ -145,25 +145,25 @@ function PaymentGateway() {
           </div>
         </section>
       </main>
-      {popup? <div className='popup'>
-            <div className='container h-100'>
-                <div className='row h-100 justify-content-center align-items-center'>
-                    <div className='row content col-xl-4'>
-                        <div className='col-2 px-0'>
-                            <div className='iconWrapper'>
-                                <i className="fa-duotone fa-triangle-exclamation"></i>
-                            </div>
-                        </div>
-                        <div className='col-10 ps-0'>
-                            <h4>Warning!</h4>
-                            <p>Are you sure you want to active {newGateway.name} gateway previously active gateway was {activeGateway?.[0]?.name}?</p>
-                            <button className='panelButton m-0' onClick={()=>{setPopup(false);handleStatusChange(newGateway.id,"active")}}>Confirm</button>
-                            <button className='panelButtonWhite m-0 float-end' onClick={()=>setPopup(false)}>Cancel</button>
-                        </div>
-                    </div>
+      {popup ? <div className='popup'>
+        <div className='container h-100'>
+          <div className='row h-100 justify-content-center align-items-center'>
+            <div className='row content col-xl-4'>
+              <div className='col-2 px-0'>
+                <div className='iconWrapper'>
+                  <i className="fa-duotone fa-triangle-exclamation"></i>
                 </div>
+              </div>
+              <div className='col-10 ps-0'>
+                <h4>Warning!</h4>
+                <p>Are you sure you want to active {newGateway.name} gateway previously active gateway was {activeGateway?.[0]?.name}?</p>
+                <button className='panelButton m-0' onClick={() => { setPopup(false); handleStatusChange(newGateway.id, "active") }}>Confirm</button>
+                <button className='panelButtonWhite m-0 float-end' onClick={() => setPopup(false)}>Cancel</button>
+              </div>
             </div>
-        </div>:""}
+          </div>
+        </div>
+      </div> : ""}
       <ToastContainer
         position="bottom-right"
         autoClose={3000}

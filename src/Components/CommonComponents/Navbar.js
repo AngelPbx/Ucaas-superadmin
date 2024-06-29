@@ -592,7 +592,7 @@ function Navbar() {
                             <div className="iconHolder">
                               <i className="fa-duotone fa-swap-arrows" />
                             </div>
-                            <div className="itemTitle">gateways</div>
+                            <div className="itemTitle">Gateways</div>
                           </NavLink>
                         </li>
                       </ul>
