@@ -9,7 +9,7 @@ function AccountDetails() {
             <style>
                 {`
                 .mainContent .itemWrapper{
-                    min-height: 200px;
+                    min-height: 190px;
                     max-height: fit-content;
                     transition: 0.3s;
                 }
@@ -26,6 +26,9 @@ function AccountDetails() {
                 }
                 .itemWrapper table tr th:first-child, .itemWrapper table tr td:first-child{
                     padding-left: 5px;
+                }
+                .itemWrapper .data-number{
+                    padding: 0;
                 }
             `}
             </style>
@@ -235,7 +238,7 @@ function AccountDetails() {
                                     <div className="col-xl-3">
                                         <div className="itemWrapper a">
                                             <div className="heading">
-                                                <i class="fa-duotone fa-users"></i> Support Tickets
+                                                <i class="fa-duotone fa-ticket"></i> Support Tickets
                                             </div>
                                             <div className="data-number">
                                                 10<span style={{ fontSize: 14 }}>/ 20</span>
