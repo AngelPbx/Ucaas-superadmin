@@ -71,6 +71,7 @@ import DocumentUpload from "./Components/Pages/Profile/DocumentUpload";
 import { useSelector } from "react-redux";
 import ConfigDetails from "./Components/Pages/Admin/ConfigDetails";
 import AccountDetails from "./Components/Pages/Accounts/AccountDetails";
+import AccountSettings from "./Components/Pages/Accounts/AccountSettings";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -122,6 +123,7 @@ function App() {
             {/* Accounts Path Start */}
             <Route path="/users" element={<Users />} />
             <Route path="/account-details" element={<AccountDetails />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
             {/* Accounts Path End */}
 
             {/* Extensions Path Start */}
