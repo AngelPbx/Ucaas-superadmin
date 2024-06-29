@@ -33,6 +33,7 @@
     height: 12px;
     border-radius: 50%;
     background-color: red;
+    margin: auto;
 }
 
 .extensionStatus.online {
@@ -277,18 +278,19 @@
     border-bottom: 1px solid #cecece;
 }
 
-.approvalButton{
-    position:absolute;
+.approvalButton {
+    position: absolute;
     top: 0;
     right: 0;
-  }
-  .approvalButton button {
+}
+
+.approvalButton button {
     border-radius: 0;
     border-bottom-left-radius: 7px;
     border-top-right-radius: 7px;
-  }
+}
 
-  .buttonPopup {
+.buttonPopup {
     width: 120px;
     border-radius: 10px;
     background-color: #303030;
@@ -299,7 +301,8 @@
     bottom: -45px;
 }
 
-.buttonPopup .clearButton, .buttonPopup .clearButton a{
+.buttonPopup .clearButton,
+.buttonPopup .clearButton a {
     color: #fff;
     text-decoration: none;
 }
@@ -314,11 +317,12 @@
     transition: 0.3s;
     cursor: pointer;
 }
+
 .qLinkContent .iconWrapper:hover {
     background-color: #dbdbdb;
 }
 
-.buttonPopup{
+.buttonPopup {
     width: 120px;
     border-radius: 10px;
     background-color: #303030;
@@ -329,19 +333,21 @@
     bottom: -45px;
     z-index: 9;
 }
-.buttonPopup  .clearButton{
+
+.buttonPopup .clearButton {
     color: #fff;
     cursor: pointer;
 }
 
-.buttonPopup  .clearButton:hover{
+.buttonPopup .clearButton:hover {
     color: var(--ui-accent);
 }
-.buttonPopup  .clearButton a{
+
+.buttonPopup .clearButton a {
     text-decoration: none;
     color: #fff;
 }
 
-.buttonPopup  .clearButton a:hover{
+.buttonPopup .clearButton a:hover {
     color: var(--ui-accent);
 }

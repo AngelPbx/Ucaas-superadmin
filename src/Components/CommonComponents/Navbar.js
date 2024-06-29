@@ -525,7 +525,7 @@ function Navbar() {
                             <div className="iconHolder">
                               <i className="fa-duotone fa-swap-arrows" />
                             </div>
-                            <div className="itemTitle">gateways</div>
+                            <div className="itemTitle">Gateways</div>
                           </NavLink>
                         </li>
                       </ul>
@@ -545,16 +545,6 @@ function Navbar() {
                   effect="ripple"
                 >
                   <div className="itemTitle">Ring Group</div>
-                </NavLink>
-              </li>
-              <li className="dashboard ">
-                <NavLink
-                  to="/users"
-                  onClick={backToTop}
-                  type="button"
-                  effect="ripple"
-                >
-                  <div className="itemTitle">Users</div>
                 </NavLink>
               </li>
               <li className="dashboard ">

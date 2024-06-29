@@ -144,12 +144,13 @@ const Users = () => {
                 <table>
                   <thead>
                     <tr>
-                      <th>Username (Extension)</th>
                       <th>Account ID</th>
+                      <th>Account Name</th>
                       <th>Domain</th>
-                      <th>Online</th>
+                      <th>Package</th>
+                      <th>Package Expiry Date</th>
                       <th>On Call</th>
-                      <th>Status</th>
+                      <th>No. Of Users</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -232,6 +233,15 @@ const Users = () => {
                                       ? "Enabled"
                                       : "Disabled"}
                                   </label>
+                                </td>
+                                <td
+                                  onClick={() =>
+                                    navigate(`/users-edit`, {
+                                      state: item,
+                                    })
+                                  }
+                                >
+                                  {item.account_id}
                                 </td>
                               </tr>
                             );

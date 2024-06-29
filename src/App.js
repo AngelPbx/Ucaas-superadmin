@@ -11,10 +11,7 @@ import Login from "./Components/CommonComponents/Login";
 import RingGroups from "./Components/Pages/RingGroups/RingGroups";
 import RingGroupAdd from "./Components/Pages/RingGroups/RingGroupAdd";
 import RingGroupEdit from "./Components/Pages/RingGroups/RingGroupEdit";
-import Users from "./Components/Pages/Users/Users";
-import UsersAdd from "./Components/Pages/Users/UsersAdd";
-import UsersEdit from "./Components/Pages/Users/UsersEdit";
-import UsersImport from "./Components/Pages/Users/UsersImport";
+import Users from "./Components/Pages/Accounts/Users";
 import Extensions from "./Components/Pages/Extensions/Extensions";
 import ExtensionsAdd from "./Components/Pages/Extensions/ExtensionsAdd";
 import ExtensionsEdit from "./Components/Pages/Extensions/ExtensionsEdit";
@@ -73,6 +70,8 @@ import CustomerDetails from "./Components/Pages/Profile/CustomerDetails";
 import DocumentUpload from "./Components/Pages/Profile/DocumentUpload";
 import { useSelector } from "react-redux";
 import ConfigDetails from "./Components/Pages/Admin/ConfigDetails";
+import AccountDetails from "./Components/Pages/Accounts/AccountDetails";
+import AccountSettings from "./Components/Pages/Accounts/AccountSettings";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -121,12 +120,11 @@ function App() {
             <Route path="/ring-groups-edit" element={<RingGroupEdit />} />
             {/* Ring Groups Path End */}
 
-            {/* Users Path Start */}
+            {/* Accounts Path Start */}
             <Route path="/users" element={<Users />} />
-            <Route path="/users-add" element={<UsersAdd />} />
-            <Route path="/users-edit" element={<UsersEdit />} />
-            <Route path="/users-import" element={<UsersImport />} />
-            {/* Users Path End */}
+            <Route path="/account-details" element={<AccountDetails />} />
+            <Route path="/account-settings" element={<AccountSettings />} />
+            {/* Accounts Path End */}
 
             {/* Extensions Path Start */}
             <Route path="/extensions" element={<Extensions />} />

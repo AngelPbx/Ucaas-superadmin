@@ -109,8 +109,8 @@ table tr th:first-child {
 }
 
 table .ellipsis {
-    display: block;
-    /* width: 100px; */
+    display: inline-block;
+    width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -268,8 +268,8 @@ table td.incoming::after {
     font-weight: 300;
 }
 
-.tableDropdownSelect{
-    border:none;
+.tableDropdownSelect {
+    border: none;
     background-color: transparent;
     /* padding: 5px 10px; */
     font-size: 13px;
