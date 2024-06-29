@@ -21,17 +21,17 @@ const SuperAdminDashboard = () => {
     const registerUser = useSelector((state) => state.registerUser);
     const loginUser = useSelector((state) => state.loginUser);
     useEffect(() => {
-            async function getData() {
-                const apiData = await generalGetFunction(`/extension/search?account=1`, navigate)
-                const userApi = await generalGetFunction(`/user/search?account=1`, navigate)
-                if (apiData.status) {
-                    setExtensionList(apiData.data.length)
-                }
-                if (userApi.status) {
-                    setUserList(userApi.data.length)
-                }
+        async function getData() {
+            const apiData = await generalGetFunction(`/extension/search?account=1`, navigate)
+            const userApi = await generalGetFunction(`/user/search?account=1`, navigate)
+            if (apiData.status) {
+                setExtensionList(apiData.data.length)
             }
-            getData()
+            if (userApi.status) {
+                setUserList(userApi.data.length)
+            }
+        }
+        getData()
     }, [navigate])
     return (
         <main className="mainContent">
@@ -79,82 +79,82 @@ const SuperAdminDashboard = () => {
                             </div> */}
 
                         <div className='col-12 mt-3 tangoNavs'>
-                        <div className="col-12 mt-3">
-                            <div className="row">
-                                <div className="col-xl-4 tabButtonParent">
-                                    <button
-                                        className={calls ? "tabButton active" : "tabButton"}
-                                        onClick={() => setCalls(!calls)}
-                                        data-id={1}
-                                    >
-                                        All Calls
-                                    </button>
-                                </div>
-                                <div className="col-xl-4 tabButtonParent">
-                                    <button
-                                        className={group ? "tabButton active" : "tabButton"}
-                                        onClick={() => setGroup(!group)}
-                                        data-id={2}
-                                    >
-                                        Ring Group
-                                    </button>
-                                </div>
-                                <div className="col-xl-4 tabButtonParent">
-                                    <button
-                                        className={queue ? "tabButton active" : "tabButton"}
-                                        onClick={() => setQueue(!queue)}
-                                        data-id={3}
-                                    >
-                                        Call Queue
-                                    </button>
+                            <div className="col-12 mt-3">
+                                <div className="row">
+                                    <div className="col-xl-4 tabButtonParent">
+                                        <button
+                                            className={calls ? "tabButton active" : "tabButton"}
+                                            onClick={() => setCalls(!calls)}
+                                            data-id={1}
+                                        >
+                                            All Calls
+                                        </button>
+                                    </div>
+                                    <div className="col-xl-4 tabButtonParent">
+                                        <button
+                                            className={group ? "tabButton active" : "tabButton"}
+                                            onClick={() => setGroup(!group)}
+                                            data-id={2}
+                                        >
+                                            Ring Group
+                                        </button>
+                                    </div>
+                                    <div className="col-xl-4 tabButtonParent">
+                                        <button
+                                            className={queue ? "tabButton active" : "tabButton"}
+                                            onClick={() => setQueue(!queue)}
+                                            data-id={3}
+                                        >
+                                            Call Queue
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        {calls ? <AllCalls /> : ""}
-                        {group ? <RingGroup /> : ""}
-                        {queue ? <CallQueueDetails /> : ""}
-                        <div className="row mt-3">
-                                        <div className="col-xl-4">
-                                            <div className="itemWrapper a">
-                                                <div className="heading"><i class="fa-duotone fa-phone-office"></i> Users</div>
-                                                <div className="data-number">2</div>
-                                                <div className="label">21 Inbound (Answered)</div>
-                                                <div className="label">0 Connected Callbacks</div>
-                                                <div className="label">17 Outbound (Connected)</div>
-                                                {/* <button className="moreInfo" onclick="window.location.href='http://192.168.1.88/ringerappCI/user'" effect="ripple"><i className="fa-duotone fa-users"></i> View All Users</button> */}
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-4">
-                                            <div className="itemWrapper b">
-                                                <div className="heading"><i class="fa-duotone fa-clock"></i> Extensions</div>
-                                                <div className="data-number">1075</div>
-                                                <div className="label">21 Inbound (Answered)</div>
-                                                <div className="label">17 Outbound (Connected)</div>
-                                                {/* <button className="moreInfo" onclick="window.location.href='http://192.168.1.88/ringerappCI/extensions'" effect="ripple"><i className="fa-duotone fa-phone-office"></i> View All Extensions</button> */}
-                                            </div>
-                                        </div>
-                                        <div className="col-xl-4">
-                                            <div className="itemWrapper c">
-                                                <div className="heading"><i class="fa-duotone fa-phone-missed"></i> Devices</div>
-                                                <div className="data-number">5</div>
-                                                <div className="label">1 Voicecall Missed</div>
-                                                <div className="label">4 Calls Missed</div>
-                                                {/* <button className="moreInfo" onclick="window.location.href='http://192.168.1.88/ringerappCI/devices'" effect="ripple"><i className="fa-duotone fa-mobile-retro"></i> View All Devices</button> */}
-                                            </div>
-                                        </div>
+                            {calls ? <AllCalls /> : ""}
+                            {group ? <RingGroup /> : ""}
+                            {queue ? <CallQueueDetails /> : ""}
+                            <div className="row mt-3">
+                                <div className="col-xl-4">
+                                    <div className="itemWrapper a">
+                                        <div className="heading"><i class="fa-duotone fa-phone-office"></i> Users</div>
+                                        <div className="data-number">2</div>
+                                        <div className="label">21 Inbound (Answered)</div>
+                                        <div className="label">0 Connected Callbacks</div>
+                                        <div className="label">17 Outbound (Connected)</div>
+                                        {/* <button className="moreInfo" onclick="window.location.href='http://192.168.1.88/ringerappCI/user'" effect="ripple"><i className="fa-duotone fa-users"></i> View All Users</button> */}
                                     </div>
+                                </div>
+                                <div className="col-xl-4">
+                                    <div className="itemWrapper b">
+                                        <div className="heading"><i class="fa-duotone fa-clock"></i> Extensions</div>
+                                        <div className="data-number">1075</div>
+                                        <div className="label">21 Inbound (Answered)</div>
+                                        <div className="label">17 Outbound (Connected)</div>
+                                        {/* <button className="moreInfo" onclick="window.location.href='http://192.168.1.88/ringerappCI/extensions'" effect="ripple"><i className="fa-duotone fa-phone-office"></i> View All Extensions</button> */}
+                                    </div>
+                                </div>
+                                <div className="col-xl-4">
+                                    <div className="itemWrapper c">
+                                        <div className="heading"><i class="fa-duotone fa-phone-missed"></i> Devices</div>
+                                        <div className="data-number">5</div>
+                                        <div className="label">1 Voicecall Missed</div>
+                                        <div className="label">4 Calls Missed</div>
+                                        {/* <button className="moreInfo" onclick="window.location.href='http://192.168.1.88/ringerappCI/devices'" effect="ripple"><i className="fa-duotone fa-mobile-retro"></i> View All Devices</button> */}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="col-12 mt-4 mb-2 chartWrapper">
                             <div className="row">
                                 <div className="col-xl-3">
                                     <div className='wrapper'>
-                                        <DoughnutChart fields={["Online Extension", "Register Extension","Available Extension"]} percentage={[registerUser.length,extensionList, 69-extensionList]} centerTitle={`${extensionList}/69`} centerDesc="Extensions Details" colors={['#9999','#FF6384', '#36A2EB']} />
+                                        <DoughnutChart fields={["Online Extension", "Register Extension", "Available Extension"]} percentage={[registerUser.length, extensionList, 69 - extensionList]} centerTitle={`${extensionList}/69`} centerDesc="Extensions Details" colors={['#9999', '#FF6384', '#36A2EB']} />
                                     </div>
                                 </div>
                                 <div className="col-xl-3">
                                     <div className='wrapper'>
-                                        <DoughnutChart fields={["Online Users", "Registered Users ","Available Users "]} percentage={[loginUser.length,userList, 10-userList]} centerTitle={`${userList}/10`} centerDesc="Total Users Available" colors={['#9999','#FF6384', '#36A2EB']} />
+                                        <DoughnutChart fields={["Online Users", "Registered Users ", "Available Users "]} percentage={[loginUser.length, userList, 10 - userList]} centerTitle={`${userList}/10`} centerDesc="Total Users Available" colors={['#9999', '#FF6384', '#36A2EB']} />
                                     </div>
                                     {/* <div className='circularProgressWrapper'>
                                         <svg width="250" height="250" viewBox="0 0 250 250" className="circular-progress" style={{ '--progress': `50` }}>
