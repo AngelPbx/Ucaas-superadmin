@@ -97,6 +97,27 @@ function TempDashboard() {
       toast.error(apiData.message);
     }
   }
+
+  async function rejectClick(item) {
+    console.log("This is image data",item);
+    setLoading(true);
+    const parsedData = {
+      account_id: rejectId.account_id,
+      document_id:rejectId.document_id,
+      status:2,
+      row_id:item.id,
+      description:describe,
+    };
+    const apiData = await generalPostFunction("/document-verify", parsedData);
+    if (apiData.status) {
+      setLoading(false);
+      toast.success(apiData.message);
+      setReload(reload+1)
+    } else {
+      setLoading(false);
+      toast.error(apiData.message);
+    }
+  }
   return (
     <>
       <style>
@@ -374,7 +395,7 @@ function TempDashboard() {
                                       <i class="fa-duotone fa-check-double"></i>{" "}
                                       Approve
                                     </div>
-                                    <div class="btn btn-danger btn-sm ms-1" onClick={()=>{setRejectId(item.id);setRejectPopUp(true)}}>
+                                    <div class="btn btn-danger btn-sm ms-1" onClick={()=>{setRejectId(item);setRejectPopUp(true)}}>
                                       <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
                                       Reject
                                     </div></>:item.status==="2"?  <div class="btn btn-danger btn-sm ms-1">
