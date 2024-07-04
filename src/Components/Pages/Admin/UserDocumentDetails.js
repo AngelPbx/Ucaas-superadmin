@@ -13,6 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 function TempDashboard() {
   // const dispatch = useDispatch();
   const wrapperRef = useRef(null);
+  const [rejectPopUp,setRejectPopUp]=useState(false)
+  const [rejectId,setRejectId]=useState()
+  const [rejectReason,setRejectReason]=useState("")
   const [openPopup, setOpenPopup] = useState(false);
   const [openNumber, setOpenNumber] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -176,18 +179,7 @@ function TempDashboard() {
                 <div className="profileDetailsHolder position-relative">
                   <div className="header d-flex align-items-center">
                     <div className="col-5">Account Details</div>
-                    <div class="approvalButton">
-                      <div
-                        onClick={approveClick}
-                        class="float-start btn btn-success btn-sm"
-                      >
-                        <i class="fa-duotone fa-check-double"></i> Approve
-                      </div>
-                      <div class="float-end btn btn-danger btn-sm ms-1">
-                        <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
-                        Reject
-                      </div>
-                    </div>
+                   
                   </div>
                   <div className="row px-2 pb-2 border-bottom">
                     <div className="formRow col-xl-2 col-md-4 col-6">
@@ -382,7 +374,7 @@ function TempDashboard() {
                                       <i class="fa-duotone fa-check-double"></i>{" "}
                                       Approve
                                     </div>
-                                    <div class="btn btn-danger btn-sm ms-1">
+                                    <div class="btn btn-danger btn-sm ms-1" onClick={()=>{setRejectId(item.id);setRejectPopUp(true)}}>
                                       <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
                                       Reject
                                     </div></>:item.status==="2"?  <div class="btn btn-danger btn-sm ms-1">
@@ -496,126 +488,46 @@ function TempDashboard() {
                   </div>
                 </div>
               </div>
-              {/* <div className="d-flex flex-wrap">
-                <div className="col-xl-6">
-                  <div className="profileView">
-                    <div className="profileDetailsHolder position-relative">
-                      <div className="header d-flex align-items-center">
-                        <div className="col-12">Payment & Subscription Details</div>
-                      </div>
-                      <div class="row" style={{ padding: "5px" }}>
-                        <div class="wrapper">
-                          <ul>
-                          <li>
-                              <label>Package Name</label>{" "}
-                              <label class="details">
-                                {account?.package.name}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Package Price</label>{" "}
-                              <label class="details">
-                                ${account?.package.offer_price}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Package Type</label>{" "}
-                              <label class="details">
-                                {account?.package.subscription_type}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Subscription Start</label>{" "}
-                              <label class="details">
-                              {account?.payments[0].subscription.start_date}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Subscription End</label>{" "}
-                              <label class="details">
-                              {account?.payments[0].subscription.end_date}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Time of Payment</label>{" "}
-                              <label class="details">
-                                {
-                                  account?.payments[0].transaction_date
-                                }
-                              </label>
-                            </li>
-                            <li>
-                              <label>Payment Status</label>{" "}
-                              <label class="details">
-                                {account?.payments[0].payment_status}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Transaction Id</label>{" "}
-                              <label class="details">
-                                {account?.payments[0].transaction_id}
-                              </label>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-6">
-                  <div className="profileView">
-                    <div className="profileDetailsHolder position-relative">
-                      <div className="header d-flex align-items-center">
-                        <div className="col-12">Billing Details</div>
-                      </div>
-                      <div class="row" style={{ padding: "5px" }}>
-                        <div class="wrapper">
-                          <ul>
-                            <li>
-                              <label>Full Name</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.fullname}</label>
-                            </li>
-                            <li>
-                              <label>Email</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.email}</label>
-                            </li>
-                            <li>
-                              <label>Phone Number</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.contact_no}</label>
-                            </li>
-                            <li>
-                              <label>Address</label>{" "}
-                              <label class="details">
-                              {account?.payments[0]?.billing_address.address}
-                              </label>
-                            </li>
-                            <li>
-                              <label>Zip Code</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.zip}</label>
-                            </li>
-                            <li>
-                              <label>City</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.city}</label>
-                            </li>
-                            <li>
-                              <label>State</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.state}</label>
-                            </li>
-                            <li>
-                              <label>Country</label>{" "}
-                              <label class="details">{account?.payments[0]?.billing_address.country}</label>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
       </div>
+      {rejectPopUp ? (
+        <div className="popup">
+          <div className="container h-100">
+            <div className="row h-100 justify-content-center align-items-center">
+              <div className="row content col-xl-4">
+                <div className="col-2 px-0">
+                  <div className="iconWrapper">
+                    <i className="fa-duotone fa-triangle-exclamation"></i>
+                  </div>
+                </div>
+                <div className="col-10 ps-0">
+                  <h4>Warning!</h4>
+                 "Please gave the reason for rejecting"
+                 <input className="formItem" type="text" value={rejectReason} onClick={(e)=>setRejectReason(e.target.value)} />
+                  <div className="mt-2">
+                    <button
+                      className="panelButton m-0"
+                    >
+                      Confirm
+                    </button>
+                    <button
+                      className="panelButtonWhite m-0 float-end"
+                      onClick={()=>{setRejectPopUp(false);setRejectId()}}
+                    >
+
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       {loading ? <CircularLoader /> : ""}
       <ToastContainer
         position="bottom-right"

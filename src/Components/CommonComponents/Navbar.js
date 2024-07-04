@@ -316,78 +316,7 @@ function Navbar() {
                   </div>
                 </div>
               </li>
-              <li className="">
-                <button
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse2"
-                  aria-expanded="false"
-                  aria-controls="collapse2"
-                  effect="ripple"
-                >
-                  <div className="itemTitle">Dialplan</div>
-                </button>
-                <div
-                  id="collapse2"
-                  className="accordion-collapse collapse"
-                  data-bs-parent="#sidenNav"
-                >
-                  <div className="menuWrapper">
-                    <ul className="tabMenu">
-                      <li className="tabItem" effect="ripple">
-                        <NavLink to="/destination" className="nav-link">
-                          <div className="iconHolder">
-                            <i className="fa-duotone fa-swap-arrows" />
-                          </div>
-                          <div className="itemTitle">Destinations</div>
-                        </NavLink>
-                      </li>
-
-                      {/* <li className="tabItem" effect="ripple">
-                        <NavLink to="/destinations" className="nav-link">
-                          <div className="iconHolder">
-                            <i className="fa-duotone fa-swap-arrows" />
-                          </div>
-                          <div className="itemTitle">Routes</div>
-                        </NavLink>
-                      </li> */}
-                      {/* <li className="tabItem" effect="ripple">
-                        <a
-                          href=""
-                          className="nav-link"
-                        >
-                          <div className="iconHolder">
-                            <i className="fa-sharp fa-duotone fa-group-arrows-rotate" />
-                          </div>
-                          <div className="itemTitle">Dialplan Manager</div>
-                        </a>
-                      </li> */}
-                      {/* <li className="tabItem" effect="ripple">
-                        <a
-                          href=""
-                          className="nav-link"
-                        >
-                          <div className="iconHolder">
-                            <i className="fa-sharp fa-duotone fa-phone-volume" />
-                          </div>
-                          <div className="itemTitle">Inbound Routes</div>
-                        </a>
-                      </li> */}
-                      {/* <li className="tabItem" effect="ripple">
-                        <a
-                          href=""
-                          className="nav-link"
-                        >
-                          <div className="iconHolder">
-                            <i className="fa-duotone fa-phone-arrow-up-right" />
-                          </div>
-                          <div className="itemTitle">Outbound Routes</div>
-                        </a>
-                      </li> */}
-                    </ul>
-                  </div>
-                </div>
-              </li>
-
+            
               <li className="">
                 <button
                   data-bs-toggle="collapse"
