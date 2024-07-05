@@ -98,24 +98,26 @@ function TempDashboard() {
     }
   }
 
-  async function rejectClick(item) {
-    console.log("This is image data",item);
+  async function rejectClick() {
     setLoading(true);
     const parsedData = {
       account_id: rejectId.account_id,
       document_id:rejectId.document_id,
       status:2,
-      row_id:item.id,
-      description:describe,
+      row_id:rejectId.id,
+      description:rejectReason,
     };
     const apiData = await generalPostFunction("/document-verify", parsedData);
     if (apiData.status) {
       setLoading(false);
       toast.success(apiData.message);
       setReload(reload+1)
+      setRejectPopUp(false)
     } else {
       setLoading(false);
-      toast.error(apiData.message);
+      setRejectPopUp(false)
+      const errorMessage = Object.keys(apiData.error);
+          toast.error(apiData.error[errorMessage[0]][0]);
     }
   }
   return (
@@ -526,10 +528,11 @@ function TempDashboard() {
                 <div className="col-10 ps-0">
                   <h4>Warning!</h4>
                  "Please gave the reason for rejecting"
-                 <input className="formItem" type="text" value={rejectReason} onClick={(e)=>setRejectReason(e.target.value)} />
+                 <input className="formItem" type="text" value={rejectReason} onChange={(e)=>setRejectReason(e.target.value)} />
                   <div className="mt-2">
                     <button
                       className="panelButton m-0"
+                      onClick={rejectClick}
                     >
                       Confirm
                     </button>
