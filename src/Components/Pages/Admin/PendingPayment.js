@@ -29,7 +29,7 @@ function PaymentVerification() {
             <div className="row">
               <div className="col-12">
                 <div className="row px-xl-0" id="detailsHeader">
-                  <Header title="Pending Verification" />
+                  <Header title="Payment Verification Pending" />
                   {/* <div className="mt-4" /> */}
                   <div className="col-xl-8 mt-3 mt-xl-0">
                     <div className="d-flex justify-content-end flex-wrap gap-2"></div>
@@ -68,7 +68,7 @@ function PaymentVerification() {
                               return (
                                 <tr
                                   onClick={() =>
-                                    navigate(`/user-details`,{state:item.id})
+                                    navigate(`/user-details`, { state: item.id })
                                   }
                                   key={index}
                                 >

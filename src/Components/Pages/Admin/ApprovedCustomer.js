@@ -14,7 +14,7 @@ function ApprovedCustomer() {
     async function getData() {
       const apiData = await generalGetFunction(`/accounts?company_status=5`);
       if (apiData.status) {
-        console.log("This is api data",apiData.data);
+        console.log("This is api data", apiData.data);
         setLoading(false);
         setAccount(apiData.data);
       }
@@ -29,7 +29,7 @@ function ApprovedCustomer() {
             <div className="row">
               <div className="col-12">
                 <div className="row px-xl-0" id="detailsHeader">
-                  <Header title="Pending Verification" />
+                  <Header title="Customers" />
                   {/* <div className="mt-4" /> */}
                   <div className="col-xl-8 mt-3 mt-xl-0">
                     <div className="d-flex justify-content-end flex-wrap gap-2"></div>
