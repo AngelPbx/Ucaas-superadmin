@@ -42,7 +42,7 @@ function AccountDetails() {
                                     <div className="col-xl-3 px-2">
                                         <div className="itemWrapper c">
                                             <div className="heading">
-                                                <i class="fa-duotone fa-cube"></i> Active
+                                                <i className="fa-duotone fa-cube"></i> Active
                                                 Package
                                             </div>
                                             <div className="data-number">
@@ -125,7 +125,7 @@ function AccountDetails() {
                                     <div className="col-xl-3 px-2">
                                         <div className="itemWrapper b">
                                             <div className="heading">
-                                                <i class="fa-duotone fa-phone-office"></i> Total Extensions
+                                                <i className="fa-duotone fa-phone-office"></i> Total Extensions
                                             </div>
                                             <div className="data-number">
                                                 10<span style={{ fontSize: 14 }}>/ 20</span>
@@ -164,7 +164,7 @@ function AccountDetails() {
                                     <div className="col-xl-3 px-2">
                                         <div className="itemWrapper d">
                                             <div className="heading">
-                                                <i class="fa-duotone fa-signal"></i> Total DIDs
+                                                <i className="fa-duotone fa-signal"></i> Total DIDs
                                             </div>
                                             <div className="data-number">
                                                 10<span style={{ fontSize: 14 }}>/ 20</span>
@@ -201,7 +201,7 @@ function AccountDetails() {
                                     <div className="col-xl-3 px-2">
                                         <div className="itemWrapper c">
                                             <div className="heading">
-                                                <i class="fa-duotone fa-users"></i> Total Users
+                                                <i className="fa-duotone fa-users"></i> Total Users
                                             </div>
                                             <div className="data-number">
                                                 10<span style={{ fontSize: 14 }}>/ 20</span>
@@ -238,7 +238,7 @@ function AccountDetails() {
                                     <div className="col-xl-3 px-2">
                                         <div className="itemWrapper a">
                                             <div className="heading">
-                                                <i class="fa-duotone fa-ticket"></i> Support Tickets
+                                                <i className="fa-duotone fa-ticket"></i> Support Tickets
                                             </div>
                                             <div className="data-number">
                                                 10<span style={{ fontSize: 14 }}>/ 20</span>
