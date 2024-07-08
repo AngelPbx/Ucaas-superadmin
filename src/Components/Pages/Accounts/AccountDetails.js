@@ -141,22 +141,26 @@ function AccountDetails() {
                                                 Total Extensions:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
-                                            <div className='details border-top mt-2 pt-1'>
+                                            <div className='details border-top mt-2'>
                                                 <table>
-                                                    <tr>
-                                                        <th>Extension</th>
-                                                        <th>Status</th>
-                                                        <th>On Call</th>
-                                                        <th>Minutes Used</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1001</td>
-                                                        <td>
-                                                            <span className={"extensionStatus online"}></span>
-                                                        </td>
-                                                        <td>1001</td>
-                                                        <td>1001</td>
-                                                    </tr>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Extension</th>
+                                                            <th>Status</th>
+                                                            <th>On Call</th>
+                                                            <th>Minutes Used</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1001</td>
+                                                            <td>
+                                                                <span className={"extensionStatus online"}></span>
+                                                            </td>
+                                                            <td>1001</td>
+                                                            <td>1001</td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -180,20 +184,24 @@ function AccountDetails() {
                                                 Total DIDs:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
-                                            <div className='details border-top mt-2 pt-1'>
+                                            <div className='details border-top mt-2'>
                                                 <table>
-                                                    <tr>
-                                                        <th>DID</th>
-                                                        <th>CNAME</th>
-                                                        <th>SMS Status</th>
-                                                        <th>e911 Status</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>999-999-9999</td>
-                                                        <td>1001</td>
-                                                        <td>1001</td>
-                                                        <td>1001</td>
-                                                    </tr>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>DID</th>
+                                                            <th>CNAME</th>
+                                                            <th>SMS Status</th>
+                                                            <th>e911 Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>999-999-9999</td>
+                                                            <td>1001</td>
+                                                            <td>1001</td>
+                                                            <td>1001</td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -217,20 +225,24 @@ function AccountDetails() {
                                                 Total Extensions:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
-                                            <div className='details border-top mt-2 pt-1'>
+                                            <div className='details border-top mt-2'>
                                                 <table>
-                                                    <tr>
-                                                        <th>User ID</th>
-                                                        <th>Status</th>
-                                                        <th>On Call</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1001</td>
-                                                        <td>
-                                                            <span className={"extensionStatus online"}></span>
-                                                        </td>
-                                                        <td>1001</td>
-                                                    </tr>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User ID</th>
+                                                            <th>Status</th>
+                                                            <th>On Call</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1001</td>
+                                                            <td>
+                                                                <span className={"extensionStatus online"}></span>
+                                                            </td>
+                                                            <td>1001</td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
