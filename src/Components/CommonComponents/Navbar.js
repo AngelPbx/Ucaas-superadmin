@@ -316,7 +316,7 @@ function Navbar() {
                   </div>
                 </div>
               </li>
-            
+
               <li className="">
                 <button
                   data-bs-toggle="collapse"

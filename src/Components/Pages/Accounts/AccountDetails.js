@@ -266,6 +266,11 @@ function AccountDetails() {
                                                 Total Tickets:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
+                                            <div
+                                                className="cartButton mt-1"
+                                            >
+                                                View Ticket List
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
