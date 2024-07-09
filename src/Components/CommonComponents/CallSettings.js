@@ -100,147 +100,147 @@ const CallSettings = (props) => {
     }
   }, [location, locationData, navigate]);
 
-  async function handleSubmit() {
-    if (callSetting.onBusyState !== 0) {
-      if (callSetting.onBusyForward === "") {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          onBusyError: true,
-        }));
-      } else {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          onBusyError: false,
-        }));
-      }
-    } else {
-      setCallSetting((prevState) => ({
-        ...prevState,
-        onBusyForward: "",
-      }));
-    }
+  // async function handleSubmit() {
+  //   if (callSetting.onBusyState !== 0) {
+  //     if (callSetting.onBusyForward === "") {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         onBusyError: true,
+  //       }));
+  //     } else {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         onBusyError: false,
+  //       }));
+  //     }
+  //   } else {
+  //     setCallSetting((prevState) => ({
+  //       ...prevState,
+  //       onBusyForward: "",
+  //     }));
+  //   }
 
-    if (callSetting.noAnswerStatus !== "Disabled") {
-      if (callSetting.noAnswerForward === "") {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          noAnswerError: true,
-        }));
-      } else {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          noAnswerError: false,
-        }));
-      }
-    } else {
-      setCallSetting((prevState) => ({
-        ...prevState,
-        noAnswerForward: "",
-      }));
-    }
+  //   if (callSetting.noAnswerStatus !== "Disabled") {
+  //     if (callSetting.noAnswerForward === "") {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         noAnswerError: true,
+  //       }));
+  //     } else {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         noAnswerError: false,
+  //       }));
+  //     }
+  //   } else {
+  //     setCallSetting((prevState) => ({
+  //       ...prevState,
+  //       noAnswerForward: "",
+  //     }));
+  //   }
 
-    if (callSetting.notRegisterStatus !== 0) {
-      if (callSetting.notRegisterForward === "") {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          notRegisterError: true,
-        }));
-      } else {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          notRegisterError: false,
-        }));
-      }
-    } else {
-      setCallSetting((prevState) => ({
-        ...prevState,
-        notRegisterForward: "",
-      }));
-    }
+  //   if (callSetting.notRegisterStatus !== 0) {
+  //     if (callSetting.notRegisterForward === "") {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         notRegisterError: true,
+  //       }));
+  //     } else {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         notRegisterError: false,
+  //       }));
+  //     }
+  //   } else {
+  //     setCallSetting((prevState) => ({
+  //       ...prevState,
+  //       notRegisterForward: "",
+  //     }));
+  //   }
 
-    if (callSetting.followMe == 1) {
-      if (callSetting.followMeDestination === "") {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          followMeDestinationError: true,
-        }));
-      } else {
-        setCallSetting((prevState) => ({
-          ...prevState,
-          followMeDestinationError: false,
-        }));
-      }
-    }
+  //   if (callSetting.followMe == 1) {
+  //     if (callSetting.followMeDestination === "") {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         followMeDestinationError: true,
+  //       }));
+  //     } else {
+  //       setCallSetting((prevState) => ({
+  //         ...prevState,
+  //         followMeDestinationError: false,
+  //       }));
+  //     }
+  //   }
 
-    if (
-      (callSetting.onBusyState === 0 || callSetting.onBusyForward !== "") &&
-      (callSetting.followMe == 0 || callSetting.followMeDestination !== "") &&
-      (callSetting.notRegisterStatus === 0 ||
-        callSetting.notRegisterForward !== "") &&
-      !(callSetting.noAnswerStatus === "Forward" &&
-        callSetting.noAnswerForward === "")
-    ) {
-      setLoading(true);
-      const parsedData = {
-        extension_id: locationData.id,
-        account_id: account.account_id,
-        voicemailEnabled: callSetting.noAnswerStatus === "Voicemail" ? "Y" : "N",
-        voiceEmailTo:
-          callSetting.noAnswerStatus === "Voicemail"
-            ? callSetting.noAnswerForward
-            : "",
-        record: callSetting.callRecording,
-        callforward: callSetting.noAnswerStatus === "Forward" ? 1 : 0,
-        callforwardTo:
-          callSetting.noAnswerStatus === "Forward" ? callSetting.noAnswerForward : "",
-        onbusy: callSetting.onBusyState,
-        onbusyTo: callSetting.onBusyForward,
-        notregistered: callSetting.notRegisterStatus,
-        notregisteredTo: callSetting.notRegisterForward,
-        dnd: callSetting.dnd,
-        noanswer: 0,
-        ignorebusy: 0,
-        callTimeOut: callSetting.callTimeOut,
-        followme: callSetting.followMe,
-        blockIncomingStatus: callSetting.callBlocking === "Incoming" ? 1 : callSetting.callBlocking === "All" ? 1 : 0,
-        blockOutGoingStatus: callSetting.callBlocking === "Outgoing" ? 1 : callSetting.callBlocking === "All" ? 1 : 0,
-      };
+  //   if (
+  //     (callSetting.onBusyState === 0 || callSetting.onBusyForward !== "") &&
+  //     (callSetting.followMe == 0 || callSetting.followMeDestination !== "") &&
+  //     (callSetting.notRegisterStatus === 0 ||
+  //       callSetting.notRegisterForward !== "") &&
+  //     !(callSetting.noAnswerStatus === "Forward" &&
+  //       callSetting.noAnswerForward === "")
+  //   ) {
+  //     setLoading(true);
+  //     const parsedData = {
+  //       extension_id: locationData.id,
+  //       account_id: account.account_id,
+  //       voicemailEnabled: callSetting.noAnswerStatus === "Voicemail" ? "Y" : "N",
+  //       voiceEmailTo:
+  //         callSetting.noAnswerStatus === "Voicemail"
+  //           ? callSetting.noAnswerForward
+  //           : "",
+  //       record: callSetting.callRecording,
+  //       callforward: callSetting.noAnswerStatus === "Forward" ? 1 : 0,
+  //       callforwardTo:
+  //         callSetting.noAnswerStatus === "Forward" ? callSetting.noAnswerForward : "",
+  //       onbusy: callSetting.onBusyState,
+  //       onbusyTo: callSetting.onBusyForward,
+  //       notregistered: callSetting.notRegisterStatus,
+  //       notregisteredTo: callSetting.notRegisterForward,
+  //       dnd: callSetting.dnd,
+  //       noanswer: 0,
+  //       ignorebusy: 0,
+  //       callTimeOut: callSetting.callTimeOut,
+  //       followme: callSetting.followMe,
+  //       blockIncomingStatus: callSetting.callBlocking === "Incoming" ? 1 : callSetting.callBlocking === "All" ? 1 : 0,
+  //       blockOutGoingStatus: callSetting.callBlocking === "Outgoing" ? 1 : callSetting.callBlocking === "All" ? 1 : 0,
+  //     };
 
-      // Conditionally add the 'data' field if followMe is equal to 1
-      if (callSetting.followMe === 1) {
-        if (callSetting.followMeId === "") {
-          parsedData.data = [{
-            destination: callSetting.followMeDestination,
-            delay: callSetting.followMeDelay,
-            timeout: callSetting.followMeTimeOut,
-            extension_id: locationData.id,
-            prompt: callSetting.followMePrompt
-          }];
-        } else {
-          parsedData.data = [{
-            id: callSetting.followMeId,
-            destination: callSetting.followMeDestination,
-            delay: callSetting.followMeDelay,
-            timeout: callSetting.followMeTimeOut,
-            extension_id: locationData.id,
-            prompt: callSetting.followMePrompt
-          }];
-        }
-      }
+  //     // Conditionally add the 'data' field if followMe is equal to 1
+  //     if (callSetting.followMe === 1) {
+  //       if (callSetting.followMeId === "") {
+  //         parsedData.data = [{
+  //           destination: callSetting.followMeDestination,
+  //           delay: callSetting.followMeDelay,
+  //           timeout: callSetting.followMeTimeOut,
+  //           extension_id: locationData.id,
+  //           prompt: callSetting.followMePrompt
+  //         }];
+  //       } else {
+  //         parsedData.data = [{
+  //           id: callSetting.followMeId,
+  //           destination: callSetting.followMeDestination,
+  //           delay: callSetting.followMeDelay,
+  //           timeout: callSetting.followMeTimeOut,
+  //           extension_id: locationData.id,
+  //           prompt: callSetting.followMePrompt
+  //         }];
+  //       }
+  //     }
 
-      const apiData = await generalPostFunction(
-        `/extension/details/store`,
-        parsedData
-      );
-      if (apiData.status) {
-        setLoading(false);
-        toast.success(apiData.message);
-      } else {
-        setLoading(false);
-        toast.error(apiData.message);
-      }
-    }
-  }
+  //     const apiData = await generalPostFunction(
+  //       `/extension/details/store`,
+  //       parsedData
+  //     );
+  //     if (apiData.status) {
+  //       setLoading(false);
+  //       toast.success(apiData.message);
+  //     } else {
+  //       setLoading(false);
+  //       toast.error(apiData.message);
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -270,14 +270,14 @@ const CallSettings = (props) => {
                       >
                         Back
                       </button>
-                      <button
+                      {/* <button
                         type="button"
                         effect="ripple"
                         className="panelButton"
                         onClick={handleSubmit}
                       >
                         Save
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>

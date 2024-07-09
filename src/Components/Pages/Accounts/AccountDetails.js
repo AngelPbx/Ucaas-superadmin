@@ -150,7 +150,7 @@ function AccountDetails() {
                                             </div>
                                             <div
                                                 style={{cursor:"pointer"}}
-                                                onClick={()=>navigate("/support-ticket-list")}
+                                                onClick={()=>navigate("/user-extension",{state:locationData.extensions})}
                                                 className="cartButton mt-1"
                                             >
                                                 View Details
