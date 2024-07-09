@@ -165,7 +165,7 @@ function Feature() {
                                     type="text"
                                     placeholder={item.name}
                                     className="formItem m-0"
-                                    style={{ height: 25 }}
+                                    style={{ height: 25, border: 'none' }}
                                     onChange={(e) =>
                                       setEditName(e.target.value)
                                     }
