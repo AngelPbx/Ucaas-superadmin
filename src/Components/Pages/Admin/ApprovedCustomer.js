@@ -65,7 +65,9 @@ function ApprovedCustomer() {
                             account.map((item, index) => {
                               return (
                                 <tr
-                                  onClick={()=>navigate("/customer-details")}
+                                  onClick={()=>navigate("/customer-details",{
+                                    state: item,
+                                  })}
                                   key={index}
                                 >
                                   <td>{item.company_name}</td>

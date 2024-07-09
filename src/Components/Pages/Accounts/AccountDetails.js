@@ -2,10 +2,14 @@ import React from 'react'
 import Header from '../../CommonComponents/Header'
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function AccountDetails() {
     const navigate = useNavigate()
+    const location = useLocation();
+  const locationData = location.state;
+  const activeCard = locationData.card_details.filter((item)=>item.default===1)
+  console.log("This is location data",activeCard);
     return (
         <>
             <style>
@@ -48,28 +52,28 @@ function AccountDetails() {
                                                 Package
                                             </div>
                                             <div className="data-number">
-                                                $ 200.<sub style={{ fontSize: 14 }}>00</sub>
+                                                $ {locationData.package.offer_price.split(".")[0]}.<sub style={{ fontSize: 14 }}>{locationData.package.offer_price.split(".")[1]}</sub>
                                             </div>
                                             <div className="label">
-                                                Purchase Date: <span className="float-end">16-01-2024</span>
+                                                Purchase Date: <span className="float-end">{locationData.subscription[0].start_date.split(" ")[0]}</span>
                                             </div>
                                             <div className="label">
                                                 Package Name:{" "}
-                                                <span className="float-end">Basic Package</span>
+                                                <span className="float-end">{locationData.package.name} Package</span>
                                             </div>
                                             <div className="label">
                                                 Tenure:{" "}
-                                                <span className="float-end">Yearly Basis</span>
+                                                <span className="float-end">{locationData.package.subscription_type} Basis</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col-xl-3 px-2 billinCardWrapper">
                                         <Cards
                                             className="cardWrapper row align-items-center col-12 mx-auto"
-                                            number="4242424242424242"
-                                            expiry="02/26"
-                                            cvc="585"
-                                            name="Test card"
+                                            number={activeCard[0].card_number}
+                                            expiry={`${Number(activeCard[0].exp_month)>9?activeCard[0].exp_month:`0${activeCard[0].exp_month}`}/${activeCard[0].exp_year}`}
+                                            cvc={activeCard[0].cvc}
+                                            name={activeCard[0].name}
                                         />
                                     </div>
                                     <div className="col-xl-3 px-2">
@@ -79,18 +83,18 @@ function AccountDetails() {
                                                 Balance
                                             </div>
                                             <div className="data-number">
-                                                $ 123456.
+                                                $ {locationData.balance?.amount?.split(".")[0]}.
                                                 <sub style={{ fontSize: 14 }}>
-                                                    00
+                                                    {locationData.balance?.amount?.split(".")[1]}
                                                 </sub>
                                             </div>
                                             <div className="label">
                                                 Active Card:{" "}
-                                                <span className="float-end">**** **** **** 4444</span>
+                                                <span className="float-end">{activeCard[0].card_number}</span>
                                             </div>
                                             <div className="label">
                                                 Holder's Name:{" "}
-                                                <span className="float-end">John Adam Eve Smith</span>
+                                                <span className="float-end">{activeCard[0].name}</span>
                                             </div>
                                             <div
                                                 // onClick={() => setRechargePopUp(true)}
@@ -107,18 +111,18 @@ function AccountDetails() {
                                                 Transaction
                                             </div>
                                             <div className="data-number">
-                                                $ 200.<sub style={{ fontSize: 14 }}>00</sub>
+                                                $ {locationData.package.regular_price.split(" ")[0]}.<sub style={{ fontSize: 14 }}>{locationData.package.regular_price.split(" ")[1]}</sub>
                                             </div>
                                             <div className="label">
-                                                Date: <span className="float-end">16-01-2024</span>
+                                                Date: <span className="float-end">{locationData.subscription[0].end_date.split(" ")[0]}</span>
                                             </div>
                                             <div className="label">
                                                 Package:{" "}
-                                                <span className="float-end">Basic Package</span>
+                                                <span className="float-end">{locationData.package.name} Package</span>
                                             </div>
                                             <div className="label">
                                                 Tenure:{" "}
-                                                <span className="float-end">Yearly Basis</span>
+                                                <span className="float-end">{locationData.package.subscription_type} Basis</span>
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +134,8 @@ function AccountDetails() {
                                                 <i className="fa-duotone fa-phone-office"></i> Total Extensions
                                             </div>
                                             <div className="data-number">
-                                                10<span style={{ fontSize: 14 }}>/ 20</span>
+                                                {locationData.extensions.length}
+                                                {/* <span style={{ fontSize: 14 }}>/ 20</span> */}
                                             </div>
                                             <div className="label">
                                                 Online Extensions: <span className="float-end">7</span>
@@ -143,7 +148,14 @@ function AccountDetails() {
                                                 Total Extensions:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
-                                            <div className='details border-top mt-2'>
+                                            <div
+                                                style={{cursor:"pointer"}}
+                                                onClick={()=>navigate("/support-ticket-list")}
+                                                className="cartButton mt-1"
+                                            >
+                                                View Details
+                                            </div>
+                                            {/* <div className='details border-top mt-2'>
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -164,7 +176,7 @@ function AccountDetails() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="col-xl-3 px-2">
@@ -173,7 +185,8 @@ function AccountDetails() {
                                                 <i className="fa-duotone fa-signal"></i> Total DIDs
                                             </div>
                                             <div className="data-number">
-                                                10<span style={{ fontSize: 14 }}>/ 20</span>
+                                                {locationData.dids.length}
+                                                <span style={{ fontSize: 14 }}>/ 20</span>
                                             </div>
                                             <div className="label">
                                                 Active DIDs: <span className="float-end">7</span>
@@ -186,7 +199,14 @@ function AccountDetails() {
                                                 Total DIDs:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
-                                            <div className='details border-top mt-2'>
+                                            <div
+                                                style={{cursor:"pointer"}}
+                                                onClick={()=>navigate("/support-ticket-list")}
+                                                className="cartButton mt-1"
+                                            >
+                                                View Details
+                                            </div>
+                                            {/* <div className='details border-top mt-2'>
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -205,7 +225,7 @@ function AccountDetails() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="col-xl-3 px-2">
@@ -214,7 +234,8 @@ function AccountDetails() {
                                                 <i className="fa-duotone fa-users"></i> Total Users
                                             </div>
                                             <div className="data-number">
-                                                10<span style={{ fontSize: 14 }}>/ 20</span>
+                                                {locationData.users.length}
+                                                {/* <span style={{ fontSize: 14 }}>/ 20</span> */}
                                             </div>
                                             <div className="label">
                                                 Active Extensions: <span className="float-end">7</span>
@@ -227,7 +248,14 @@ function AccountDetails() {
                                                 Total Extensions:{" "}
                                                 <span className="float-end">20</span>
                                             </div>
-                                            <div className='details border-top mt-2'>
+                                            <div
+                                                style={{cursor:"pointer"}}
+                                                onClick={()=>navigate("/support-ticket-list")}
+                                                className="cartButton mt-1"
+                                            >
+                                                View Details
+                                            </div>
+                                            {/* <div className='details border-top mt-2'>
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -246,7 +274,7 @@ function AccountDetails() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="col-xl-3 px-2">
