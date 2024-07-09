@@ -141,6 +141,18 @@ function Navbar() {
                           <div className="itemTitle">Master</div>
                         </NavLink>
                       </li>
+                      {/* <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/document-list"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Documents list</div>
+                        </NavLink>
+                      </li> */}
                       <li className="tabItem" effect="ripple">
                         <NavLink
                           to="/roles"

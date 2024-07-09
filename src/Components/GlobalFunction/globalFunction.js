@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { handleNavigation } from './Navigation';
-const baseName = "http://192.168.1.88/UcaasS-Backend/api"
+// const baseName = "http://192.168.1.88/UcaasS-Backend/api"
+const baseName = "http://127.0.0.1:8000/api"
 // const baseName = "http://127.0.0.1:8000/api"
 
 
@@ -124,4 +125,5 @@ export async function imageUploadFunction(endpoint, data) {
 export const backToTop = () => {
   window.scrollTo(0, 0);
 }
+
 

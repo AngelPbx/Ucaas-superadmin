@@ -43,15 +43,13 @@ function PaymentVerification() {
                       <tr>
                         <th>Company Name</th>
                         <th>Admin Name</th>
-                        <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Address</th>
-                        {/* <th>Payment Status</th> */}
+                        <th>Transaction id</th>
+                        <th>Amount</th>
+                        <th>Payment Status</th>
                         <th>
-                          Verification
+                        Transaction Date
                         </th>
-                        {/* <th>Description</th>
-                        <th>Add Features</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -74,17 +72,12 @@ function PaymentVerification() {
                                 >
                                   <td>{item.company_name}</td>
                                   <td>{item.admin_name}</td>
-                                  <td>{item.email}</td>
                                   <td>{item.contact_no}</td>
-                                  <td>{item.unit}</td>
-                                  {/* <td>
-                                    <label className={item.payment_url === null ? "tableLabel success" : "tableLabel fail"}>{item.payment_url === null ? "True" : "False"}</label>
-                                  </td> */}
-                                  <td>
-                                    {item.company_status === "1"
-                                      ? "Pending"
-                                      : ""}
-                                  </td>
+                                  <td>{item.payments[0].transaction_id}</td>
+                                  <td>{item.payments[0].amount_subtotal}</td>
+                                  <td>{item.payments[0].payment_status}</td>
+                                  <td>{item.payments[0].transaction_date.split(" ")[0]}</td>
+                                
                                 </tr>
                               );
                             })}

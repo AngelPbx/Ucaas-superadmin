@@ -73,6 +73,7 @@ import ConfigDetails from "./Components/Pages/Admin/ConfigDetails";
 import AccountDetails from "./Components/Pages/Accounts/AccountDetails";
 import AccountSettings from "./Components/Pages/Accounts/AccountSettings";
 import SupportTicketList from "./Components/Pages/Accounts/SupportTicketList";
+import DocumentList from "./Components/Pages/Setting/DocumentList";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -113,6 +114,7 @@ function App() {
             <Route path="/dashboard" element={<SuperAdminDashboard />} />
             <Route path="/my-profile" element={<Profile />} />
             <Route path="/master" element={<Master />} />
+            <Route path="/document-list" element={<DocumentList />} />
             <Route path="/change-password" element={<ChangePassword />} />
 
             {/* Ring Groups Path Start */}
@@ -123,7 +125,7 @@ function App() {
 
             {/* Accounts Path Start */}
             <Route path="/users" element={<Users />} />
-            <Route path="/account-details" element={<AccountDetails />} />
+            <Route path="/customer-details" element={<AccountDetails />} />
             <Route path="/account-settings" element={<AccountSettings />} />
             <Route path="/support-ticket-list" element={<SupportTicketList />} />
             {/* Accounts Path End */}

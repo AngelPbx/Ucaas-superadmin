@@ -33,7 +33,7 @@ function TempDashboard() {
       if (apiData.status) {
         setLoading(false);
         setAccount(apiData.data);
-        setPreview("https://ncet-public-2023.s3.ap-south-1.amazonaws.com/2024/site-admin24/syllabus/Accountancy+301.pdf");
+        // setPreview("https://ncet-public-2023.s3.ap-south-1.amazonaws.com/2024/site-admin24/syllabus/Accountancy+301.pdf");
         // setPreview(apiData.data.details[0].path);
         console.log("This is account data", apiData.data);
       } else {

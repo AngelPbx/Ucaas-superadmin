@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../../CommonComponents/Header";
 
-function Master() {
+function DocumentList() {
   const navigate = useNavigate();
   const [domain, setDomain] = useState();
   const [popUp, setPopUp] = useState(false);
@@ -28,7 +28,7 @@ function Master() {
     if (account && account.id) {
       async function getDomainGroup() {
         const domainList = await generalGetFunction(
-          `/domain/search`
+          `/documents`
         );
         if (domainList.status) {
           setDomain(
@@ -51,16 +51,16 @@ function Master() {
     }
   }, [account, navigate]);
 
-  // Update domain and group
+  // Update document
   async function updateValue() {
     if (domainSaveClick) {
       if (newDomain.length > 2) {
         const parsedData = {
-          domain_name: newDomain,
-          created_by: account.id,
-          account_id: account.account_id
+            name: newDomain,
+            status: "active",
+        //   account_id: account.account_id
         }
-        const apiData = await generalPostFunction("/domain/store", parsedData)
+        const apiData = await generalPostFunction("/document/store", parsedData)
         if (apiData.status) {
           toast.success(apiData.message)
         } else {
@@ -73,9 +73,9 @@ function Master() {
     } else if (editClick && editType === "Domain") {
       if (updatedDomain.length > 2) {
         const parsedData = {
-          domain_name: updatedDomain
+            name: updatedDomain
         }
-        const apiData = await generalPutFunction(`/domain/${editIndex}`, parsedData)
+        const apiData = await generalPutFunction(`/document/update/${editIndex}`, parsedData)
         if (apiData.status) {
           toast.success(apiData.message)
         } else {
@@ -87,22 +87,14 @@ function Master() {
         toast.error("Invalid Updated Value")
       }
     } else if (name == "Domain") {
-      const apiData = await generalDeleteFunction(`domain/${editIndex}`)
+      const apiData = await generalDeleteFunction(`/document/destroy/${editIndex}`)
       if (apiData.status) {
         toast.success(apiData.message)
       } else {
         toast.error(apiData.message)
 
       }
-    } else {
-      const apiData = await generalDeleteFunction(`group/${editIndex}`)
-      if (apiData.status) {
-        toast.success(apiData.message)
-      } else {
-        toast.error(apiData.message)
-
-      }
-    }
+    } 
 
     setPopUp(false);
     setDomainSaveClick(false);
@@ -308,4 +300,4 @@ function Master() {
   );
 }
 
-export default Master;
+export default DocumentList;

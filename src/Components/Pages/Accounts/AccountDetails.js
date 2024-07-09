@@ -2,8 +2,10 @@ import React from 'react'
 import Header from '../../CommonComponents/Header'
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { useNavigate } from 'react-router-dom';
 
 function AccountDetails() {
+    const navigate = useNavigate()
     return (
         <>
             <style>
@@ -267,6 +269,8 @@ function AccountDetails() {
                                                 <span className="float-end">20</span>
                                             </div>
                                             <div
+                                                style={{cursor:"pointer"}}
+                                                onClick={()=>navigate("/support-ticket-list")}
                                                 className="cartButton mt-1"
                                             >
                                                 View Ticket List

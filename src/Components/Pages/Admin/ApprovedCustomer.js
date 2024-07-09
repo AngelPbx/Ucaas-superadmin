@@ -43,15 +43,13 @@ function ApprovedCustomer() {
                       <tr>
                         <th>Company Name</th>
                         <th>Admin Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Document Uploaded</th>
+                        <th>Package</th>
+                        <th>Subscription Type</th>
+                        <th>Subscription Start</th>
+                        <th>Subscription End</th>
                         <th>
                           Balance
                         </th>
-                        {/* <th>Description</th>
-                        <th>Add Features</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -67,18 +65,16 @@ function ApprovedCustomer() {
                             account.map((item, index) => {
                               return (
                                 <tr
-                                  // onClick={() =>
-                                  //   navigate(`/user-details?id=${item.id}`)
-                                  // }
+                                  onClick={()=>navigate("/customer-details")}
                                   key={index}
                                 >
                                   <td>{item.company_name}</td>
                                   <td>{item.admin_name}</td>
-                                  <td>{item.email}</td>
-                                  <td>{item.contact_no}</td>
-                                  <td>{item.unit}</td>
+                                  <td>{item.package.name}</td>
+                                  <td>{item.package.subscription_type}</td>
+                                  <td>{item.subscription[0].start_date.split(" ")[0]}</td>
                                   <td>
-                                    <label className={item.details !== null ? "tableLabel success" : "tableLabel fail"}>{item.details !== null ? "True" : "False"}</label>
+                                    {item.subscription[0].end_date.split(" ")[0]}
                                   </td>
                                   <td>
                                     {item?.balance?.amount}
