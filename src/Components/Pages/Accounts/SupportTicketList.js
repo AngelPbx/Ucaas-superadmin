@@ -62,43 +62,28 @@ function SupportTicketList() {
                                             <td>
                                                 1001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 username
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 username@email.com
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 1001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 Config Help
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 I need help
                                             </td>
-                                            <td
-
-
-                                            >
+                                            <td>
                                                 <label className={"tableLabel success"}>Resolved</label>
                                             </td>
                                             <td>
                                                 10-02-2001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 <button className='clearButton text-success'><i class="fa-sharp fa-solid fa-circle-check"></i></button> <button className='clearButton text-danger'><i className="fa-solid fa-trash"></i></button>
                                             </td>
                                         </tr>
@@ -106,43 +91,28 @@ function SupportTicketList() {
                                             <td>
                                                 1001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 username
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 username@email.com
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 1001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 Refund
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 I want a refund
                                             </td>
-                                            <td
-
-
-                                            >
+                                            <td>
                                                 <label className={"tableLabel pending"}>Pending</label>
                                             </td>
                                             <td>
                                                 10-02-2001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 <button className='clearButton text-success'><i class="fa-sharp fa-solid fa-circle-check"></i></button> <button className='clearButton text-danger'><i className="fa-solid fa-trash"></i></button>
                                             </td>
                                         </tr>
@@ -150,43 +120,28 @@ function SupportTicketList() {
                                             <td>
                                                 1001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 username
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 username@email.com
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 1001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 DID Setup
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 I need help
                                             </td>
-                                            <td
-
-
-                                            >
+                                            <td>
                                                 <label className={"tableLabel fail"}>Canceled</label>
                                             </td>
                                             <td>
                                                 10-02-2001
                                             </td>
-                                            <td
-
-                                            >
+                                            <td>
                                                 <button className='clearButton text-success'><i class="fa-sharp fa-solid fa-circle-check"></i></button> <button className='clearButton text-danger'><i className="fa-solid fa-trash"></i></button>
                                             </td>
                                         </tr>
