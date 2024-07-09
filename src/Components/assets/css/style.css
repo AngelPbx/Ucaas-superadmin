@@ -32,6 +32,7 @@
 @import url('./components/loader.css');
 @import url('./components/caller.css');
 @import url('./components/master.css');
+@import url('./components/documentVerify.css');
 
 /* Responsive CSS */
 @import url('./common/responsive.css');
