@@ -186,7 +186,7 @@ function AccountDetails() {
                                             </div>
                                             <div className="data-number">
                                                 {locationData.dids.length}
-                                                <span style={{ fontSize: 14 }}>/ 20</span>
+                                                {/* <span style={{ fontSize: 14 }}>/ 20</span> */}
                                             </div>
                                             <div className="label">
                                                 Active DIDs: <span className="float-end">7</span>
@@ -250,7 +250,7 @@ function AccountDetails() {
                                             </div>
                                             <div
                                                 style={{cursor:"pointer"}}
-                                                onClick={()=>navigate("/support-ticket-list")}
+                                                onClick={()=>navigate("/customer-user",{state:locationData.users})}
                                                 className="cartButton mt-1"
                                             >
                                                 View Details

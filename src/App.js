@@ -75,6 +75,7 @@ import AccountSettings from "./Components/Pages/Accounts/AccountSettings";
 import SupportTicketList from "./Components/Pages/Accounts/SupportTicketList";
 import DocumentList from "./Components/Pages/Setting/DocumentList";
 import UserExtension from "./Components/Pages/Accounts/UserExtension";
+import CustomerUser from "./Components/Pages/Accounts/CustomerUser";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -130,6 +131,7 @@ function App() {
             <Route path="/account-settings" element={<AccountSettings />} />
             <Route path="/support-ticket-list" element={<SupportTicketList />} />
             <Route path="/user-extension" element={<UserExtension />} />
+            <Route path="/customer-user" element={<CustomerUser/>} />
             {/* Accounts Path End */}
 
             {/* Extensions Path Start */}
