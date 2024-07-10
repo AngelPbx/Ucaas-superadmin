@@ -30,7 +30,7 @@ function PackageEdit() {
   // Get data of package from id
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/package/details/${value}`);
+      const apiData = await generalGetFunction(`/package/details/${value}`, `admin`);
       if (apiData.status) {
         setLoading(false);
         setPackages((prevState) => ({
@@ -122,7 +122,7 @@ function PackageEdit() {
         offer_price: packages.offer_price,
       };
 
-      const apiData = await generalPutFunction(`/package/${value}`, parsedData);
+      const apiData = await generalPutFunction(`/package/${value}`, parsedData, `admin`);
       if (apiData.status) {
         setLoading(false);
         toast.success(apiData.message);

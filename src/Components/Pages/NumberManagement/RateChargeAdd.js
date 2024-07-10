@@ -14,7 +14,7 @@ function RateChargeAdd() {
     const [loading,setLoading]=useState(false)
     useEffect(()=>{
       async function getVendor(){
-        const apiData = await generalGetFunction("/did/vendors")
+        const apiData = await generalGetFunction("/did/vendors", 'admin')
         if(apiData.status){
           setVendor(apiData.data)
         }
@@ -34,7 +34,7 @@ function RateChargeAdd() {
           rate_type:rateType,
           rate:rate
         }
-        const apidata = await generalPostFunction("/did/rate/store",parsedData)
+        const apidata = await generalPostFunction("/did/rate/store",parsedData, 'admin')
         if(apidata.status){
           setLoading(false)
           toast.success(apidata.message)

@@ -1,13 +1,10 @@
 import axios from 'axios';
 import { handleNavigation } from './Navigation';
-const baseName = "http://192.168.1.88/UcaasS-Backend/api"
-// const baseName = "http://127.0.0.1:8000/api"
-// const baseName = "http://127.0.0.1:8000/api"
-
-
+const baseName = "http://127.0.0.1:8000/api"
+const adminApiEndpoint = "http://127.0.0.1:8000/admin/api";
 
 // Creating instance of axios
-const axiosInstance = axios.create({
+let axiosInstance = axios.create({
   baseURL: baseName,
   headers: {
     'Content-Type': 'application/json',
@@ -48,7 +45,10 @@ export async function login(userName, password) {
 }
 
 // General Get Function
-export async function generalGetFunction(endpoint) {
+export async function generalGetFunction(endpoint, type = null) {
+
+  axiosInstance.defaults.baseURL = (type) ? adminApiEndpoint : baseName;
+
   return axiosInstance.get(endpoint).then(res => {
     return res.data
   }).catch(err => {
@@ -58,14 +58,14 @@ export async function generalGetFunction(endpoint) {
     } else {
       return err.response.data
     }
-    // console.log("This is error log",err.response.status);
-
-
   })
 }
 
 // General Post function
-export async function generalPostFunction(endpoint, data) {
+export async function generalPostFunction(endpoint, data, type = null) {
+
+  axiosInstance.defaults.baseURL = (type) ? adminApiEndpoint : baseName;
+
   return axiosInstance.post(endpoint, data).then(res => {
     return res.data
   }).catch(err => {
@@ -79,7 +79,10 @@ export async function generalPostFunction(endpoint, data) {
 }
 
 // General Put function
-export async function generalPutFunction(endpoint, data) {
+export async function generalPutFunction(endpoint, data, type = null) {
+
+  axiosInstance.defaults.baseURL = (type) ? adminApiEndpoint : baseName;
+
   return axiosInstance.put(endpoint, data).then(res => {
     return res.data
   }).catch(err => {
@@ -93,7 +96,10 @@ export async function generalPutFunction(endpoint, data) {
 }
 
 // General Delete Function
-export async function generalDeleteFunction(endpoint) {
+export async function generalDeleteFunction(endpoint, type = null) {
+
+  axiosInstance.defaults.baseURL = (type) ? adminApiEndpoint : baseName;
+
   return axiosInstance.delete(endpoint).then(res => {
     return res.data
   }).catch(err => {

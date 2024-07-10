@@ -19,7 +19,7 @@ function RateChargeEdit() {
             navigate(-1)
         }else{
       async function getVendor(){
-        const apiData = await generalGetFunction("/did/vendors")
+        const apiData = await generalGetFunction("/did/vendors", 'admin')
         if(apiData.status){
           setVendor(apiData.data)
         }
@@ -43,7 +43,7 @@ function RateChargeEdit() {
           rate_type:rateType,
           rate:rate
         }
-        const apidata = await generalPutFunction(`/did/rate/update/${locationState.id}`,parsedData)
+        const apidata = await generalPutFunction(`/did/rate/update/${locationState.id}`,parsedData, `admin`)
         if(apidata.status){
           setLoading(false)
           toast.success(apidata.message)

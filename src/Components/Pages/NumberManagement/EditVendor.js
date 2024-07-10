@@ -47,7 +47,8 @@ function EditVendor() {
 
       const apiData = await generalPutFunction(
         `/did/vendor/update/${locationState.id}`,
-        parsedData
+        parsedData,
+        `admin`
       );
       if (apiData.status) {
         setLoading(false);

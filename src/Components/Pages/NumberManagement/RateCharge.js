@@ -13,7 +13,7 @@ function RateCharge() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/did/rates`);
+      const apiData = await generalGetFunction(`/did/rates`, `admin`);
       if (apiData.status) {
         setLoading(false);
         setRateCard(apiData.data);

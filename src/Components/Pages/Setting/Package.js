@@ -16,7 +16,7 @@ function Package() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/packages`);
+      const apiData = await generalGetFunction(`/packages`, `admin`);
       if (apiData.status) {
         setLoading(false);
         setPackages(apiData.data);

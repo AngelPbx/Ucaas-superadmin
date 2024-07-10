@@ -12,7 +12,7 @@ import CircularLoader from "../Misc/CircularLoader";
 import { useSelector } from "react-redux";
 
 function Roles() {
-  const account = useSelector((state)=>state.account)
+  const account = useSelector((state) => state.account)
   const [role, setRole] = useState();
   const [popup, setPopup] = useState(false);
   const [editClick, setEditClick] = useState(false);
@@ -33,16 +33,21 @@ function Roles() {
   // Getting the role and permission information at the very initial state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(
-        `/roles`
-      );
+
       const permissionData = await generalGetFunction("/permission");
-      if (apiData.status) {
-        setRole(apiData.data);
-      }
+
       if (permissionData.status) {
         setDefaultPermission(permissionData.data);
       }
+
+      const apiData = await generalGetFunction(
+        `/roles`, `admin`
+      );
+
+      if (apiData.status) {
+        setRole(apiData.data);
+      }
+
     }
     getData();
   }, [refresh]);
@@ -59,7 +64,7 @@ function Roles() {
           name: newRole,
           // created_by:account.account_id
         };
-        const apiData = await generalPostFunction("/role/store", parsedData);
+        const apiData = await generalPostFunction("/role/store", parsedData, 'admin');
         if (apiData.status) {
           setLoading(false);
           setRefresh(refresh + 1);
@@ -83,7 +88,7 @@ function Roles() {
         };
         const apiData = await generalPutFunction(
           `/role/${role[editIndex].id}`,
-          parsedData
+          parsedData, `admin`
         );
         if (apiData.status) {
           toast.success(apiData.message);
@@ -99,7 +104,7 @@ function Roles() {
     } else {
       setLoading(true);
       const apiData = await generalDeleteFunction(
-        `/role/${role[deleteIndex].id}`
+        `/role/${role[deleteIndex].id}`, `admin`
       );
       if (apiData.status) {
         setEditClick(false);
@@ -155,7 +160,7 @@ function Roles() {
     }
     return result;
   };
-  
+
   const filteredPermission = filterPermissionById(defaultPermission, account.permissions);
   return (
     <>
@@ -224,31 +229,31 @@ function Roles() {
                       {addRole ? (
                         <li>
                           <div className="col-8">
-                          <input
-                            type="text"
-                            value={newRole}
-                            onChange={(e) => setNewRole(e.target.value)}
-                            placeholder="Add new Role"
-                          ></input>
+                            <input
+                              type="text"
+                              value={newRole}
+                              onChange={(e) => setNewRole(e.target.value)}
+                              placeholder="Add new Role"
+                            ></input>
                           </div>
                           <div className="col-auto">
-                          <button className="clearButton text-success">
-                            <i
-                              className="fa-duotone fa-circle-check"
-                              onClick={() => {
-                                setPopup(true);
-                                setSaveClick(true);
-                              }}
-                            ></i>
-                          </button>
-                          <button className="clearButton text-danger">
-                            <i
-                              className="fa-duotone fa-trash"
-                              onClick={() => {
-                                setAddRole(false);
-                              }}
-                            ></i>
-                          </button>
+                            <button className="clearButton text-success">
+                              <i
+                                className="fa-duotone fa-circle-check"
+                                onClick={() => {
+                                  setPopup(true);
+                                  setSaveClick(true);
+                                }}
+                              ></i>
+                            </button>
+                            <button className="clearButton text-danger">
+                              <i
+                                className="fa-duotone fa-trash"
+                                onClick={() => {
+                                  setAddRole(false);
+                                }}
+                              ></i>
+                            </button>
                           </div>
                         </li>
                       ) : (
@@ -257,7 +262,7 @@ function Roles() {
                       {role &&
                         role.map((item, index) => {
                           return (
-                            <li key={index} className={selectedRoleId===item.id?"active":""}>
+                            <li key={index} className={selectedRoleId === item.id ? "active" : ""}>
                               <div className="col-8">
                                 <input
                                   type="text"
@@ -306,8 +311,8 @@ function Roles() {
                                       setSelectedRoleId(item.id);
                                       setSelectedRole(item.name);
                                       setSelectedPermission(
-                                        item.permissions?.map((item)=>{
-                                          return(item.permission_id)
+                                        item.permissions?.map((item) => {
+                                          return (item.permission_id)
                                         })
                                       );
                                     }}
@@ -350,7 +355,7 @@ function Roles() {
                                 Save
                               </button>{" "}
                             </div>
-                          
+
                           </div>
                         </div>
                         {filteredPermission &&

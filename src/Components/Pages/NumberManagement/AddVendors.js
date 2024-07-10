@@ -28,7 +28,7 @@ function AddVendors() {
                 status:status
             }
 
-            const apiData = await generalPostFunction("/did/vendor/store",parsedData)
+            const apiData = await generalPostFunction("/did/vendor/store",parsedData, 'admin')
             if(apiData.status){
                 setLoading(false)
                 toast.success(apiData.message)

@@ -44,7 +44,8 @@ function Feature() {
       };
       const apiData = await generalPutFunction(
         `/feature/update/${id}`,
-        parsedData
+        parsedData,
+        `admin`
       );
       if (apiData.status) {
         setLoading(false);
@@ -59,7 +60,7 @@ function Feature() {
   // Handel delete feature
   async function deleteFeature(id, index) {
     setLoading(true);
-    const apiData = await generalDeleteFunction(`/feature/destroy/${id}`);
+    const apiData = await generalDeleteFunction(`/feature/destroy/${id}`, `admin`);
     if (apiData.status) {
       setLoading(false);
       const newArray = feature.filter((item, ind) => ind !== index);
@@ -84,7 +85,7 @@ function Feature() {
         name: name,
         package_id: location.state.id,
       };
-      const apiData = await generalPostFunction(`/feature/store`, parseDdata);
+      const apiData = await generalPostFunction(`/feature/store`, parseDdata, `admin`);
       if (apiData.status) {
         const getFeature = await generalGetFunction(
           `/package/details/${location.state.id}`

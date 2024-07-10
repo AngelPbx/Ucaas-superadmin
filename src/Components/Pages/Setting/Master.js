@@ -28,7 +28,7 @@ function Master() {
     if (account && account.id) {
       async function getDomainGroup() {
         const domainList = await generalGetFunction(
-          `/domain/search`
+          `/domain/search`, `admin`
         );
         if (domainList.status) {
           setDomain(
@@ -60,7 +60,7 @@ function Master() {
           created_by: account.id,
           account_id: account.account_id
         }
-        const apiData = await generalPostFunction("/domain/store", parsedData)
+        const apiData = await generalPostFunction("/domain/store", parsedData, 'admin')
         if (apiData.status) {
           toast.success(apiData.message)
         } else {

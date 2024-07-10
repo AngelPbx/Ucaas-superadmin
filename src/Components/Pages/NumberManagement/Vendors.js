@@ -17,7 +17,7 @@ function Vendors() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/did/vendors`);
+      const apiData = await generalGetFunction(`/did/vendors`, `admin`);
       if (apiData.status) {
         setActiveVendor(apiData.data.filter((item)=>item.status === "active"))
         setLoading(false);

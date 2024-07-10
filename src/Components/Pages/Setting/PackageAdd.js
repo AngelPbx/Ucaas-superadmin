@@ -97,7 +97,7 @@ function PackageAdd() {
         offer_price: packages.offer_price,
       };
 
-      const apiData = await generalPostFunction("/package/store", parsedData);
+      const apiData = await generalPostFunction("/package/store", parsedData, 'admin');
       if (apiData.status) {
         setLoading(false);
         toast.success(apiData.message);
