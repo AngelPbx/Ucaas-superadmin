@@ -125,7 +125,7 @@ const CustomerUser = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-xl-8 mt-3 mt-xl-0">
+              {/* <div className="col-xl-8 mt-3 mt-xl-0">
                 <div className="d-flex justify-content-end flex-wrap gap-2">
                   <Link
                     to="/users-add"
@@ -143,7 +143,7 @@ const CustomerUser = () => {
                     <span className="position-relative mx-1">Show All</span>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-12" style={{ overflow: "auto" }}>
               <div className="mx-2 tableContainer">

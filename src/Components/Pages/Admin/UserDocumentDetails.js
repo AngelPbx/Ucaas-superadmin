@@ -13,9 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 function TempDashboard() {
   // const dispatch = useDispatch();
   const wrapperRef = useRef(null);
-  const [rejectPopUp, setRejectPopUp] = useState(false)
-  const [rejectId, setRejectId] = useState()
-  const [rejectReason, setRejectReason] = useState("")
+  const [rejectPopUp, setRejectPopUp] = useState(false);
+  const [rejectId, setRejectId] = useState();
+  const [rejectReason, setRejectReason] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
   const [openNumber, setOpenNumber] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,8 @@ function TempDashboard() {
   const location = useLocation();
   const locationState = location.state;
   const [preview, setPreview] = useState();
-  const [reload, setReload] = useState(0)
+  const [reload, setReload] = useState(0);
+  const [docId, setDocId] = useState([]);
   const [account, setAccount] = useState(
     useSelector((state) => state.tempAccount)
   );
@@ -33,9 +34,20 @@ function TempDashboard() {
       if (apiData.status) {
         setLoading(false);
         setAccount(apiData.data);
-        setPreview("https://ncet-public-2023.s3.ap-south-1.amazonaws.com/2024/site-admin24/syllabus/Accountancy+301.pdf");
-        // setPreview(apiData.data.details[0].path);
+        setPreview(
+          "https://ncet-public-2023.s3.ap-south-1.amazonaws.com/2024/site-admin24/syllabus/Accountancy+301.pdf"
+        );
         console.log("This is account data", apiData.data);
+        const newDocItems = [...docId];
+        apiData.data.details.forEach((item) => {
+          if (
+            !newDocItems.some((doc) => doc.document_id === item.document_id)
+          ) {
+            newDocItems.push(item);
+          }
+        });
+
+        setDocId(newDocItems);
       } else {
         setLoading(false);
         navigate(-1);
@@ -91,7 +103,7 @@ function TempDashboard() {
     if (apiData.status) {
       setLoading(false);
       toast.success(apiData.message);
-      setReload(reload + 1)
+      setReload(reload + 1);
     } else {
       setLoading(false);
       toast.error(apiData.message);
@@ -111,15 +123,17 @@ function TempDashboard() {
     if (apiData.status) {
       setLoading(false);
       toast.success(apiData.message);
-      setReload(reload + 1)
-      setRejectPopUp(false)
+      setReload(reload + 1);
+      setRejectPopUp(false);
     } else {
       setLoading(false);
-      setRejectPopUp(false)
+      setRejectPopUp(false);
       const errorMessage = Object.keys(apiData.error);
       toast.error(apiData.error[errorMessage[0]][0]);
     }
   }
+
+  console.log("This is doc id", docId);
   return (
     <>
       <div className="mainContent documentVerify">
@@ -305,107 +319,171 @@ function TempDashboard() {
                           className="qLinkContent px-3 mt-2"
                           ref={wrapperRef}
                         >
-                          <div class="accordion accordion-flush" id="accordionFlushExample">
-                            {account.details.map((item, key) => {
+                          <div
+                            class="accordion accordion-flush"
+                            id="accordionFlushExample"
+                          >
+                            {docId.map((item2, key) => {
                               return (
-
                                 <div class="accordion-item">
-                                  <h2 class="accordion-header" id={`flush-heading${key}`}>
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#flush-collapse${key}`} aria-expanded="false" aria-controls={`flush-collapse${key}`}>
-                                      {item?.document?.name}
+                                  <h2
+                                    class="accordion-header"
+                                    id={`flush-heading${key}`}
+                                  >
+                                    <button
+                                      class="accordion-button collapsed"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target={`#flush-collapse${key}`}
+                                      aria-expanded="false"
+                                      aria-controls={`flush-collapse${key}`}
+                                    >
+                                    {key+1}.   {item2?.document?.name}
                                     </button>
                                   </h2>
-                                  <div id={`flush-collapse${key}`} class="accordion-collapse collapse" aria-labelledby={`flush-heading${key}`} data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                      <div className="d-flex flex-wrap col-11 ms-auto position-relative align-items-center">
-                                        <div className="col-auto ps-0 pe-2">
-                                          <div className="iconWrapper2">
-                                            <i class="fa-solid fa-image"></i>
-                                          </div>
-                                        </div>
-                                        <div className="col-4 my-auto ps-1">
-                                          <h6 className="mb-0">{item?.document?.name}</h6>
-                                        </div>
-                                        <div className="col-6 ms-auto">
-                                          <div class="d-flex justify-content-end">
-                                            {item.status === "3" ? <> <div
-                                              onClick={() => approveClick(item)}
-                                              class="btn btn-success btn-sm"
-                                            >
-                                              <i class="fa-duotone fa-check"></i>{" "}
-                                              Approve
-                                            </div>
-                                              <div class="btn btn-danger btn-sm ms-1" onClick={() => { setRejectId(item); setRejectPopUp(true) }}>
-                                                <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
-                                                Reject
-                                              </div></> : item.status === "2" ? <div class="btn btn-danger btn-sm ms-1">
-                                                <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
-                                                Rejected
-                                              </div> : <div class="btn btn-success btn-sm ms-1">
-                                              <i class="fa-duotone fa-check-double"></i>{" "}
-                                              Approved
-                                            </div>}
-                                            {/* <div class="btn btn-info btn-sm ms-1 text-white">
-                                            <i class="fa-duotone fa-upload"></i> Upload
-                                          </div>
-                                          <div class="btn btn-danger btn-sm ms-1">
-                                            <i class="fa-duotone fa-trash"></i> Delete
-                                          </div> */}
-                                          </div>
-                                        </div>
-                                        <div className="col-auto ps-2 my-auto" onClick={() => setPreview(item.path)}>
-                                          <div className="iconWrapper">
-                                            <i class="fa-solid fa-eye"></i>
-                                          </div>
-                                        </div>
-                                        <div
-                                          className="col-auto px-0 my-auto"
-                                          onClick={() => {
-                                            setOpenPopup(!openPopup);
-                                            setOpenNumber(key);
-                                          }}
-                                        >
-                                          <div className="iconWrapper">
-                                            <i class="fa-solid fa-ellipsis"></i>
-                                          </div>
-                                        </div>
-                                        <div className="col-12">
-                                          <p><i class="fa-duotone fa-rectangle-xmark text-danger me-2"></i> Test Message LOL</p>
-                                        </div>
-                                        {openPopup && openNumber === key ? (
-                                          <div className="buttonPopup">
-                                            <div style={{ cursor: "pointer" }}>
+                                  <div
+                                    id={`flush-collapse${key}`}
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby={`flush-heading${key}`}
+                                    data-bs-parent="#accordionFlushExample"
+                                  >
+                                    {account?.details.map((item, key) => {
+                                      if (item.document_id === item2.document_id) {
+                                        return (
+                                          <div class="accordion-body">
+                                            <div className="d-flex flex-wrap col-11 ms-auto position-relative align-items-center">
+                                              <div className="col-auto ps-0 pe-2">
+                                                <div className="iconWrapper2">
+                                                  <i class="fa-solid fa-image"></i>
+                                                </div>
+                                              </div>
+                                              <div className="col-4 my-auto ps-1">
+                                                <h6 className="mb-0">
+                                                  {item?.document?.name}
+                                                </h6>
+                                              </div>
+                                              <div className="col-6 ms-auto">
+                                                <div class="d-flex justify-content-end">
+                                                  {item.status === "3" ? (
+                                                    <>
+                                                      {" "}
+                                                      <div
+                                                        onClick={() =>
+                                                          approveClick(item)
+                                                        }
+                                                        class="btn btn-success btn-sm"
+                                                      >
+                                                        <i class="fa-duotone fa-check"></i>{" "}
+                                                        Approve
+                                                      </div>
+                                                      <div
+                                                        class="btn btn-danger btn-sm ms-1"
+                                                        onClick={() => {
+                                                          setRejectId(item);
+                                                          setRejectPopUp(true);
+                                                        }}
+                                                      >
+                                                        <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
+                                                        Reject
+                                                      </div>
+                                                    </>
+                                                  ) : item.status === "2" ? (
+                                                    <div class="btn btn-danger btn-sm ms-1">
+                                                      <i class="fa-duotone fa-triangle-exclamation"></i>{" "}
+                                                      Rejected
+                                                    </div>
+                                                  ) : (
+                                                    <div class="btn btn-success btn-sm ms-1">
+                                                      <i class="fa-duotone fa-check-double"></i>{" "}
+                                                      Approved
+                                                    </div>
+                                                  )}
+                                                  {/* <div class="btn btn-info btn-sm ms-1 text-white">
+                                                <i class="fa-duotone fa-upload"></i> Upload
+                                              </div>
+                                              <div class="btn btn-danger btn-sm ms-1">
+                                                <i class="fa-duotone fa-trash"></i> Delete
+                                              </div> */}
+                                                </div>
+                                              </div>
                                               <div
-                                                className="clearButton"
+                                                className="col-auto ps-2 my-auto"
                                                 onClick={() =>
-                                                  downloadImage(
-                                                    item.path,
-                                                    "Register file"
-                                                  )
+                                                  setPreview(item.path)
                                                 }
                                               >
-                                                <i class="fa-solid fa-file-arrow-down"></i>{" "}
-                                                Download
+                                                <div className="iconWrapper">
+                                                  <i class="fa-solid fa-eye"></i>
+                                                </div>
                                               </div>
-                                            </div>
-                                            <div style={{ cursor: "pointer" }} >
-                                              <div className="clearButton">
-                                                <a
-                                                  href={item.path}
-                                                  target="_blank"
-                                                  rel="noreferrer"
-                                                >
-                                                  <i class="fa-sharp fa-solid fa-eye"></i>{" "}
-                                                  View
-                                                </a>
+                                              <div
+                                                className="col-auto px-0 my-auto"
+                                                onClick={() => {
+                                                  setOpenPopup(!openPopup);
+                                                  setOpenNumber(key);
+                                                }}
+                                              >
+                                                <div className="iconWrapper">
+                                                  <i class="fa-solid fa-ellipsis"></i>
+                                                </div>
                                               </div>
+                                              {item.description ? (
+                                                <div className="col-12">
+                                                  <p>
+                                                    <i class="fa-duotone fa-rectangle-xmark text-danger me-2"></i>{" "}
+                                                    {item.description}
+                                                  </p>
+                                                </div>
+                                              ) : (
+                                                ""
+                                              )}
+
+                                              {openPopup &&
+                                              openNumber === key ? (
+                                                <div className="buttonPopup">
+                                                  <div
+                                                    style={{
+                                                      cursor: "pointer",
+                                                    }}
+                                                  >
+                                                    <div
+                                                      className="clearButton"
+                                                      onClick={() =>
+                                                        downloadImage(
+                                                          item.path,
+                                                          "Register file"
+                                                        )
+                                                      }
+                                                    >
+                                                      <i class="fa-solid fa-file-arrow-down"></i>{" "}
+                                                      Download
+                                                    </div>
+                                                  </div>
+                                                  <div
+                                                    style={{
+                                                      cursor: "pointer",
+                                                    }}
+                                                  >
+                                                    <div className="clearButton">
+                                                      <a
+                                                        href={item.path}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                      >
+                                                        <i class="fa-sharp fa-solid fa-eye"></i>{" "}
+                                                        View
+                                                      </a>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              ) : (
+                                                ""
+                                              )}
                                             </div>
                                           </div>
-                                        ) : (
-                                          ""
-                                        )}
-                                      </div>
-                                    </div>
+                                        );
+                                      }
+                                    })}
                                   </div>
                                 </div>
                               );
@@ -445,7 +523,13 @@ function TempDashboard() {
                       <div className="header d-flex align-items-center">
                         <div className="col-12">Registration</div>
                       </div>
-                      <iframe src={preview} title="iframe" className="iframeWrapper" width="100%" height="500px" />
+                      <iframe
+                        src={preview}
+                        title="iframe"
+                        className="iframeWrapper"
+                        width="100%"
+                        height="500px"
+                      />
                       {/* <div className="imgWrapper">
                         <img src={preview} alt="" />
                       </div> */}
@@ -470,19 +554,23 @@ function TempDashboard() {
                 <div className="col-10 ps-0">
                   <h4>Warning!</h4>
                   "Please gave the reason for rejecting"
-                  <input className="formItem" type="text" value={rejectReason} onChange={(e) => setRejectReason(e.target.value)} />
+                  <input
+                    className="formItem"
+                    type="text"
+                    value={rejectReason}
+                    onChange={(e) => setRejectReason(e.target.value)}
+                  />
                   <div className="mt-2">
-                    <button
-                      className="panelButton m-0"
-                      onClick={rejectClick}
-                    >
+                    <button className="panelButton m-0" onClick={rejectClick}>
                       Confirm
                     </button>
                     <button
                       className="panelButtonWhite m-0 float-end"
-                      onClick={() => { setRejectPopUp(false); setRejectId() }}
+                      onClick={() => {
+                        setRejectPopUp(false);
+                        setRejectId();
+                      }}
                     >
-
                       Cancel
                     </button>
                   </div>
