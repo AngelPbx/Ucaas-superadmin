@@ -12,7 +12,7 @@ function ApprovedCustomer() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/accounts?company_status=5`);
+      const apiData = await generalGetFunction(`/account/all?company_status=5`);
       if (apiData.status) {
         console.log("This is api data", apiData.data);
         setLoading(false);

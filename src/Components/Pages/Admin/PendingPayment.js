@@ -13,7 +13,7 @@ function PaymentVerification() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/accounts?company_status=1`);
+      const apiData = await generalGetFunction(`/account/all?company_status=1`);
       if (apiData.status) {
         setLoading(false);
         setAccount(apiData.data);

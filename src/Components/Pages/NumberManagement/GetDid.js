@@ -58,24 +58,6 @@ function GetDid() {
   function removeDid(item) {
     setSelectedDid(selectedDid.filter((item1) => item1 !== item));
   }
-
-  useEffect(()=>{
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      // Camera access is available
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-          console.log('Camera is available');
-          // Do something if camera is available
-        })
-        .catch(function(error) {
-          console.log('Error accessing camera:', error);
-          // Do something if camera access is denied or unavailable
-        });
-    } else {
-      console.log('Camera access is not supported');
-      // Do something if camera access is not supported
-    }
-  },[])
   return (
     <main className="mainContent">
       <section id="phonePage">
