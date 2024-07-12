@@ -353,15 +353,15 @@ function Roles() {
                           
                           </div>
                         </div>
-                        {filteredPermission &&
-                          Object.keys(filteredPermission).map((item, key) => {
+                        {defaultPermission &&
+                          Object.keys(defaultPermission).map((item, key) => {
                             return (
                               <div className="permissionListWrapper" key={key}>
                                 <div class="header d-flex align-items-center">
                                   <div class="col-5">{item}</div>
                                 </div>
                                 <div className="row px-2 pt-1 border-bottom">
-                                  {filteredPermission[item].map(
+                                  {defaultPermission[item].map(
                                     (innerItem, key) => {
                                       return (
                                         <div
