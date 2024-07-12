@@ -70,10 +70,10 @@ function AccountDetails() {
                                     <div className="col-xl-3 px-2 billinCardWrapper">
                                         <Cards
                                             className="cardWrapper row align-items-center col-12 mx-auto"
-                                            number={activeCard[0].card_number}
-                                            expiry={`${Number(activeCard[0].exp_month)>9?activeCard[0].exp_month:`0${activeCard[0].exp_month}`}/${activeCard[0].exp_year}`}
-                                            cvc={activeCard[0].cvc}
-                                            name={activeCard[0].name}
+                                            number={activeCard?.[0]?.card_number}
+                                            expiry={`${Number(activeCard?.[0]?.exp_month)>9?activeCard?.[0]?.exp_month:`0${activeCard?.[0]?.exp_month}`}/${activeCard?.[0]?.exp_year}`}
+                                            cvc={activeCard?.[0]?.cvc}
+                                            name={activeCard?.[0]?.name}
                                         />
                                     </div>
                                     <div className="col-xl-3 px-2">
@@ -83,18 +83,18 @@ function AccountDetails() {
                                                 Balance
                                             </div>
                                             <div className="data-number">
-                                                $ {locationData.balance?.amount?.split(".")[0]}.
+                                                $ {locationData.balance?.amount?.split(".")[0]?locationData.balance?.amount?.split(".")[0]:0}.
                                                 <sub style={{ fontSize: 14 }}>
-                                                    {locationData.balance?.amount?.split(".")[1]}
+                                                    {locationData.balance?.amount?.split(".")[1]?locationData.balance?.amount?.split(".")[1]:"00"}
                                                 </sub>
                                             </div>
                                             <div className="label">
                                                 Active Card:{" "}
-                                                <span className="float-end">{activeCard[0].card_number}</span>
+                                                <span className="float-end">{activeCard?.[0]?.card_number}</span>
                                             </div>
                                             <div className="label">
                                                 Holder's Name:{" "}
-                                                <span className="float-end">{activeCard[0].name}</span>
+                                                <span className="float-end">{activeCard?.[0]?.name}</span>
                                             </div>
                                             <div
                                                 // onClick={() => setRechargePopUp(true)}
