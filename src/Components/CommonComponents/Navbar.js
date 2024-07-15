@@ -212,6 +212,18 @@ function Navbar() {
                 >
                   <div className="menuWrapper">
                     <ul className="tabMenu">
+                    <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/payment-verification"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Payment verification</div>
+                        </NavLink>
+                      </li>
                       <li className="tabItem" effect="ripple">
                         <NavLink
                           to="/document-verification"
@@ -224,19 +236,19 @@ function Navbar() {
                           <div className="itemTitle">Document verification</div>
                         </NavLink>
                       </li>
-
                       <li className="tabItem" effect="ripple">
                         <NavLink
-                          to="/payment-verification"
+                          to="/pending-config"
                           onClick={backToTop}
                           className="nav-link"
                         >
                           <div className="iconHolder">
                             <i className="fa-duotone fa-swap-arrows" />
                           </div>
-                          <div className="itemTitle">Payment verification</div>
+                          <div className="itemTitle">Pending Configuration</div>
                         </NavLink>
                       </li>
+                      
 
                       <li className="tabItem" effect="ripple">
                         <NavLink

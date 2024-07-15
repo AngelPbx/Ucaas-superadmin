@@ -76,6 +76,7 @@ import SupportTicketList from "./Components/Pages/Accounts/SupportTicketList";
 import DocumentList from "./Components/Pages/Setting/DocumentList";
 import UserExtension from "./Components/Pages/Accounts/UserExtension";
 import CustomerUser from "./Components/Pages/Accounts/CustomerUser";
+import PendingConfig from "./Components/Pages/Admin/PendingConfig";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -184,6 +185,7 @@ function App() {
 
             {/* Admin Packages path start */}
             <Route path="/document-verification" element={<PendingRequest />} />
+            <Route path="/pending-config" element={<PendingConfig />} />
             <Route
               path="/payment-verification"
               element={<PaymentVerification />}

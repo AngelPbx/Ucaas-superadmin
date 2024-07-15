@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../CommonComponents/Header";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ConfigDetails() {
+    const location = useLocation()
+    const locationData = location.state
+    const navigate = useNavigate()
+    console.log("Locationdata",locationData);
+    useEffect(()=>{
+        if(!locationData){
+            navigate(-1)
+        }
+    },[])
     return (
         <>
             <style>
@@ -82,6 +92,7 @@ function ConfigDetails() {
     .profileDetailsHolder a {text-decoration: none}
       `}
             </style>
+            {locationData?
             <div className="mainContent">
                 <div className="col-12">
                     <Header title="Configuration Options" />
@@ -110,7 +121,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.company_name}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.company_name}
                                                     disabled
                                                 />
                                             </div>
@@ -124,7 +135,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.admin_name}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.admin_name}
                                                     disabled
                                                 />
                                             </div>
@@ -138,7 +149,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.email}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.email}
                                                     disabled
                                                 />
                                             </div>
@@ -152,7 +163,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.contact_no}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.contact_no}
                                                     disabled
                                                 />
                                             </div>
@@ -166,7 +177,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.alternate_contact_no}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.alternate_contact_no}
                                                     disabled
                                                 />
                                             </div>
@@ -180,7 +191,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.timezone.name}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.timezone.name}
                                                     disabled
                                                 />
                                             </div>
@@ -194,7 +205,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.unit}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.unit}
                                                     disabled
                                                 />
                                             </div>
@@ -208,7 +219,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.building}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.building}
                                                     disabled
                                                 />
                                             </div>
@@ -222,7 +233,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.city}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.city}
                                                     disabled
                                                 />
                                             </div>
@@ -236,7 +247,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.zip}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.zip}
                                                     disabled
                                                 />
                                             </div>
@@ -250,7 +261,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.state}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.state}
                                                     disabled
                                                 />
                                             </div>
@@ -264,7 +275,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.country}
-                                                    value="L0LXDT3$T"
+                                                    value={locationData.country}
                                                     disabled
                                                 />
                                             </div>
@@ -509,63 +520,61 @@ function ConfigDetails() {
                                                 <li>
                                                     <label>Package Name</label>{" "}
                                                     <label class="details">
-                                                        {/* {account?.package.name} */}
+                                                    {locationData.package.name}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Package Price</label>{" "}
                                                     <label class="details">
-                                                        {/* ${account?.package.offer_price} */}
+                                                    {locationData.package.offer_price}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Package Type</label>{" "}
                                                     <label class="details">
-                                                        {/* {account?.package.subscription_type} */}
+                                                    {locationData.package.subscription_type}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Subscription Start</label>{" "}
                                                     <label class="details">
-                                                        {/* {account?.payments[0].subscription.start_date} */}
+                                                    {locationData.subscription[0].start_date.split(" ")[0]}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Subscription End</label>{" "}
                                                     <label class="details">
-                                                        {/* {account?.payments[0].subscription.end_date} */}
+                                                    {locationData.subscription[0].end_date.split(" ")[1]}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Time of Payment</label>{" "}
                                                     <label class="details">
-                                                        {/* {
-                                                        account?.payments[0].transaction_date
-                                                    } */}
+                                                    {locationData.payments[0].transaction_date}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Payment Status</label>{" "}
                                                     <label class="details">
-                                                        {/* {account?.payments[0].payment_status} */}
+                                                    {locationData.payments[0].payment_status}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>Transaction Id</label>{" "}
                                                     <label class="details">
-                                                        {/* {account?.payments[0].transaction_id} */}
+                                                    {locationData.payments[0].transaction_id}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>DID Status</label>{" "}
                                                     <label class="details">
-                                                        Successful
+                                                       {locationData.dids.length>0?"Success":"Incomplete    "}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>DID Details</label>{" "}
                                                     <label class="details">
-                                                        (888) 888-8888
+                                                       {locationData.dids?.[0].did}
                                                     </label>
                                                 </li>
                                             </ul>
@@ -576,7 +585,7 @@ function ConfigDetails() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>:""}
         </>
     )
 }

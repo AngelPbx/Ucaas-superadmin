@@ -13,7 +13,7 @@ function PendingConfig() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/accounts?company_status=4`);
+      const apiData = await generalGetFunction(`/account/all?company_status=5`);
       if (apiData.status) {
         setLoading(false);
         setAccount(apiData.data);
@@ -68,7 +68,7 @@ function PendingConfig() {
                               return (
                                 <tr
                                   onClick={() =>
-                                    navigate(`/user-details`, { state: item.id })
+                                    navigate(`/config-details`, { state: item })
                                   }
                                   key={index}
                                 >
