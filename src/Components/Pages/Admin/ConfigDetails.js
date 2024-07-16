@@ -305,7 +305,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.company_name}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -319,7 +319,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.admin_name}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -333,7 +333,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.email}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -347,7 +347,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.contact_no}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -389,7 +389,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.unit}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -403,7 +403,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.building}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -417,7 +417,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.city}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -431,7 +431,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.zip}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -445,7 +445,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.state}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -459,7 +459,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.country}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -473,7 +473,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.country}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -487,7 +487,7 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.country}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
@@ -501,18 +501,18 @@ function ConfigDetails() {
                                                     type="text"
                                                     className="formItem"
                                                     //   value={account?.country}
-                                                    value="L0LXDT3$T"
+                                                    // value="L0LXDT3$T"
                                                     
                                                 />
                                             </div>
                                         </div>
 
-                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                        {/* <div className="formRow col-xl-4 col-md-4 col-6">
                                            
                                             <div className="col-12">
                                                Get DID
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
