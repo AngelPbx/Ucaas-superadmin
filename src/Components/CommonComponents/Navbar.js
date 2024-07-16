@@ -214,6 +214,18 @@ function Navbar() {
                     <ul className="tabMenu">
                     <li className="tabItem" effect="ripple">
                         <NavLink
+                          to="/lead"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Leads</div>
+                        </NavLink>
+                      </li>
+                    <li className="tabItem" effect="ripple">
+                        <NavLink
                           to="/payment-verification"
                           onClick={backToTop}
                           className="nav-link"

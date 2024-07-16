@@ -77,6 +77,8 @@ import DocumentList from "./Components/Pages/Setting/DocumentList";
 import UserExtension from "./Components/Pages/Accounts/UserExtension";
 import CustomerUser from "./Components/Pages/Accounts/CustomerUser";
 import PendingConfig from "./Components/Pages/Admin/PendingConfig";
+import Lead from "./Components/Pages/Admin/Lead";
+import LeadDetails from "./Components/Pages/Admin/LeadDetails";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -194,6 +196,8 @@ function App() {
             <Route path="/user-details" element={<UserDetails />} />
             <Route path="/approved-customer" element={<ApprovedCustomer />} />
             <Route path="/config-details" element={<ConfigDetails />} />
+            <Route path="/lead" element={<Lead />} />
+            <Route path="/lead-details" element={<LeadDetails />} />
             {/* Admin Packages path end */}
 
             {/* Number Management Path Start */}

@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "../../CommonComponents/Header";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function ConfigDetails() {
     const location = useLocation()
     const locationData = location.state
+    const [did,setDid]=useState()
+    const [domain,setDomain]=useState()
     const navigate = useNavigate()
     console.log("Locationdata",locationData);
     useEffect(()=>{
@@ -304,7 +306,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.company_name}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -318,7 +320,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.admin_name}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -332,7 +334,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.email}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -346,7 +348,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.contact_no}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -388,7 +390,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.unit}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -402,7 +404,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.building}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -416,7 +418,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.city}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -430,7 +432,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.zip}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -444,7 +446,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.state}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -458,7 +460,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.country}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -472,7 +474,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.country}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -486,7 +488,7 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.country}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
                                             </div>
                                         </div>
@@ -500,8 +502,15 @@ function ConfigDetails() {
                                                     className="formItem"
                                                     //   value={account?.country}
                                                     value="L0LXDT3$T"
-                                                    disabled
+                                                    
                                                 />
+                                            </div>
+                                        </div>
+
+                                        <div className="formRow col-xl-4 col-md-4 col-6">
+                                           
+                                            <div className="col-12">
+                                               Get DID
                                             </div>
                                         </div>
                                     </div>
