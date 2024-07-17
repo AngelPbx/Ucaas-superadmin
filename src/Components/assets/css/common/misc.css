@@ -351,3 +351,40 @@
 .buttonPopup .clearButton a:hover {
     color: var(--ui-accent);
 }
+
+.statusMessage {
+    padding: 10px;
+}
+
+.statusWrapper {
+    /* background-color: #ff800030; */
+    background-color: #f101012d;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #dc3545;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.statusMessage.notify  .statusWrapper{
+    background-color: #edf1012d;
+    border: 2px solid #ffae00;
+}
+
+.statusWrapper h5 {
+    /* color: #ff8100; */
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.statusContent ul {
+    list-style: none;
+    padding-left: 5px;
+    margin-bottom: 0;
+}
+
+.statusContent ul li {
+    margin-top: 5px;
+}
+
+.statusContent ul li b {
+    color: #ffae00;
+}

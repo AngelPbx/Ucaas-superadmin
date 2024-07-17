@@ -577,13 +577,13 @@ function ConfigDetails() {
                                                 <li>
                                                     <label>DID Status</label>{" "}
                                                     <label class="details">
-                                                       {locationData.dids.length>0?"Success":"Incomplete    "}
+                                                       {locationData?.dids?.length>0?"Success":"Incomplete    "}
                                                     </label>
                                                 </li>
                                                 <li>
                                                     <label>DID Details</label>{" "}
                                                     <label class="details">
-                                                       {locationData.dids?.[0].did}
+                                                       {locationData.dids?.[0]?.did}
                                                     </label>
                                                 </li>
                                             </ul>

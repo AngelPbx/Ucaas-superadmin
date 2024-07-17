@@ -308,6 +308,39 @@ function TempDashboard() {
               </div>
               <div className="d-flex flex-wrap">
                 <div className="col-xl-8">
+                  <div class="statusMessage notify">
+                    <div class="statusWrapper">
+                      <h5>
+                        <i class="fa-solid fa-triangle-exclamation text-warning me-1"></i>{" "}
+                        Customer has uploaded new document(s)!
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="profileView">
+                    <div
+                      class="profileDetailsHolder position-relative"
+                      style={{border: '1px solid #ffae00'}}
+                    >
+                      <div class="row px-2">
+                        <div class="statusContent">
+                          <p class="mb-2">
+                            The following document(s) have been re-uploaded for
+                            verification :-
+                          </p>
+                          <ul>
+                            <li class="d-flex justify-content-between">
+                              <div class="col-10">
+                                <b>
+                                  <i class="fa-solid fa-triangle-exclamation me-1"></i>{" "}
+                                  Tin
+                                </b>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="profileView">
                     <div className="profileDetailsHolder">
                       <div className="header d-flex align-items-center">
@@ -338,7 +371,7 @@ function TempDashboard() {
                                       aria-expanded="false"
                                       aria-controls={`flush-collapse${key}`}
                                     >
-                                    {key+1}.   {item2?.document?.name}
+                                      {key + 1}. {item2?.document?.name}
                                     </button>
                                   </h2>
                                   <div
@@ -348,7 +381,9 @@ function TempDashboard() {
                                     data-bs-parent="#accordionFlushExample"
                                   >
                                     {account?.details.map((item, key) => {
-                                      if (item.document_id === item2.document_id) {
+                                      if (
+                                        item.document_id === item2.document_id
+                                      ) {
                                         return (
                                           <div class="accordion-body">
                                             <div className="d-flex flex-wrap col-11 ms-auto position-relative align-items-center">
