@@ -68,7 +68,7 @@ function PendingConfig() {
                               return (
                                 <tr
                                   onClick={() =>
-                                    navigate(`/config-details`, { state: item })
+                                    navigate(`/config-details`, { state: item.id })
                                   }
                                   key={index}
                                 >

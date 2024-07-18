@@ -308,15 +308,15 @@ function TempDashboard() {
               </div>
               <div className="d-flex flex-wrap">
                 <div className="col-xl-8">
-                  <div class="statusMessage notify">
+                  {/* <div class="statusMessage notify">
                     <div class="statusWrapper">
                       <h5>
                         <i class="fa-solid fa-triangle-exclamation text-warning me-1"></i>{" "}
                         Customer has uploaded new document(s)!
                       </h5>
                     </div>
-                  </div>
-                  <div class="profileView">
+                  </div> */}
+                  {/* <div class="profileView">
                     <div
                       class="profileDetailsHolder position-relative"
                       style={{border: '1px solid #ffae00'}}
@@ -340,7 +340,7 @@ function TempDashboard() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="profileView">
                     <div className="profileDetailsHolder">
                       <div className="header d-flex align-items-center">
