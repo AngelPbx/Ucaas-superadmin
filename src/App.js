@@ -130,7 +130,7 @@ function App() {
 
             {/* Accounts Path Start */}
             <Route path="/users" element={<Users />} />
-            <Route path="/customer-details" element={<AccountDetails />} />
+            <Route path="/approved-customer-details" element={<AccountDetails />} />
             <Route path="/account-settings" element={<AccountSettings />} />
             <Route path="/support-ticket-list" element={<SupportTicketList />} />
             <Route path="/user-extension" element={<UserExtension />} />

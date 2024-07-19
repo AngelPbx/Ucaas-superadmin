@@ -96,12 +96,12 @@ function AccountDetails() {
                                                 Holder's Name:{" "}
                                                 <span className="float-end">{activeCard?.[0]?.name}</span>
                                             </div>
-                                            <div
+                                            {/* <div
                                                 // onClick={() => setRechargePopUp(true)}
                                                 className="cartButton mt-1"
                                             >
                                                 Recharge Now
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="col-xl-3 px-2">
