@@ -71,7 +71,7 @@ function Header(props) {
             </button>
           </div>
 
-          <div>
+          {/* <div>
             <Tippy content="Your available balance, click to know more!">
               <div
                 // href="#"
@@ -81,7 +81,7 @@ function Header(props) {
                 <span className="d-none d-xl-inline-block">$420.69</span>
               </div>
             </Tippy>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="col-auto col-xl-auto d-flex justify-content-end align-items-center ms-3">

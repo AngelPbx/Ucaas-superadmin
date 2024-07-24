@@ -1,7 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Profile = () => {
+    useEffect(() => {
+        const getAccessToken = async () => {
+          const data = new URLSearchParams({
+            grant_type: "client_credentials",
+            client_id: "VwFGPMYTfGz8qmGw9COeqORT9Gqmz2rv",
+            client_secret: "nAFGRI6F2AGVomaj"
+          });
+    
+          try {
+            const response = await fetch(`https://test.api.amadeus.com/v1/security/oauth2/token`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: data
+            });
+    
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+    
+            const result = await response.json();
+            console.log(result.access_token); // Use the access token as needed
+          } catch (error) {
+            console.error('Error fetching access token:', error);
+          }
+        };
+    
+        getAccessToken();
+      }, []);
     return (
         <main className="mainContent">
             <section id="phonePage">
