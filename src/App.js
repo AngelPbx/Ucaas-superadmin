@@ -79,6 +79,22 @@ import CustomerUser from "./Components/Pages/Accounts/CustomerUser";
 import PendingConfig from "./Components/Pages/Admin/PendingConfig";
 import Lead from "./Components/Pages/Admin/Lead";
 import LeadDetails from "./Components/Pages/Admin/LeadDetails";
+import BillingDestinationAdd from "./Components/Pages/Billing/BillingDestinationAdd";
+import BillingDestination from "./Components/Pages/Billing/BillingDestination";
+import BillingDestinationEdit from "./Components/Pages/Billing/BillingDestinationEdit";
+import BillingRates from "./Components/Pages/Billing/BillingRates";
+import BillingRateAdd from "./Components/Pages/Billing/BillingRateAdd";
+import BillingRateEdit from "./Components/Pages/Billing/BillingRateEdit";
+import DestRate from "./Components/Pages/Billing/DestRate";
+import DestRateEdit from "./Components/Pages/Billing/DestRateEdit";
+import DestRateAdd from "./Components/Pages/Billing/DestRateAdd";
+import GlobalCalls from "./Components/GlobalFunction/GlobalCalls";
+import RatePlans from "./Components/Pages/Billing/RatePlans";
+import RatePlansAdd from "./Components/Pages/Billing/RatePlansAdd";
+import RatePlansEdit from "./Components/Pages/Billing/RatePlansEdit";
+import RatingProfile from "./Components/Pages/Billing/RatingProfile";
+import RatingProfileAdd from "./Components/Pages/Billing/RatingProfileAdd";
+import RatingProfileEdit from "./Components/Pages/Billing/RatingProfileEdit";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -111,6 +127,7 @@ function App() {
   return (
     <>
       <Router>
+        <GlobalCalls />
         <NavigationSetter />
         <Navbar />
         <Routes>
@@ -243,6 +260,25 @@ function App() {
             <Route path="/customer-details" element={<CustomerDetails />} />
             <Route path="/upload-document" element={<DocumentUpload />} />
             {/* Setting path end */}
+
+            {/* Billing path start */}
+            <Route path="/billing-destination-add" element={<BillingDestinationAdd />} />
+            <Route path="/billing-destination" element={<BillingDestination />} />
+            <Route path="/billing-destination-edit" element={<BillingDestinationEdit />} />
+            <Route path="/billing-rates" element={<BillingRates />} />
+            <Route path="/billing-rate-add" element={<BillingRateAdd />} />
+            <Route path="/billing-rate-edit" element={<BillingRateEdit />} />
+            <Route path="/billing-destination-rate" element={<DestRate />} />
+            <Route path="/billing-destination-rate-edit" element={<DestRateEdit />} />
+            <Route path="/billing-destination-rate-add" element={<DestRateAdd />} />
+            <Route path="/billing-rate-plan" element={<RatePlans />} />
+            <Route path="/billing-rate-plan-add" element={<RatePlansAdd />} />
+            <Route path="/billing-rate-plan-edit" element={<RatePlansEdit />} />
+            <Route path="/biling-rate-profile" element={<RatingProfile />} />
+            <Route path="/biling-rate-profile-add" element={<RatingProfileAdd />} />
+            <Route path="/biling-rate-profile-edit" element={<RatingProfileEdit />} />
+
+            {/* Billing path end */}
           </Route>
           {/* 404 Redirection */}
           <Route path="*" element={<Navigate to="/dashboard" />} />

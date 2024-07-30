@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import { generalGetFunction } from '../../GlobalFunction/globalFunction'
 import { useSelector } from 'react-redux'
 import Header from '../../CommonComponents/Header'
-import GlobalCalls from '../../GlobalFunction/GlobalCalls'
 import DoughnutChart from '../../CommonComponents/DoughnutChart'
 import GraphChart from '../../CommonComponents/GraphChart'
 const SuperAdminDashboard = () => {
@@ -184,7 +183,6 @@ const SuperAdminDashboard = () => {
                     </div>
                 </div>
             </section>
-            <GlobalCalls />
         </main >
     )
 }

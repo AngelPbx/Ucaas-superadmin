@@ -5,6 +5,10 @@ var loginUser = [];
 var callState = [];
 var channelHangupComplete = [];
 var allCall = [];
+var billingDest= [];
+var billingRates= [];
+var billingRatesRefresh = 0
+var billingDestRefresh = 0
 
 const initialState = {
   account,
@@ -13,6 +17,10 @@ const initialState = {
   callState,
   channelHangupComplete,
   allCall,
+  billingDest,
+  billingDestRefresh,
+  billingRates,
+  billingRatesRefresh,
 };
 
 const counterReducer = (state = initialState, action) => {
@@ -29,6 +37,14 @@ const counterReducer = (state = initialState, action) => {
       return { ...state, channelHangupComplete: action.channelHangupComplete };
     case "SET_ALLCALL":
       return { ...state, allCall: action.allCall };
+    case "SET_BILLINGDEST":
+      return { ...state, billingDest: action.billingDest };
+    case "SET_BILLINGRATES":
+      return { ...state, billingRates: action.billingRates };
+    case "SET_BILLINGRATESREFRESH":
+      return { ...state, billingRatesRefresh: action.billingRatesRefresh };
+    case "SET_BILLINGDESTREFRESH":
+      return { ...state, billingDestRefresh: action.billingDestRefresh };
     default:
       return state;
   }

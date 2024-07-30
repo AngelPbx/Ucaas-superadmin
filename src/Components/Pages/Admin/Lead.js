@@ -49,12 +49,6 @@ function Lead() {
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Address</th>
-                        {/* <th>Payment Status</th> */}
-                        {/* <th>
-                          Verification
-                        </th> */}
-                        {/* <th>Description</th>
-                        <th>Add Features</th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -80,14 +74,7 @@ function Lead() {
                                   <td>{item.email}</td>
                                   <td>{item.contact_no}</td>
                                   <td>{item.unit}</td>
-                                  {/* <td>
-                                    <label className={item.payment_url === null ? "tableLabel success" : "tableLabel fail"}>{item.payment_url === null ? "True" : "False"}</label>
-                                  </td> */}
-                                  {/* <td>
-                                    {item.company_status === "1"
-                                      ? "Pending"
-                                      : ""}
-                                  </td> */}
+                                 
                                 </tr>
                               );
                             })}

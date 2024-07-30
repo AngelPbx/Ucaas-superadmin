@@ -493,26 +493,89 @@ function Navbar() {
               </li>
               {/* Did here */}
 
-              {/* <li className="dashboard ">
-                <NavLink
-                  to="/ring-groups"
-                  onClick={backToTop}
-                  type="button"
+              <li className="">
+                <button
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse9"
+                  aria-expanded="false"
+                  aria-controls="collapse9"
                   effect="ripple"
                 >
-                  <div className="itemTitle">Ring Group</div>
-                </NavLink>
+                  <div className="itemTitle">Billing</div>
+                </button>
+                <div
+                  id="collapse9"
+                  className="accordion-collapse collapse"
+                  data-bs-parent="#sidenNav"
+                >
+                  <div className="menuWrapper">
+                    <ul className="tabMenu">
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/billing-destination"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Destination</div>
+                        </NavLink>
+                      </li>
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/billing-rates"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Rates</div>
+                        </NavLink>
+                      </li>
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/billing-destination-rate"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Destination Rates</div>
+                        </NavLink>
+                      </li>
+
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/billing-rate-plan"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Rate Plans</div>
+                        </NavLink>
+                      </li>
+
+                      <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/biling-rate-profile"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Rate Profile</div>
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </li>
-              <li className="dashboard ">
-                <NavLink
-                  to="/cal-center-queue"
-                  onClick={backToTop}
-                  type="button"
-                  effect="ripple"
-                >
-                  <div className="itemTitle">Call Center</div>
-                </NavLink>
-              </li> */}
               <li className="dashboard ">
                 <NavLink to="/" onClick={logOut} type="button" effect="ripple">
                   <div
