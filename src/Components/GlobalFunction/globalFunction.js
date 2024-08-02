@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { handleNavigation } from './Navigation';
-// const baseName = "http://192.168.1.88/UcaasS-Backend/api"
-const baseName = "http://127.0.0.1:8000/api"
+const baseName = "http://192.168.1.88/UcaasS-Backend/api"
+// const baseName = "http://127.0.0.1:8000/api"
+var updateBase = baseName
 // const baseName = "http://127.0.0.1:8000/api"
 
 
 
 // Creating instance of axios
 const axiosInstance = axios.create({
-  baseURL: baseName,
+  // baseURL: baseName,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -35,7 +36,7 @@ export async function login(userName, password) {
     password: password
   };
 
-  return axiosInstance.post(`/auth/login`, parsedData)
+  return axiosInstance.post(`${baseName}/auth/login`, parsedData)
     .then(res => {
       const token = res.data.token;
       localStorage.setItem('token', token);
@@ -49,7 +50,12 @@ export async function login(userName, password) {
 
 // General Get Function
 export async function generalGetFunction(endpoint) {
-  return axiosInstance.get(endpoint).then(res => {
+  if(endpoint === "/destination/all" || endpoint === "/rate/all" || endpoint === "/destination-rate/all" || endpoint === "/rating-plan/all" || endpoint === "/rating-profile/all"){
+    updateBase = "http://192.168.1.88/UcaasS-Backend/admin/api"
+  }else{
+    updateBase = baseName
+  }
+  return axiosInstance.get(`${updateBase}${endpoint}`).then(res => {
     return res.data
   }).catch(err => {
     if (err.response.status === 401) {
@@ -66,7 +72,12 @@ export async function generalGetFunction(endpoint) {
 
 // General Post function
 export async function generalPostFunction(endpoint, data) {
-  return axiosInstance.post(endpoint, data).then(res => {
+  if(endpoint === "/destination/store" || endpoint === "/rate/store" || endpoint === "/destination-rate/store" || endpoint === "/rating-plan/store" || endpoint === "/rating-profile/store"){
+    updateBase = "http://192.168.1.88/UcaasS-Backend/admin/api"
+  }else{
+    updateBase = baseName
+  }
+  return axiosInstance.post(`${updateBase}${endpoint}`, data).then(res => {
     return res.data
   }).catch(err => {
     if (err.response.status === 401) {
@@ -80,7 +91,8 @@ export async function generalPostFunction(endpoint, data) {
 
 // General Put function
 export async function generalPutFunction(endpoint, data) {
-  return axiosInstance.put(endpoint, data).then(res => {
+  
+  return axiosInstance.put(`${updateBase}${endpoint}`, data).then(res => {
     return res.data
   }).catch(err => {
     if (err.response.status === 401) {
@@ -94,7 +106,7 @@ export async function generalPutFunction(endpoint, data) {
 
 // General Delete Function
 export async function generalDeleteFunction(endpoint) {
-  return axiosInstance.delete(endpoint).then(res => {
+  return axiosInstance.delete(`${updateBase}${endpoint}`).then(res => {
     return res.data
   }).catch(err => {
     if (err.response.status === 401) {
