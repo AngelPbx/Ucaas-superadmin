@@ -127,8 +127,8 @@ function ConfigDetails() {
         },2000)
       } else {
         setLoading(false);
-        const errorMessage = Object.keys(apiData.error);
-        toast.error(apiData.error[errorMessage[0]][0]);
+        // const errorMessage = Object.keys(apiData.error);
+        toast.error(apiData.error);
       }
     }
   }
@@ -473,6 +473,19 @@ function ConfigDetails() {
                       </div>
                       <div className="formRow col-xxl-3 col-xl-4 col-md-4 col-6">
                         <div className="formLabel">
+                          <label htmlFor="data">Domain*</label>
+                        </div>
+                        <div className="col-12">
+                          <input
+                            type="text"
+                            className="formItem"
+                            name="domain"
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className="formRow col-xxl-3 col-xl-4 col-md-4 col-6">
+                        <div className="formLabel">
                           <label htmlFor="data">Realm</label>
                         </div>
                         <div className="col-12">
@@ -558,19 +571,6 @@ function ConfigDetails() {
                             type="text"
                             className="formItem"
                             name="desc"
-                            onChange={(e) => handleChange(e)}
-                          />
-                        </div>
-                      </div>
-                      <div className="formRow col-xxl-3 col-xl-4 col-md-4 col-6">
-                        <div className="formLabel">
-                          <label htmlFor="data">Set Domain</label>
-                        </div>
-                        <div className="col-12">
-                          <input
-                            type="text"
-                            className="formItem"
-                            name="domain"
                             onChange={(e) => handleChange(e)}
                           />
                         </div>

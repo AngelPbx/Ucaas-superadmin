@@ -23,6 +23,7 @@ function TempDashboard() {
   const location = useLocation();
   const locationState = location.state;
   const [preview, setPreview] = useState();
+  const [previewTitle,setPreviewTitle]=useState("")
   const [reload, setReload] = useState(0);
   const [docId, setDocId] = useState([]);
   const [account, setAccount] = useState(
@@ -35,8 +36,9 @@ function TempDashboard() {
         setLoading(false);
         setAccount(apiData.data);
         setPreview(
-          "https://ncet-public-2023.s3.ap-south-1.amazonaws.com/2024/site-admin24/syllabus/Accountancy+301.pdf"
+    apiData.data.details[0].path
         );
+        setPreviewTitle(apiData.data.details[0].document.name)
         console.log("This is account data", apiData.data);
         const newDocItems = [...docId];
         apiData.data.details.forEach((item) => {
@@ -443,8 +445,11 @@ function TempDashboard() {
                                               </div>
                                               <div
                                                 className="col-auto ps-2 my-auto"
-                                                onClick={() =>
+                                                onClick={() =>{
                                                   setPreview(item.path)
+                                                  setPreviewTitle(item.document.name)
+                                                }
+                                                 
                                                 }
                                               >
                                                 <div className="iconWrapper">
@@ -556,7 +561,7 @@ function TempDashboard() {
                   <div className="profileView">
                     <div className="profileDetailsHolder">
                       <div className="header d-flex align-items-center">
-                        <div className="col-12">Registration</div>
+                        <div className="col-12">{previewTitle}</div>
                       </div>
                       <iframe
                         src={preview}
