@@ -204,7 +204,7 @@ function UserDetails() {
                         <input
                           type="text"
                           className="formItem"
-                          value={userDetails?.timezone.name}
+                          value={userDetails?.timezone?.name}
                           disabled
                         />
                       </div>
@@ -303,7 +303,7 @@ function UserDetails() {
                             <li>
                               <label>Package Name</label>{" "}
                               <label class="details">
-                                {userDetails?.package.name}
+                                {userDetails?.package?.name}
                               </label>
                             </li>
                             <li>
@@ -321,15 +321,15 @@ function UserDetails() {
                             <li>
                               <label>Card Holder's Name</label>{" "}
                               <label class="details">
-                                {userDetails?.card_details[0].name}
+                                {userDetails?.card_details[0]?.name}
                               </label>
                             </li>
                             <li>
                               <label>Card Number</label>{" "}
                               <label class="details">
                                 {
-                                  userDetails?.card_details[0]
-                                    .card_number
+                                  userDetails?.card_details[0]?.
+                                    card_number
                                 }
                               </label>
                             </li>
@@ -337,11 +337,10 @@ function UserDetails() {
                               <label>Card Expiry Date</label>{" "}
                               <label class="details">
                                 {
-                                  userDetails?.card_details[0]
-                                    .exp_month
+                                  userDetails?.card_details[0]?.exp_month
                                 }
                                 /
-                                {userDetails?.card_details[0].exp_year}
+                                {userDetails?.card_details[0]?.exp_year}
                               </label>
                             </li>
                             <li>
