@@ -510,6 +510,18 @@ function Navbar() {
                 >
                   <div className="menuWrapper">
                     <ul className="tabMenu">
+                    <li className="tabItem" effect="ripple">
+                        <NavLink
+                          to="/calling-plan"
+                          onClick={backToTop}
+                          className="nav-link"
+                        >
+                          <div className="iconHolder">
+                            <i className="fa-duotone fa-swap-arrows" />
+                          </div>
+                          <div className="itemTitle">Calling plans</div>
+                        </NavLink>
+                      </li>
                       <li className="tabItem" effect="ripple">
                         <NavLink
                           to="/billing-destination"

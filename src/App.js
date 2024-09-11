@@ -95,6 +95,9 @@ import RatePlansEdit from "./Components/Pages/Billing/RatePlansEdit";
 import RatingProfile from "./Components/Pages/Billing/RatingProfile";
 import RatingProfileAdd from "./Components/Pages/Billing/RatingProfileAdd";
 import RatingProfileEdit from "./Components/Pages/Billing/RatingProfileEdit";
+import CallRatePlanAdd from "./Components/Pages/Billing/CallRatePlanAdd";
+import CallRatePlan from "./Components/Pages/Billing/CallRatePlan";
+import CallRatePlanEdit from "./Components/Pages/Billing/CallRatePlanEdit";
 
 // Unlock this if want push notification
 // import { generateToken, messaging } from "./Components/GlobalFunction/PushNotification";
@@ -277,6 +280,9 @@ function App() {
             <Route path="/biling-rate-profile" element={<RatingProfile />} />
             <Route path="/biling-rate-profile-add" element={<RatingProfileAdd />} />
             <Route path="/biling-rate-profile-edit" element={<RatingProfileEdit />} />
+            <Route path="/calling-plan-add" element={<CallRatePlanAdd />} />
+            <Route path="/calling-plan-edit" element={<CallRatePlanEdit />} />
+            <Route path="/calling-plan" element={<CallRatePlan />} />
 
             {/* Billing path end */}
           </Route>

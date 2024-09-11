@@ -50,7 +50,7 @@ export async function login(userName, password) {
 
 // General Get Function
 export async function generalGetFunction(endpoint) {
-  if(endpoint === "/destination/all" || endpoint === "/rate/all" || endpoint === "/destination-rate/all" || endpoint === "/rating-plan/all" || endpoint === "/rating-profile/all"){
+  if(endpoint === "/destination/all" || endpoint === "/rate/all" || endpoint === "/destination-rate/all" || endpoint === "/rating-plan/all" || endpoint === "/rating-profile/all" || endpoint==="/call-rates-plans/all?page=1" || endpoint==="/gateway/all" || endpoint==="/call-rates-plans/show/1" || endpoint==="/call-rates-plans/show/2" || endpoint==="/call-rates-plans/show/3" || endpoint==="/call-rates-plans/show/4" || endpoint==="/call-rates-plans/show/4" || endpoint==="/call-rates-plans/show/5"){
     updateBase = "http://192.168.1.88/UcaasS-Backend/admin/api"
   }else{
     updateBase = baseName
@@ -72,7 +72,7 @@ export async function generalGetFunction(endpoint) {
 
 // General Post function
 export async function generalPostFunction(endpoint, data) {
-  if(endpoint === "/destination/store" || endpoint === "/rate/store" || endpoint === "/destination-rate/store" || endpoint === "/rating-plan/store" || endpoint === "/rating-profile/store"){
+  if(endpoint === "/destination/store" || endpoint === "/rate/store" || endpoint === "/destination-rate/store" || endpoint === "/rating-plan/store" || endpoint === "/rating-profile/store" || endpoint==="/call-rates-plans/store"){
     updateBase = "http://192.168.1.88/UcaasS-Backend/admin/api"
   }else{
     updateBase = baseName

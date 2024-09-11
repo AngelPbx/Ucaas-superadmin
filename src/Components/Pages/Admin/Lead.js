@@ -13,7 +13,7 @@ function Lead() {
   // Getting packes value from inital state
   useEffect(() => {
     async function getData() {
-      const apiData = await generalGetFunction(`/leads`);
+      const apiData = await generalGetFunction(`/leads/all`);
       if (apiData.status) {
         setLoading(false);
 
